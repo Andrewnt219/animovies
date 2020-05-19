@@ -1,8 +1,8 @@
 import React from 'react';
-import NavBar from 'Components/navigation/NavBar';
 import styled from 'styled-components/macro';
 import Backdrop from 'Components/ui/Backdrop';
 import bg from 'Assets/bg.jpg';
+import MenuBar from 'Components/landingPage/MenuBar';
 
 const StyledLanding = styled.div`
   width: 100%;
@@ -18,8 +18,8 @@ const StyledLanding = styled.div`
 function Landing() {
   return (
     <StyledLanding>
+      <MenuBar />
       <Backdrop />
-      <NavBar />
     </StyledLanding>
   );
 }

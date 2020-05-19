@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
+import { rgba } from 'polished';
 
 const Backdrop = styled.div`
   content: '';
@@ -7,7 +8,7 @@ const Backdrop = styled.div`
   height: 100vh;
   position: fixed;
   z-index: ${(p) => p.index ?? '1000'};
-  background: rgba(0, 0, 0, 0.5);
+  background: ${(p) => rgba(p.theme.black, 0.8)};
 `;
 
 Backdrop.propTypes = {
