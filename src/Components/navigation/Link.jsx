@@ -3,21 +3,24 @@ import { NavLink } from 'react-router-dom';
 
 const StyledLink = styled(NavLink)`
   text-decoration: none;
-  color: var(--secondary);
+  color: ${(p) => p.theme.secondary};
   margin: 0 0.5rem;
   padding: 1rem;
   font-size: 1.5rem;
   border-radius: 4px;
 
   &:visited {
-    color: var(--secondary);
+    color: ${(p) => p.theme.secondary};
   }
 
-  &:hover,
   &.active {
-    background: var(--secondary);
-    border-color: var(--secondary);
-    color: var(--primary);
+    background: ${(p) => p.theme.secondary};
+    border-color: ${(p) => p.theme.secondary};
+    color: ${(p) => p.theme.primary};
+  }
+
+  &:hover {
+    text-decoration: underline;
   }
 `;
 

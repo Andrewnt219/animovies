@@ -8,7 +8,7 @@ import StyledLink from './Link';
 
 const StyledNavBar = styled(Paper)`
   position: fixed;
-  background: ${(p) => p.bgColor ?? 'var(--primary)'};
+  background: ${(p) => p.bgColor ?? p.theme.primary};
   height: 6rem;
   display: flex;
   z-index: ${(p) => p.index ?? '1100'};
