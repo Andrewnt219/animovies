@@ -1,18 +1,18 @@
 import React from 'react';
-import NavBar from 'Components/navigation/NavBar';
+import Fixed from 'Components/container/Fixed';
 import NavItems from 'Components/navigation/NavItems';
 import LandingLink from './LandingLink';
 
 function MenuBar() {
   return (
-    <NavBar bgColor="none">
+    <Fixed bgColor="none" margin="2rem 0 0 0">
       <NavItems>
         <LandingLink to="/" exact>
           Movies
         </LandingLink>
         <LandingLink to="/anime">Anime</LandingLink>
       </NavItems>
-    </NavBar>
+    </Fixed>
   );
 }
 

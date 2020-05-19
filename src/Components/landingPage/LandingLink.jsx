@@ -1,5 +1,5 @@
 import StyledLink from 'Components/navigation/Link';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { darken } from 'polished';
 
 export default styled(StyledLink).attrs((p) => ({
