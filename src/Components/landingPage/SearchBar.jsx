@@ -10,23 +10,37 @@ const StyledSearchBar = styled(Flex)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 70%;
 `;
 
-const HEIGHT = '15vw';
+const HEIGHT = '6rem';
 
 const StyledSearchIcon = styled(MdSearch)`
   color: ${(p) => p.theme.white};
-  background: ${(p) => p.theme.primary};
-  width: ${HEIGHT};
-  height: ${HEIGHT};
-  font-size: inherit;
+  scale: 3;
 `;
 
-function SearchBar(props) {
+const LandingInput = styled(Input)`
+  flex: 1;
+  border-radius: 0.5rem 0 0 0.5rem;
+`;
+
+const IconWrapper = styled(Flex)`
+  height: ${HEIGHT};
+  width: 30%;
+  max-width: 10rem;
+  background: ${(p) => p.theme.primary};
+  box-sizing: border-box;
+  border-radius: 0 0.5rem 0.5rem 0;
+`;
+
+function SearchBar() {
   return (
     <StyledSearchBar>
-      <Input height={HEIGHT} />
-      <StyledSearchIcon />
+      <LandingInput height={HEIGHT} />
+      <IconWrapper>
+        <StyledSearchIcon />
+      </IconWrapper>
     </StyledSearchBar>
   );
 }
