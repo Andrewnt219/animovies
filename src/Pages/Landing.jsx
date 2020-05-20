@@ -6,6 +6,7 @@ import MenuBar from 'Components/landingPage/LandingMenuBar';
 import SearchBar from 'Components/landingPage/SearchBar';
 import BrandName from 'Components/landingPage/BrandName';
 import Flex from 'Components/container/Flex';
+import { motion } from 'framer-motion';
 
 function getBackground(theme) {
   return theme === 'movie'
@@ -21,7 +22,7 @@ function getBackground(theme) {
       };
 }
 
-const StyledLanding = styled.div`
+const Layout = styled(motion.div)`
   width: 100%;
   height: 100%;
   background: url(${(p) => getBackground(p.theme.name).small}) center 4rem
@@ -49,14 +50,19 @@ const Main = styled(Flex)`
 
 function Landing() {
   return (
-    <StyledLanding>
+    <Layout
+      initial={{ opacity: 0.7 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      exit={{ opacity: 0.7 }}
+    >
       <Backdrop index={0} />
       <MenuBar />
       <Main direction="column">
         <BrandName />
         <SearchBar />
       </Main>
-    </StyledLanding>
+    </Layout>
   );
 }
 

@@ -4,7 +4,7 @@ import Landing from 'Pages/Landing';
 import { ThemeProvider } from 'styled-components';
 import movieTheme from 'Theme/movieTheme';
 import animeTheme from 'Theme/animeTheme';
-
+import { AnimatePresence } from 'framer-motion';
 function App(props) {
   return (
     <ThemeProvider
@@ -12,11 +12,13 @@ function App(props) {
         props.location.pathname.includes('movie') ? movieTheme : animeTheme
       }
     >
-      <Switch>
-        <Route path="/movie" exact component={Landing} />
-        <Route path="/anime" render={Landing} />
-        <Redirect from="/" to="/movie" exact />
-      </Switch>
+      <AnimatePresence>
+        <Switch>
+          <Route path="/movie" exact component={Landing} />
+          <Route path="/anime" render={Landing} />
+          <Redirect from="/" to="/movie" exact />
+        </Switch>
+      </AnimatePresence>
     </ThemeProvider>
   );
 }
