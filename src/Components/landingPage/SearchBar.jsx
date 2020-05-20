@@ -16,7 +16,7 @@ const StyledSearchIcon = styled(MdSearch)`
 const LandingInput = styled(Input)`
   flex: 1;
   border-radius: 0.5rem 0 0 0.5rem;
-  font-size: max(2vw, 1.5rem);
+  font-size: ${(p) => p.fontSize ?? '1rem'};
   color: ${(p) => p.theme.primary};
 
   ::placeholder {
@@ -46,7 +46,11 @@ const Container = styled(Flex)`
 function SearchBar(props) {
   return (
     <Container as="form">
-      <LandingInput placeholder="Enter a title" height={HEIGHT} />
+      <LandingInput
+        placeholder="Enter a title"
+        height={HEIGHT}
+        fontSize={props.fontSize}
+      />
 
       <IconWrapper as="button">
         <StyledSearchIcon />

@@ -15,8 +15,9 @@ function App(props) {
       <AnimatePresence>
         <Switch>
           <Route path="/movie" exact component={Landing} />
-          <Route path="/anime" render={Landing} />
+          <Route path="/anime" exact render={Landing} />
           <Redirect from="/" to="/movie" exact />
+          <Redirect to="/404" exact />
         </Switch>
       </AnimatePresence>
     </ThemeProvider>

@@ -1,6 +1,8 @@
 import React from 'react';
-import styled, { css } from 'styled-components/macro';
+import styled, { css, withTheme } from 'styled-components/macro';
 import Center from 'Components/container/Center';
+import StyledLink from 'Components/navigation/Link';
+import { useLocation } from 'react-router-dom';
 
 const fontSize = css`
   font-size: clamp(2rem, 7vw, 5rem);
@@ -23,11 +25,13 @@ const Container = styled(Center)`
   display: flex;
   ${fontSize};
   font-weight: bold;
+  cursor: pointer;
 `;
 
 function BrandName() {
+  const location = useLocation();
   return (
-    <Container>
+    <Container to={{ pathname: location.pathname + '/all' }} as={StyledLink}>
       <BoldName>ANI</BoldName>Movies
     </Container>
   );
