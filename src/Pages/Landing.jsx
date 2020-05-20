@@ -2,26 +2,60 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import Backdrop from 'Components/ui/Backdrop';
 import bg from 'Assets/bg.jpg';
-import MenuBar from 'Components/landingPage/MenuBar';
+import MenuBar from 'Components/landingPage/LandingMenuBar';
 import SearchBar from 'Components/landingPage/SearchBar';
+import BrandName from 'Components/landingPage/BrandName';
+import Flex from 'Components/container/Flex';
+
+function getBackground(theme) {
+  return theme === 'movie'
+    ? {
+        small:
+          'https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=925&q=80',
+        large: bg,
+      }
+    : {
+        small: 'https://static.zerochan.net/Nagi.no.Asukara.full.1657636.jpg',
+        large:
+          'https://vignette.wikia.nocookie.net/makotoshinkai/images/6/64/Weathering-02.jpg/revision/latest?cb=20190528233137',
+      };
+}
 
 const StyledLanding = styled.div`
   width: 100%;
   height: 100%;
-  background: url(https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=925&q=80)
-    center 4rem no-repeat;
+  background: url(${(p) => getBackground(p.theme.name).small}) center 4rem
+    no-repeat;
 
   @media screen and (min-width: 900px) {
-    background: url(${bg}) center no-repeat;
+    background: url(${(p) => getBackground(p.theme.name).large}) center
+      no-repeat;
+  }
+`;
+
+const Main = styled(Flex)`
+  margin: 0 auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70vw;
+  justify-content: space-between;
+
+  & > * {
+    margin-bottom: 2rem;
   }
 `;
 
 function Landing() {
   return (
     <StyledLanding>
-      <MenuBar />
       <Backdrop index={0} />
-      <SearchBar />
+      <MenuBar />
+      <Main direction="column">
+        <BrandName />
+        <SearchBar />
+      </Main>
     </StyledLanding>
   );
 }

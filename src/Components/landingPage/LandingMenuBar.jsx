@@ -7,10 +7,12 @@ function MenuBar() {
   return (
     <Fixed bgColor="none" margin="2rem 0 0 0">
       <NavItems>
-        <LandingLink to="/" exact>
+        <LandingLink to="/movie" exact>
           Movies
         </LandingLink>
-        <LandingLink to="/anime">Anime</LandingLink>
+        <LandingLink to="/anime" exact>
+          Anime
+        </LandingLink>
       </NavItems>
     </Fixed>
   );
