@@ -8,6 +8,7 @@ const LandingButton = styled(Button).attrs((p) => ({
   as: StyledLink,
 }))`
   padding: 1rem 3rem;
+  box-shadow: 0 2px 5px ${(p) => p.theme.dark};
 `;
 
 export default LandingButton;

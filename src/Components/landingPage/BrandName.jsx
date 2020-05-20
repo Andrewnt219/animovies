@@ -1,8 +1,9 @@
 import React from 'react';
-import styled, { css, withTheme } from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import Center from 'Components/container/Center';
 import StyledLink from 'Components/navigation/Link';
 import { useLocation } from 'react-router-dom';
+import { darken } from 'polished';
 
 const fontSize = css`
   font-size: clamp(2rem, 7vw, 5rem);
@@ -26,6 +27,11 @@ const Container = styled(Center)`
   ${fontSize};
   font-weight: bold;
   cursor: pointer;
+  transition: opacity 150ms ease;
+
+  &:hover {
+    opacity: 0.9;
+  }
 `;
 
 function BrandName() {
