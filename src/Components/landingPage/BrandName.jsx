@@ -5,7 +5,7 @@ import Center from 'Components/container/Center';
 const fontSize = css`
   font-size: clamp(2rem, 7vw, 5rem);
 `;
-const StyledDiv = styled.div`
+const BoldName = styled.div`
   display: inline-block;
   background-color: ${(p) => p.theme.primary};
   padding: 0 1rem;
@@ -17,7 +17,7 @@ const StyledDiv = styled.div`
   font-weight: bold;
 `;
 
-const LandingCenter = styled(Center)`
+const Container = styled(Center)`
   font-family: 'Pacifico', cursive;
   color: ${(p) => p.theme.secondary};
   display: flex;
@@ -27,9 +27,9 @@ const LandingCenter = styled(Center)`
 
 function BrandName() {
   return (
-    <LandingCenter>
-      <StyledDiv>ANI</StyledDiv>Movies
-    </LandingCenter>
+    <Container>
+      <BoldName>ANI</BoldName>Movies
+    </Container>
   );
 }
 

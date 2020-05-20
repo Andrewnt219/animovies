@@ -3,6 +3,7 @@ import Flex from 'Components/container/Flex';
 import Input from 'Components/ui/Input';
 import { MdSearch } from 'react-icons/md';
 import styled, { withTheme } from 'styled-components/macro';
+import { darken } from 'polished';
 
 const HEIGHT = '5rem';
 
@@ -16,6 +17,11 @@ const LandingInput = styled(Input)`
   flex: 1;
   border-radius: 0.5rem 0 0 0.5rem;
   font-size: max(2vw, 1.5rem);
+  color: ${(p) => p.theme.primary};
+
+  ::placeholder {
+    color: ${(p) => darken(0.2, p.theme.primary)};
+  }
 `;
 
 const IconWrapper = styled(Flex).attrs({ type: 'submit' })`
@@ -27,20 +33,25 @@ const IconWrapper = styled(Flex).attrs({ type: 'submit' })`
   border-radius: 0 0.5rem 0.5rem 0;
   border: 0;
   cursor: pointer;
+  transition: background 200ms ease;
+
+  &:hover {
+    background: ${(p) => darken(0.05, p.theme.primary)};
+  }
 `;
 
-const SearchBarFlex = styled(Flex)`
+const Container = styled(Flex)`
   width: 100%;
 `;
-function SearchBar() {
+function SearchBar(props) {
   return (
-    <SearchBarFlex as="form">
-      <LandingInput placeholder="Enter a movie name" height={HEIGHT} />
+    <Container as="form">
+      <LandingInput placeholder="Enter a title" height={HEIGHT} />
 
       <IconWrapper as="button">
         <StyledSearchIcon />
       </IconWrapper>
-    </SearchBarFlex>
+    </Container>
   );
 }
 
