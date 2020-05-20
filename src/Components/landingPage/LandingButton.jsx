@@ -3,7 +3,7 @@ import Button from 'Components/ui/Button';
 import StyledLink from 'Components/navigation/Link';
 
 const LandingButton = styled(Button).attrs((p) => ({
-  contained: true,
+  contained: 'true',
   fontSize: p.fontSize,
   as: StyledLink,
 }))`
