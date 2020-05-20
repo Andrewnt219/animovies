@@ -2,15 +2,20 @@ import { genreMap } from '../Apis/tmdb';
 export async function asyncDispatchWrapper(
   fn,
   dispatch,
-  setIsLoading,
-  setError
+  actionFailed,
+  actionSuccess
 ) {
   try {
     await fn();
+    actionSuccess && dispatch(actionSuccess());
   } catch (error) {
-    setError && dispatch(setError(error));
+    actionFailed &&
+      dispatch(
+        actionFailed(
+          error?.response?.data?.status_message ?? 'Something went wrong'
+        )
+      );
   }
-  setIsLoading && dispatch(setIsLoading(false));
 }
 
 export function mapGenreIdToName(movies) {

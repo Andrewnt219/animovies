@@ -1,27 +1,54 @@
 import { createSlice } from '@reduxjs/toolkit';
 import tmdb from 'Apis/tmdb';
 import { asyncDispatchWrapper, mapGenreIdToName } from './helpers';
+import { startAction, actionFailed, actionSuccess } from './uiSlice';
 
 const moviesSlice = createSlice({
   name: 'movies',
-  initialState: [],
+  initialState: {
+    nowPlaying: [],
+    upComing: [],
+    popular: [],
+    topRated: [],
+  },
   reducers: {
-    fetchMoviesSuccess: (state, { payload }) => {
-      return mapGenreIdToName(payload);
+    fetchNowPlaying: (state, { payload }) => {
+      state.nowPlaying = mapGenreIdToName(payload);
+    },
+    fetchUpComing: (state, { payload }) => {
+      state.upComing = mapGenreIdToName(payload);
+    },
+    fetchPopular: (state, { payload }) => {
+      state.popular = mapGenreIdToName(payload);
+    },
+    fetchTopRated: (state, { payload }) => {
+      state.topRated = mapGenreIdToName(payload);
     },
   },
 });
 
 export default moviesSlice.reducer;
 export const moviesSelector = (state) => state.movies;
-export const { fetchMoviesSuccess } = moviesSlice.actions;
+export const {
+  fetchNowPlaying,
+  fetchPopular,
+  fetchTopRated,
+  fetchUpComing,
+} = moviesSlice.actions;
 
-export const fetchNowPlaying = (payload) => (dispatch) => {
+export const fetchMovies = (payload) => (dispatch) => {
   async function sendHttp() {
-    const res = await tmdb.get('/movie/now_playing');
+    dispatch(startAction());
+    const nowPlayings = await tmdb.get('/movie/now_playing');
+    const populars = await tmdb.get('/movie/popular');
+    const topRateds = await tmdb.get('/movie/top_rated');
+    const upComings = await tmdb.get('/movie/upcoming');
 
-    dispatch(fetchMoviesSuccess(res.data.results));
+    dispatch(fetchNowPlaying(nowPlayings.data.results));
+    dispatch(fetchPopular(populars.data.results));
+    dispatch(fetchTopRated(topRateds.data.results));
+    dispatch(fetchUpComing(upComings.data.results));
   }
 
-  asyncDispatchWrapper(sendHttp, dispatch);
+  asyncDispatchWrapper(sendHttp, dispatch, actionFailed, actionSuccess);
 };
