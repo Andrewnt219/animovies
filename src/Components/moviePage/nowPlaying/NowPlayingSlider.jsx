@@ -1,6 +1,7 @@
 import styled from 'styled-components/macro';
 import React, { useState } from 'react';
 import NowPlayingSlideContent from './NowPlayingSlideContent';
+import Arrow from './Arrow';
 
 const StyledSlider = styled.div``;
 
@@ -9,6 +10,8 @@ function NowPlayingSlider({ movies }) {
 
   return (
     <StyledSlider>
+      <Arrow isLeftArrow />
+      <Arrow />
       <NowPlayingSlideContent movies={movies} activeSlide={activeSlide} />
     </StyledSlider>
   );
