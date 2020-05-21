@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import tmdb from 'Apis/tmdb';
-import { asyncDispatchWrapper, mapGenreIdToName } from './helpers';
+import { asyncDispatchWrapper, formatMovies } from './helpers';
 import { startAction, actionFailed, actionSuccess } from './uiSlice';
 
 const moviesSlice = createSlice({
@@ -13,16 +13,16 @@ const moviesSlice = createSlice({
   },
   reducers: {
     fetchNowPlaying: (state, { payload }) => {
-      state.nowPlaying = mapGenreIdToName(payload);
+      state.nowPlaying = formatMovies(payload);
     },
     fetchUpComing: (state, { payload }) => {
-      state.upComing = mapGenreIdToName(payload);
+      state.upComing = formatMovies(payload);
     },
     fetchPopular: (state, { payload }) => {
-      state.popular = mapGenreIdToName(payload);
+      state.popular = formatMovies(payload);
     },
     fetchTopRated: (state, { payload }) => {
-      state.topRated = mapGenreIdToName(payload);
+      state.topRated = formatMovies(payload);
     },
   },
 });
