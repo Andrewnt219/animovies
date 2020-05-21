@@ -12,43 +12,39 @@ const moviesSlice = createSlice({
     topRated: [],
   },
   reducers: {
-    fetchNowPlaying: (state, { payload }) => {
-      state.nowPlaying = formatMovies(payload);
-    },
-    fetchUpComing: (state, { payload }) => {
-      state.upComing = formatMovies(payload);
-    },
-    fetchPopular: (state, { payload }) => {
-      state.popular = formatMovies(payload);
-    },
-    fetchTopRated: (state, { payload }) => {
-      state.topRated = formatMovies(payload);
+    fetchMoviesSuccess: (state, { payload }) => {
+      state.nowPlaying = formatMovies(payload.nowPlaying);
+      state.upComing = formatMovies(payload.upComing);
+      state.popular = formatMovies(payload.popular);
+      state.topRated = formatMovies(payload.topRated);
     },
   },
 });
 
 export default moviesSlice.reducer;
-export const moviesSelector = (state) => state.movies;
-export const {
-  fetchNowPlaying,
-  fetchPopular,
-  fetchTopRated,
-  fetchUpComing,
-} = moviesSlice.actions;
+export const nowPlayingSelector = (state) => state.movies.nowPlaying;
+export const upComingSelector = (state) => state.movies.upComing;
+export const popularSelector = (state) => state.movies.popular;
+export const topRatedSelector = (state) => state.movies.topRated;
+export const { fetchMoviesSuccess } = moviesSlice.actions;
 
 export const fetchMovies = (payload) => (dispatch) => {
   async function sendHttp() {
     dispatch(startAction());
+
     const nowPlayings = await tmdb.get('/movie/now_playing');
     const populars = await tmdb.get('/movie/popular');
     const topRateds = await tmdb.get('/movie/top_rated');
     const upComings = await tmdb.get('/movie/upcoming');
 
-    dispatch(fetchNowPlaying(nowPlayings.data.results));
-    dispatch(fetchPopular(populars.data.results));
-    dispatch(fetchTopRated(topRateds.data.results));
-    dispatch(fetchUpComing(upComings.data.results));
+    dispatch(
+      fetchMoviesSuccess({
+        nowPlaying: nowPlayings.data.results,
+        popular: populars.data.results,
+        topRated: topRateds.data.results,
+        upComing: upComings.data.results,
+      })
+    );
   }
-
   asyncDispatchWrapper(sendHttp, dispatch, actionFailed, actionSuccess);
 };
