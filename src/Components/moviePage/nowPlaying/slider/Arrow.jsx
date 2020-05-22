@@ -1,14 +1,14 @@
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import styled, { css, withTheme } from 'styled-components/macro';
 import React from 'react';
-
+import { rgba } from 'polished';
 const StyledArrowContainer = styled.div`
-  position: fixed;
+  position: absolute;
+  top: 0;
   height: 100%;
-  width: max-content;
   padding: 1rem;
-  background: ${(p) => p.theme.black};
-  box-shadow: ${(p) => !p.isLeftArrow && '-'}4px 0 4px ${(p) => p.theme.black};
+  background: ${(p) => rgba(p.theme.white, 0.1)};
+  transition: all 200ms ease;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,13 +33,13 @@ const StyledArrowContainer = styled.div`
   }
 `;
 
-function Arrow({ isLeftArrow, theme }) {
+function Arrow({ isLeftArrow, theme, handleClick }) {
   const arrowConfig = {
     size: '5rem',
     color: theme.white,
   };
   return (
-    <StyledArrowContainer isLeftArrow={isLeftArrow}>
+    <StyledArrowContainer isLeftArrow={isLeftArrow} onClick={handleClick}>
       {isLeftArrow ? (
         <FaArrowLeft {...arrowConfig} />
       ) : (

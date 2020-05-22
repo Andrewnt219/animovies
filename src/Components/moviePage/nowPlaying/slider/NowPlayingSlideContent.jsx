@@ -5,12 +5,14 @@ import NowPlayingSlide from './NowPlayingSlide';
 const StyledSlideContent = styled.div`
   display: flex;
   width: ${(p) => p.width}px;
+  transform: translateX(-${(p) => p.translateX}px);
+  transition: transform 300ms ease;
 `;
 
-function NowPlayingSlideContent({ movies }) {
+function NowPlayingSlideContent({ movies, translateX }) {
   const width = window.innerWidth * movies.length;
   return (
-    <StyledSlideContent width={width}>
+    <StyledSlideContent width={width} translateX={translateX}>
       {renderedMovies(movies)}
     </StyledSlideContent>
   );

@@ -5,11 +5,12 @@ const StyledSlide = styled.div`
   background-image: url(${(p) => p.src});
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   width: 100vw;
-  height: 100vh;
+  height: 30vh;
 `;
 
-function NowPlayingSlide({ position, width, src }) {
+function NowPlayingSlide({ src }) {
   return <StyledSlide src={src}></StyledSlide>;
 }
 export default NowPlayingSlide;
