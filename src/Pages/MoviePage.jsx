@@ -8,7 +8,7 @@ import {
 } from 'Features/moviesSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoadingSelector } from 'Features/uiSlice';
-import NowPlayingSlider from 'Components/moviePage/nowPlaying/slider/NowPlayingSlider';
+import NowPlayingSlider from 'Components/moviePage/nowPlayingSlider/NowPlayingSlider';
 import { Link } from 'react-router-dom';
 
 function MoviePage() {

@@ -3,7 +3,6 @@ import React, { useReducer, useEffect, useRef } from 'react';
 import NowPlayingSlideContent from './NowPlayingSlideContent';
 import Arrow from './Arrow';
 import DotIndicator from './DotIndicator';
-import PropTypes from 'prop-types';
 
 const StyledSlider = styled.div`
   position: relative;
