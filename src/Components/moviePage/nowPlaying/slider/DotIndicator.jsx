@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components/macro';
 import Flex from 'Components/container/Flex';
 import { rgba } from 'polished';
+import PropTypes from 'prop-types';
 
 const DotsContainer = styled(Flex)`
   position: absolute;
@@ -19,11 +20,11 @@ const Dot = styled.div`
   content: '';
   transition: background 150ms ease-out;
   padding: ${(p) =>
-    p.active
+    p.isActive
       ? css`clamp(0.5rem, 2vw, 1rem)`
       : css`clamp(0.25rem, 1vw, 0.5rem)`};
   background: ${(p) =>
-    p.active ? p.theme.secondary : rgba(p.theme.secondary, 0.5)};
+    p.isActive ? p.theme.secondary : rgba(p.theme.secondary, 0.5)};
   margin: clamp(0.1rem, 0.5vw, 0.5rem);
 
   &:hover {
@@ -37,12 +38,19 @@ function DotIndicator({ movies, activeIdx, handleDotClick }) {
       {movies.map((movie, idx) => (
         <Dot
           key={movie.id}
-          active={idx === activeIdx}
+          isActive={idx === activeIdx}
           onClick={() => handleDotClick(idx)}
+          title={movie.title}
         />
       ))}
     </DotsContainer>
   );
 }
+
+DotIndicator.propTypes = {
+  movies: PropTypes.array.isRequired,
+  activeIdx: PropTypes.number.isRequired,
+  handleDotClick: PropTypes.func.isRequired,
+};
 
 export default DotIndicator;

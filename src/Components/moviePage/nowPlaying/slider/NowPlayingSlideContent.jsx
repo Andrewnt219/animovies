@@ -10,9 +10,10 @@ const StyledSlideContent = styled.div`
 `;
 
 function NowPlayingSlideContent({ movies, translateX }) {
-  const width = window.innerWidth * movies.length;
+  const slideContentWidth = window.innerWidth * movies.length;
+
   return (
-    <StyledSlideContent width={width} translateX={translateX}>
+    <StyledSlideContent width={slideContentWidth} translateX={translateX}>
       {renderedMovies(movies)}
     </StyledSlideContent>
   );

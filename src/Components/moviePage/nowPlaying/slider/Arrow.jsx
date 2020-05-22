@@ -40,6 +40,7 @@ function Arrow({ isLeftArrow, theme, handleClick }) {
     size: 'clamp(3rem, 5vw, 5rem)',
     color: theme.white,
   };
+
   return (
     <StyledArrowContainer isLeftArrow={isLeftArrow} onClick={handleClick}>
       {isLeftArrow ? (

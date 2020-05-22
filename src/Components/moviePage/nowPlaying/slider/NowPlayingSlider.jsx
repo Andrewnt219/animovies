@@ -3,6 +3,7 @@ import React, { useReducer, useEffect, useRef } from 'react';
 import NowPlayingSlideContent from './NowPlayingSlideContent';
 import Arrow from './Arrow';
 import DotIndicator from './DotIndicator';
+import PropTypes from 'prop-types';
 
 const StyledSlider = styled.div`
   position: relative;
@@ -22,6 +23,10 @@ function initCurrentSlide(movies) {
 const currentSlideReducer = (state, { type, payload }) => {
   switch (type) {
     case 'NEXT_SLIDE':
+      // Skip this autoplay interval
+      window.clearInterval(payload?.autoPlayTimer);
+
+      // Loop back to the first slide from the final slide
       if (state.index === state.lastMovieIndex) {
         return {
           ...state,
@@ -29,6 +34,8 @@ const currentSlideReducer = (state, { type, payload }) => {
           transitionValue: 0,
         };
       }
+
+      // Go to next slide
       return {
         ...state,
         index: state.index + 1,
@@ -36,6 +43,10 @@ const currentSlideReducer = (state, { type, payload }) => {
       };
 
     case 'PREV_SLIDE':
+      // Skip this autoplay interval
+      window.clearInterval(payload?.autoPlayTimer);
+
+      // Go to the final slide from the first slide
       if (state.index === 0) {
         return {
           ...state,
@@ -44,6 +55,7 @@ const currentSlideReducer = (state, { type, payload }) => {
         };
       }
 
+      // Go the the previous slide
       return {
         ...state,
         index: state.index - 1,
@@ -51,20 +63,23 @@ const currentSlideReducer = (state, { type, payload }) => {
       };
 
     case 'DOT_CLICKED':
-      window.clearInterval(payload.timerId);
+      // Skip this autoplay interval
+      window.clearInterval(payload.autoPlayTimer);
+
+      // Go to the selected slide
       return {
         ...state,
         index: payload.index,
         transitionValue: _getTransitionValue(payload.index),
-        timerId: null,
       };
 
+    // Probably action's name typo
     default:
       throw new Error('UNKNOWN SLIDE ACTION');
   }
 };
 
-function NowPlayingSlider({ movies, autoPlay: autoPlayInMs = 3000 }) {
+function NowPlayingSlider({ movies, autoPlayInMs = 3000 }) {
   /**
    * States
    */
@@ -77,18 +92,28 @@ function NowPlayingSlider({ movies, autoPlay: autoPlayInMs = 3000 }) {
   /**
    * Refs
    */
-  const timerId = useRef();
+  const autoPlayTimer = useRef();
 
+  /**
+   * side-effects
+   */
+  // Set autoplay interval on every renders
   useEffect(() => {
+    // If autoplay is set
     if (autoPlayInMs) {
-      timerId.current = setInterval(() => {
+      // Intervally go to the next slide
+      autoPlayTimer.current = setInterval(() => {
+        // Tracking if there is memory leak
         console.log('SLIDER_INTERVAL');
+
+        // Go to the next slide
         dispatchCurrentSlide({ type: 'NEXT_SLIDE' });
       }, autoPlayInMs);
     }
 
+    // Clearing up timer
     return () => {
-      window.clearInterval(timerId.current);
+      window.clearInterval(autoPlayTimer.current);
     };
   });
 
@@ -102,9 +127,21 @@ function NowPlayingSlider({ movies, autoPlay: autoPlayInMs = 3000 }) {
 
       <Arrow
         isLeftArrow
-        handleClick={() => dispatchCurrentSlide({ type: 'PREV_SLIDE' })}
+        handleClick={() =>
+          dispatchCurrentSlide({
+            type: 'PREV_SLIDE',
+            payload: { autoPlayTimer: autoPlayTimer.current },
+          })
+        }
       />
-      <Arrow handleClick={() => dispatchCurrentSlide({ type: 'NEXT_SLIDE' })} />
+      <Arrow
+        handleClick={() =>
+          dispatchCurrentSlide({
+            type: 'NEXT_SLIDE',
+            payload: { autoPlayTimer: autoPlayTimer.current },
+          })
+        }
+      />
 
       <DotIndicator
         movies={movies}
@@ -112,7 +149,7 @@ function NowPlayingSlider({ movies, autoPlay: autoPlayInMs = 3000 }) {
         handleDotClick={(index) =>
           dispatchCurrentSlide({
             type: 'DOT_CLICKED',
-            payload: { index, timerId: timerId.current },
+            payload: { index, autoPlayTimer: autoPlayTimer.current },
           })
         }
       />
