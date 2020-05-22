@@ -14,6 +14,7 @@ const StyledArrowContainer = styled.div`
   align-items: center;
   cursor: pointer;
   opacity: 0.1;
+  box-sizing: border-box;
 
   ${(p) =>
     p.isLeftArrow
