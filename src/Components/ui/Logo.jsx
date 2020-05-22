@@ -1,26 +1,37 @@
 import React from 'react';
 import styled, { css, withTheme } from 'styled-components/macro';
-import Center from 'Components/container/Center';
 import StyledLink from 'Components/navigation/StyledLink';
 
 const BoldName = styled.div`
   display: inline-block;
-  background-color: ${(p) => p.theme.primary};
-  padding: 0 1rem;
-  margin-right: 1rem;
+  padding: 0 1vw;
+  height: min-content;
+  margin-right: 0.5rem;
   font-family: 'Pacifico', cursive;
-  color: ${(p) => p.theme.white};
-  border-radius: 1rem;
+  border-radius: 4px;
   font-weight: bold;
+  ${(p) =>
+    p.isInverted
+      ? css`
+          background-color: ${(p) => p.theme.white};
+          color: ${(p) => p.theme.primary};
+        `
+      : css`
+          background-color: ${(p) => p.theme.primary};
+          color: ${(p) => p.theme.white};
+        `}
 `;
 
-const Container = styled(Center)`
+const Container = styled.div`
   font-family: 'Pacifico', cursive;
   color: ${(p) => p.theme.white};
   display: flex;
+  justify-content: center;
+  align-items: center;
   font-weight: bold;
   cursor: pointer;
   transition: opacity 150ms ease;
+  margin: 0;
 
   &:hover {
     opacity: 0.9;
@@ -32,7 +43,7 @@ const Container = styled(Center)`
   }
 `;
 
-function Logo({ theme, className, size = '1rem' }) {
+function Logo({ theme, className, size = '1rem', isInverted }) {
   const fontSize = css`
     font-size: ${size};
   `;
@@ -43,7 +54,7 @@ function Logo({ theme, className, size = '1rem' }) {
       as={StyledLink}
       fontSize={fontSize}
     >
-      <BoldName>ANI</BoldName>Movies
+      <BoldName isInverted={isInverted}>ANI</BoldName>Movies
     </Container>
   );
 }

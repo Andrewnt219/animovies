@@ -2,17 +2,31 @@ import styled, { withTheme } from 'styled-components/macro';
 import React from 'react';
 import NavItems from './NavItems';
 import StyledLink from './StyledLink';
-import { Switch } from 'react-router-dom';
 import Logo from 'Components/ui/Logo';
+import SearchIcon from 'Components/ui/SearchIcon';
 
 const FixedBar = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: max(5rem, 5vw);
+  height: max(6rem, 6vw);
   background: ${(p) => p.theme.secondary};
   z-index: ${(p) => p.theme.zIndex.high};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const AppBarLogo = styled(Logo)`
+  background: ${(p) => p.theme.primary};
+  border-radius: 0;
+  height: 100%;
+  box-sizing: border-box;
+`;
+
+const AppBarNavItems = styled(NavItems)`
+  display: none;
 `;
 
 function AppBar({ theme }) {
@@ -34,8 +48,9 @@ function AppBar({ theme }) {
   }
   return (
     <FixedBar>
-      <Logo />
-      <NavItems>{links}</NavItems>
+      <AppBarLogo isInverted size="1.5rem" />
+      <SearchIcon />
+      <AppBarNavItems>{links}</AppBarNavItems>
     </FixedBar>
   );
 }

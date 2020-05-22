@@ -43,6 +43,7 @@ const IconWrapper = styled(Flex).attrs({ type: 'submit' })`
 const Container = styled(Flex)`
   width: 100%;
 `;
+
 function SearchBar(props) {
   return (
     <Container as="form">
