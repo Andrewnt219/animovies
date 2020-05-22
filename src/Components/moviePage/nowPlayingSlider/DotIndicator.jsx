@@ -9,7 +9,6 @@ const DotsContainer = styled(Flex)`
   bottom: 0.5rem;
   left: 50%;
   transform: translate(-50%, -0.5rem);
-  box-sizing: border-box;
   overflow: auto;
   width: 100%;
 `;

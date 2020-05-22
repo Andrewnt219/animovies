@@ -8,7 +8,6 @@ const Input = styled.input`
   height: ${(p) => p?.height};
   border: none;
   outline: none;
-  box-sizing: border-box;
 
   ::placeholder {
     color: ${(p) => (p.color ? darken(p.theme.white, 0.2) : 'inherit')};

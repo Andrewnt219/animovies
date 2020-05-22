@@ -29,7 +29,6 @@ const IconWrapper = styled(Flex).attrs({ type: 'submit' })`
   width: min(30%, 10rem);
   min-width: 5rem;
   background: ${(p) => p.theme.primary};
-  box-sizing: border-box;
   border-radius: 0 0.5rem 0.5rem 0;
   border: 0;
   cursor: pointer;

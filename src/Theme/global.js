@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`  
   :root {
     font-family: 'Roboto', sans-serif;
+    font-size: 10px;
     --primary: #BF1F5A;
     --secondary: #F2F2F2;
     --error: #f44336;
@@ -16,9 +17,9 @@ export default createGlobalStyle`
     height: 100%;
   }
   
-  * {
+  *, *::before, *::after {
     margin: 0;
     padding: 0;
-    font-size: 10px;
+    box-sizing: border-box;
   }
 `;

@@ -4,7 +4,7 @@ import NavItems from './NavItems';
 import StyledLink from './StyledLink';
 import Logo from 'Components/ui/Logo';
 import SearchIcon from 'Components/ui/SearchIcon';
-
+import HamburgerMenu from 'Components/ui/HamburgerMenu';
 const FixedBar = styled.div`
   position: fixed;
   top: 0;
@@ -22,14 +22,13 @@ const AppBarLogo = styled(Logo)`
   background: ${(p) => p.theme.primary};
   border-radius: 0;
   height: 100%;
-  box-sizing: border-box;
 `;
 
 const AppBarNavItems = styled(NavItems)`
   display: none;
 `;
 
-function AppBar({ theme }) {
+function AppBar({ theme, isOpen, setIsOpen }) {
   let links = (
     <>
       <StyledLink to="/">Genre</StyledLink>
@@ -48,6 +47,7 @@ function AppBar({ theme }) {
   }
   return (
     <FixedBar>
+      <HamburgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
       <AppBarLogo isInverted size="1.5rem" />
       <SearchIcon />
       <AppBarNavItems>{links}</AppBarNavItems>

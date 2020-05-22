@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   fetchMovies,
   upComingSelector,
@@ -12,8 +12,12 @@ import NowPlayingSlider from 'Components/moviePage/nowPlayingSlider/NowPlayingSl
 import AppBar from 'Components/navigation/AppBar';
 
 function MoviePage() {
+  /**
+   * State
+   */
   const dispatch = useDispatch();
   const isLoading = useSelector(isLoadingSelector);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   /**
    * RETRIEVING MOVIES FROM THE STORE
@@ -34,7 +38,7 @@ function MoviePage() {
     <div>Loading...</div>
   ) : (
     <React.Fragment>
-      <AppBar />
+      <AppBar isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
       <NowPlayingSlider movies={nowPlayingMovies} />
       <h1>CONTENT</h1>
     </React.Fragment>
