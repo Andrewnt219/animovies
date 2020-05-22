@@ -12,4 +12,12 @@ export default {
   info: '#2196f3',
   success: '#4caf50',
   black: '#404040',
+
+  breakpoints: {
+    xs: '340px',
+    sm: '600px',
+    md: '960px',
+    lg: '1280px',
+    xl: '1920px',
+  },
 };

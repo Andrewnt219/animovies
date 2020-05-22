@@ -32,7 +32,11 @@ function MoviePage() {
   return isLoading ? (
     <div>Loading...</div>
   ) : (
-    <NowPlayingSlider movies={nowPlayingMovies} />
+    <React.Fragment>
+      <h1>NAVBAR</h1>
+      <NowPlayingSlider movies={nowPlayingMovies} />
+      <h1>CONTENT</h1>
+    </React.Fragment>
   );
 }
 

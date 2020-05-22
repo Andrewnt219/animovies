@@ -7,7 +7,7 @@ const StyledSlide = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   width: 100vw;
-  height: 30vh;
+  height: 100vmin;
 `;
 
 function NowPlayingSlide({ src }) {

@@ -2,6 +2,7 @@ import styled from 'styled-components/macro';
 import React, { useState } from 'react';
 import NowPlayingSlideContent from './NowPlayingSlideContent';
 import Arrow from './Arrow';
+import DotIndicator from './DotIndicator';
 
 const StyledSlider = styled.div`
   position: relative;
@@ -12,42 +13,49 @@ function NowPlayingSlider({ movies }) {
   /**
    * States
    */
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [activeSlideIdx, setActiveSlideIdx] = useState(0);
   const [transitionValue, setTransitionValue] = useState(0);
+
+  /**
+   * Variables
+   */
+  const noOfMovies = movies.length;
+  const lastMovieIndex = noOfMovies - 1;
 
   /**
    * Slide Controllers
    */
   const nextSlide = React.useCallback(() => {
-    setActiveSlide((prevActiveSlide) =>
-      prevActiveSlide === movies.length - 1 ? 0 : prevActiveSlide + 1
+    setActiveSlideIdx((prevActiveSlide) =>
+      prevActiveSlide === lastMovieIndex ? 0 : prevActiveSlide + 1
     );
     setTransitionValue(
-      activeSlide === movies.length - 1
+      activeSlideIdx === lastMovieIndex
         ? 0
-        : (activeSlide + 1) * window.innerWidth
+        : (activeSlideIdx + 1) * window.innerWidth
     );
-  }, [activeSlide, movies.length]);
+  }, [activeSlideIdx, lastMovieIndex]);
   const prevSlide = React.useCallback(() => {
-    setActiveSlide((prevActiveSlide) =>
-      prevActiveSlide === 0 ? movies.length - 1 : prevActiveSlide - 1
+    setActiveSlideIdx((prevActiveSlide) =>
+      prevActiveSlide === 0 ? lastMovieIndex : prevActiveSlide - 1
     );
     setTransitionValue(
-      activeSlide === 0
-        ? (movies.length - 1) * window.innerWidth
-        : (activeSlide - 1) * window.innerWidth
+      activeSlideIdx === 0
+        ? lastMovieIndex * window.innerWidth
+        : (activeSlideIdx - 1) * window.innerWidth
     );
-  }, [activeSlide, movies.length]);
+  }, [activeSlideIdx, lastMovieIndex]);
 
   return (
     <StyledSlider>
       <NowPlayingSlideContent
         movies={movies}
-        activeSlide={activeSlide}
+        activeSlide={activeSlideIdx}
         translateX={transitionValue}
       />
       <Arrow isLeftArrow handleClick={prevSlide} />
       <Arrow handleClick={nextSlide} />
+      <DotIndicator movies={movies} activeIdx={activeSlideIdx} />
     </StyledSlider>
   );
 }

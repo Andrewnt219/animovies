@@ -16,7 +16,7 @@ const Layout = styled(motion.div)`
   background: url(${(p) => getBackground(p.theme.name).small}) center 4rem
     no-repeat;
 
-  @media screen and (min-width: 900px) {
+  @media screen and (min-width: ${(p) => p.theme.breakpoints.md}) {
     background: url(${(p) => getBackground(p.theme.name).large}) center
       no-repeat;
   }
