@@ -5,15 +5,19 @@ const Bun = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  cursor: pointer;
+
+  &:active {
+  }
 
   div {
     content: '';
-    width: 5rem;
+    width: 4.5rem;
     height: 0.5rem;
     margin: 0.5rem;
     border-radius: 4px;
     background: ${(p) => p.theme.white};
-    transform-origin: 4px;
+    transform-origin: 2px;
     transition: all 200ms linear;
 
     &:first-child {
@@ -28,6 +32,10 @@ const Bun = styled.div`
     :nth-child(3) {
       transform: ${(p) => (p.isOpen ? 'rotate(-45deg)' : 'rotate(0)')};
     }
+  }
+
+  @media (min-width: ${(p) => p.theme.breakpoints.sm}) {
+    display: none;
   }
 `;
 
