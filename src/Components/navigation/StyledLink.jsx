@@ -9,6 +9,7 @@ const StyledLink = styled(NavLink)`
   padding: 1rem;
   font-size: 1.5rem;
   border-radius: 4px;
+  box-sizing: border-box;
 
   &:visited {
     color: ${(p) => p.color ?? p.theme.white};

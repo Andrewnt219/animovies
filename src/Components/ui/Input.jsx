@@ -11,7 +11,7 @@ const Input = styled.input`
   box-sizing: border-box;
 
   ::placeholder {
-    color: ${(p) => (p.color ? darken(p.theme.secondary, 0.2) : 'inherit')};
+    color: ${(p) => (p.color ? darken(p.theme.white, 0.2) : 'inherit')};
   }
 `;
 

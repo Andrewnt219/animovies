@@ -1,7 +1,7 @@
 export default {
   name: 'movie',
   primary: '#BF1F5A',
-  secondary: '#F2F2F2',
+  secondary: '#404040',
   white: '#F2F2F2',
   sub1: '#BF1FA4',
   bright: '#F2695C',
@@ -19,5 +19,12 @@ export default {
     md: '960px',
     lg: '1280px',
     xl: '1920px',
+  },
+
+  zIndex: {
+    top: '100',
+    high: '99',
+    med: '50',
+    low: '1',
   },
 };

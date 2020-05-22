@@ -23,12 +23,11 @@ const Dot = styled.div`
     p.isActive
       ? css`clamp(0.5rem, 2vw, 1rem)`
       : css`clamp(0.25rem, 1vw, 0.5rem)`};
-  background: ${(p) =>
-    p.isActive ? p.theme.secondary : rgba(p.theme.secondary, 0.5)};
+  background: ${(p) => (p.isActive ? p.theme.white : rgba(p.theme.white, 0.5))};
   margin: clamp(0.1rem, 0.5vw, 0.5rem);
 
   &:hover {
-    background: ${(p) => p.theme.secondary};
+    background: ${(p) => p.theme.white};
   }
 `;
 

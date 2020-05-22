@@ -7,6 +7,8 @@ import DotIndicator from './DotIndicator';
 const StyledSlider = styled.div`
   position: relative;
   overflow-x: hidden;
+  /* The heigh of AppBar */
+  margin-top: max(5rem, 5vw);
 `;
 
 /**

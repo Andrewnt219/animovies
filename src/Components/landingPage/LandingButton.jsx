@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 import Button from 'Components/ui/Button';
-import StyledLink from 'Components/navigation/Link';
+import StyledLink from 'Components/navigation/StyledLink';
 
 const LandingButton = styled(Button).attrs((p) => ({
   contained: 'true',
