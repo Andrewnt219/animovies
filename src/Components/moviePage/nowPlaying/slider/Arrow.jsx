@@ -2,6 +2,7 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import styled, { css, withTheme } from 'styled-components/macro';
 import React from 'react';
 import { rgba } from 'polished';
+
 const StyledArrowContainer = styled.div`
   position: absolute;
   top: 0;
@@ -36,7 +37,7 @@ const StyledArrowContainer = styled.div`
 
 function Arrow({ isLeftArrow, theme, handleClick }) {
   const arrowConfig = {
-    size: '5rem',
+    size: 'clamp(3rem, 5vw, 5rem)',
     color: theme.white,
   };
   return (

@@ -23,7 +23,7 @@ function NowPlayingSlider({ movies }) {
   const lastMovieIndex = noOfMovies - 1;
 
   /**
-   * Slide Controllers
+   * Arrow Controllers
    */
   const nextSlide = React.useCallback(() => {
     setActiveSlideIdx((prevActiveSlide) =>
@@ -32,19 +32,32 @@ function NowPlayingSlider({ movies }) {
     setTransitionValue(
       activeSlideIdx === lastMovieIndex
         ? 0
-        : (activeSlideIdx + 1) * window.innerWidth
+        : _getTransitionValue(activeSlideIdx + 1)
     );
   }, [activeSlideIdx, lastMovieIndex]);
   const prevSlide = React.useCallback(() => {
+    if (activeSlideIdx === 0) {
+      setActiveSlideIdx(lastMovieIndex);
+      setTransitionValue(_getTransitionValue(lastMovieIndex));
+    }
     setActiveSlideIdx((prevActiveSlide) =>
       prevActiveSlide === 0 ? lastMovieIndex : prevActiveSlide - 1
     );
+
     setTransitionValue(
       activeSlideIdx === 0
-        ? lastMovieIndex * window.innerWidth
-        : (activeSlideIdx - 1) * window.innerWidth
+        ? _getTransitionValue(lastMovieIndex)
+        : _getTransitionValue(activeSlideIdx - 1)
     );
   }, [activeSlideIdx, lastMovieIndex]);
+
+  /**
+   * Dot Controller
+   */
+  const handleDotClick = React.useCallback((idx) => {
+    setActiveSlideIdx(idx);
+    setTransitionValue(idx * window.innerWidth);
+  }, []);
 
   return (
     <StyledSlider>
@@ -55,9 +68,20 @@ function NowPlayingSlider({ movies }) {
       />
       <Arrow isLeftArrow handleClick={prevSlide} />
       <Arrow handleClick={nextSlide} />
-      <DotIndicator movies={movies} activeIdx={activeSlideIdx} />
+      <DotIndicator
+        movies={movies}
+        activeIdx={activeSlideIdx}
+        handleDotClick={handleDotClick}
+      />
     </StyledSlider>
   );
+}
+
+/**
+ * Helpers
+ */
+function _getTransitionValue(slideIdx) {
+  return slideIdx * window.innerWidth;
 }
 
 export default NowPlayingSlider;
