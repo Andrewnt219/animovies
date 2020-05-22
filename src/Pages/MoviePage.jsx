@@ -9,6 +9,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoadingSelector } from 'Features/uiSlice';
 import NowPlayingSlider from 'Components/moviePage/nowPlaying/slider/NowPlayingSlider';
+import { Link } from 'react-router-dom';
 
 function MoviePage() {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ function MoviePage() {
     <div>Loading...</div>
   ) : (
     <React.Fragment>
-      <h1>NAVBAR</h1>
+      <Link to="/">NAVBAR</Link>
       <NowPlayingSlider movies={nowPlayingMovies} />
       <h1>CONTENT</h1>
     </React.Fragment>

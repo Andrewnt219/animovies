@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import React, { useState, useReducer } from 'react';
+import React, { useReducer, useEffect, useRef } from 'react';
 import NowPlayingSlideContent from './NowPlayingSlideContent';
 import Arrow from './Arrow';
 import DotIndicator from './DotIndicator';
@@ -51,9 +51,12 @@ const currentSlideReducer = (state, { type, payload }) => {
       };
 
     case 'DOT_CLICKED':
+      window.clearInterval(payload.timerId);
       return {
+        ...state,
         index: payload.index,
         transitionValue: _getTransitionValue(payload.index),
+        timerId: null,
       };
 
     default:
@@ -61,7 +64,7 @@ const currentSlideReducer = (state, { type, payload }) => {
   }
 };
 
-function NowPlayingSlider({ movies, autoPlay }) {
+function NowPlayingSlider({ movies, autoPlay: autoPlayInMs = 3000 }) {
   /**
    * States
    */
@@ -71,6 +74,24 @@ function NowPlayingSlider({ movies, autoPlay }) {
     initCurrentSlide
   );
 
+  /**
+   * Refs
+   */
+  const timerId = useRef();
+
+  useEffect(() => {
+    if (autoPlayInMs) {
+      timerId.current = setInterval(() => {
+        console.log('SLIDER_INTERVAL');
+        dispatchCurrentSlide({ type: 'NEXT_SLIDE' });
+      }, autoPlayInMs);
+    }
+
+    return () => {
+      window.clearInterval(timerId.current);
+    };
+  });
+
   return (
     <StyledSlider>
       <NowPlayingSlideContent
@@ -79,23 +100,20 @@ function NowPlayingSlider({ movies, autoPlay }) {
         translateX={currentSlide.transitionValue}
       />
 
-      {!autoPlay && (
-        <React.Fragment>
-          <Arrow
-            isLeftArrow
-            handleClick={() => dispatchCurrentSlide({ type: 'PREV_SLIDE' })}
-          />
-          <Arrow
-            handleClick={() => dispatchCurrentSlide({ type: 'NEXT_SLIDE' })}
-          />
-        </React.Fragment>
-      )}
+      <Arrow
+        isLeftArrow
+        handleClick={() => dispatchCurrentSlide({ type: 'PREV_SLIDE' })}
+      />
+      <Arrow handleClick={() => dispatchCurrentSlide({ type: 'NEXT_SLIDE' })} />
 
       <DotIndicator
         movies={movies}
         activeIdx={currentSlide.index}
         handleDotClick={(index) =>
-          dispatchCurrentSlide({ type: 'DOT_CLICKED', payload: { index } })
+          dispatchCurrentSlide({
+            type: 'DOT_CLICKED',
+            payload: { index, timerId: timerId.current },
+          })
         }
       />
     </StyledSlider>
@@ -105,6 +123,8 @@ function NowPlayingSlider({ movies, autoPlay }) {
 /**
  * Helpers
  */
+
+// Calc transitionValue base on window.innerWidth
 function _getTransitionValue(slideIdx) {
   return slideIdx * window.innerWidth;
 }
