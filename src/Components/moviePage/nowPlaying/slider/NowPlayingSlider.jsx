@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import NowPlayingSlideContent from './NowPlayingSlideContent';
 import Arrow from './Arrow';
 import DotIndicator from './DotIndicator';
@@ -9,69 +9,94 @@ const StyledSlider = styled.div`
   overflow-x: hidden;
 `;
 
-function NowPlayingSlider({ movies }) {
+/**
+ * Reducer
+ */
+function initCurrentSlide(movies) {
+  return {
+    index: 0,
+    transitionValue: 0,
+    lastMovieIndex: movies.length - 1,
+  };
+}
+const currentSlideReducer = (state, { type, payload }) => {
+  switch (type) {
+    case 'NEXT_SLIDE':
+      if (state.index === state.lastMovieIndex) {
+        return {
+          ...state,
+          index: 0,
+          transitionValue: 0,
+        };
+      }
+      return {
+        ...state,
+        index: state.index + 1,
+        transitionValue: _getTransitionValue(state.index + 1),
+      };
+
+    case 'PREV_SLIDE':
+      if (state.index === 0) {
+        return {
+          ...state,
+          index: state.lastMovieIndex,
+          transitionValue: _getTransitionValue(state.lastMovieIndex),
+        };
+      }
+
+      return {
+        ...state,
+        index: state.index - 1,
+        transitionValue: _getTransitionValue(state.index - 1),
+      };
+
+    case 'DOT_CLICKED':
+      return {
+        index: payload.index,
+        transitionValue: _getTransitionValue(payload.index),
+      };
+
+    default:
+      throw new Error('UNKNOWN SLIDE ACTION');
+  }
+};
+
+function NowPlayingSlider({ movies, autoPlay }) {
   /**
    * States
    */
-  const [activeSlideIdx, setActiveSlideIdx] = useState(0);
-  const [transitionValue, setTransitionValue] = useState(0);
-
-  /**
-   * Variables
-   */
-  const noOfMovies = movies.length;
-  const lastMovieIndex = noOfMovies - 1;
-
-  /**
-   * Arrow Controllers
-   */
-  const nextSlide = React.useCallback(() => {
-    setActiveSlideIdx((prevActiveSlide) =>
-      prevActiveSlide === lastMovieIndex ? 0 : prevActiveSlide + 1
-    );
-    setTransitionValue(
-      activeSlideIdx === lastMovieIndex
-        ? 0
-        : _getTransitionValue(activeSlideIdx + 1)
-    );
-  }, [activeSlideIdx, lastMovieIndex]);
-  const prevSlide = React.useCallback(() => {
-    if (activeSlideIdx === 0) {
-      setActiveSlideIdx(lastMovieIndex);
-      setTransitionValue(_getTransitionValue(lastMovieIndex));
-    }
-    setActiveSlideIdx((prevActiveSlide) =>
-      prevActiveSlide === 0 ? lastMovieIndex : prevActiveSlide - 1
-    );
-
-    setTransitionValue(
-      activeSlideIdx === 0
-        ? _getTransitionValue(lastMovieIndex)
-        : _getTransitionValue(activeSlideIdx - 1)
-    );
-  }, [activeSlideIdx, lastMovieIndex]);
-
-  /**
-   * Dot Controller
-   */
-  const handleDotClick = React.useCallback((idx) => {
-    setActiveSlideIdx(idx);
-    setTransitionValue(idx * window.innerWidth);
-  }, []);
+  const [currentSlide, dispatchCurrentSlide] = useReducer(
+    currentSlideReducer,
+    movies,
+    initCurrentSlide
+  );
 
   return (
     <StyledSlider>
       <NowPlayingSlideContent
         movies={movies}
-        activeSlide={activeSlideIdx}
-        translateX={transitionValue}
+        activeSlide={currentSlide.index}
+        translateX={currentSlide.transitionValue}
       />
-      <Arrow isLeftArrow handleClick={prevSlide} />
-      <Arrow handleClick={nextSlide} />
+
+      {!autoPlay && (
+        <React.Fragment>
+          <Arrow
+            isLeftArrow
+            handleClick={() => dispatchCurrentSlide({ type: 'PREV_SLIDE' })}
+          />
+          <Arrow
+            handleClick={() => dispatchCurrentSlide({ type: 'NEXT_SLIDE' })}
+          />
+        </React.Fragment>
+      )}
+
       <DotIndicator
         movies={movies}
-        activeIdx={activeSlideIdx}
-        handleDotClick={handleDotClick}
+        activeIdx={currentSlide.index}
+        handleDotClick={(index) =>
+          dispatchCurrentSlide({ type: 'DOT_CLICKED', payload: { index } })
+        }
       />
     </StyledSlider>
   );

@@ -17,6 +17,7 @@ const Dot = styled.div`
   cursor: pointer;
   border-radius: 100%;
   content: '';
+  transition: background 150ms ease-out;
   padding: ${(p) =>
     p.active
       ? css`clamp(0.5rem, 2vw, 1rem)`
@@ -24,6 +25,10 @@ const Dot = styled.div`
   background: ${(p) =>
     p.active ? p.theme.secondary : rgba(p.theme.secondary, 0.5)};
   margin: clamp(0.1rem, 0.5vw, 0.5rem);
+
+  &:hover {
+    background: ${(p) => p.theme.secondary};
+  }
 `;
 
 function DotIndicator({ movies, activeIdx, handleDotClick }) {
