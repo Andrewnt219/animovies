@@ -46,9 +46,11 @@ function DotIndicator({ movies, activeIdx, handleDotClick }) {
 }
 
 DotIndicator.propTypes = {
-  movies: PropTypes.array.isRequired,
-  activeIdx: PropTypes.number.isRequired,
-  handleDotClick: PropTypes.func.isRequired,
+  activeIdx: PropTypes.number,
+  handleDotClick: PropTypes.func,
+  movies: PropTypes.shape({
+    map: PropTypes.func,
+  }),
 };
 
 export default DotIndicator;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components/macro';
 import React from 'react';
 import NavItems from './NavItems';
@@ -5,6 +6,8 @@ import StyledLink from './StyledLink';
 import Logo from 'Components/ui/Logo';
 import SearchIcon from 'Components/ui/SearchIcon';
 import HamburgerMenu from 'Components/ui/HamburgerMenu';
+import Input from 'Components/ui/Input';
+
 const FixedBar = styled.div`
   position: fixed;
   top: 0;
@@ -16,6 +19,11 @@ const FixedBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 1rem;
+
+  @media (min-width: ${(p) => p.theme.breakpoints.sm}) {
+    padding-left: 0;
+  }
 `;
 
 const AppBarLogo = styled(Logo)`
@@ -41,6 +49,17 @@ const AppBarNavItems = styled(NavItems)`
   display: none;
 `;
 
+const SearchBar = styled(Input)`
+  position: fixed;
+  /* the height of FixedBar */
+  top: max(6rem, 6vw);
+  left: 0;
+  /* Same as FixedBar */
+  z-index: ${(p) => p.theme.zIndex.high};
+  width: 100vw;
+`;
+const SearchForm = styled.form``;
+
 function AppBar({ theme, isOpen, setIsOpen }) {
   let links = (
     <>
@@ -59,13 +78,26 @@ function AppBar({ theme, isOpen, setIsOpen }) {
     );
   }
   return (
-    <FixedBar>
-      <HamburgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
-      <AppBarLogo />
-      <SearchIcon />
-      <AppBarNavItems>{links}</AppBarNavItems>
-    </FixedBar>
+    <>
+      <FixedBar>
+        <HamburgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+        <AppBarLogo />
+        <SearchIcon />
+        <AppBarNavItems>{links}</AppBarNavItems>
+      </FixedBar>
+      <SearchForm>
+        <SearchBar />
+      </SearchForm>
+    </>
   );
 }
+
+AppBar.propTypes = {
+  isOpen: PropTypes.bool,
+  setIsOpen: PropTypes.func,
+  theme: PropTypes.shape({
+    name: PropTypes.string,
+  }),
+};
 
 export default withTheme(AppBar);

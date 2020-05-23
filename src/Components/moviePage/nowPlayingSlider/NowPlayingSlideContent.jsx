@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components/macro';
 import NowPlayingSlide from './NowPlayingSlide';
@@ -18,6 +19,13 @@ function NowPlayingSlideContent({ movies, translateX }) {
     </StyledSlideContent>
   );
 }
+
+NowPlayingSlideContent.propTypes = {
+  movies: PropTypes.shape({
+    length: PropTypes.number,
+  }),
+  translateX: PropTypes.number,
+};
 
 function renderedMovies(movies) {
   return movies.map((movie) => (

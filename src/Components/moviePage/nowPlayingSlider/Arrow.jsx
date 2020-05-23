@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import styled, { css, withTheme } from 'styled-components/macro';
 import React from 'react';
@@ -50,5 +51,13 @@ function Arrow({ isLeftArrow, theme, handleClick }) {
     </StyledArrowContainer>
   );
 }
+
+Arrow.propTypes = {
+  handleClick: PropTypes.func,
+  isLeftArrow: PropTypes.bool,
+  theme: PropTypes.shape({
+    white: PropTypes.any,
+  }),
+};
 
 export default withTheme(Arrow);

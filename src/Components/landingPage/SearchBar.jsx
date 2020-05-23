@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Flex from 'Components/container/Flex';
 import Input from 'Components/ui/Input';
@@ -58,5 +59,9 @@ function SearchBar(props) {
     </Container>
   );
 }
+
+SearchBar.propTypes = {
+  fontSize: PropTypes.string,
+};
 
 export default withTheme(SearchBar);

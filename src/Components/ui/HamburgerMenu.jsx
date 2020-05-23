@@ -1,14 +1,15 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components/macro';
 
-const Bun = styled.div`
+const Bun = styled.button`
   display: flex;
+  border: 0;
   justify-content: space-between;
   flex-direction: column;
   cursor: pointer;
-
-  &:active {
-  }
+  background: transparent;
+  transition: background 200ms ease;
 
   div {
     content: '';
@@ -19,6 +20,10 @@ const Bun = styled.div`
     background: ${(p) => p.theme.white};
     transform-origin: 2px;
     transition: all 200ms linear;
+
+    &:active {
+      background-color: white;
+    }
 
     &:first-child {
       transform: ${(p) => (p.isOpen ? 'rotate(45deg)' : 'rotate(0)')};
@@ -48,5 +53,10 @@ function HamburgerMenu({ isOpen, setIsOpen }) {
     </Bun>
   );
 }
+
+HamburgerMenu.propTypes = {
+  isOpen: PropTypes.bool,
+  setIsOpen: PropTypes.func,
+};
 
 export default HamburgerMenu;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled, { css, withTheme } from 'styled-components/macro';
 import StyledLink from 'Components/navigation/StyledLink';
@@ -58,5 +59,14 @@ function Logo({ theme, className, size = '1rem', isInverted }) {
     </Container>
   );
 }
+
+Logo.propTypes = {
+  className: PropTypes.string,
+  isInverted: PropTypes.bool,
+  size: PropTypes.string,
+  theme: PropTypes.shape({
+    name: PropTypes.any,
+  }),
+};
 
 export default withTheme(Logo);

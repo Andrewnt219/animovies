@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 
 export default styled(MdSearch)`
   color: ${(p) => p.theme.white};
-  width: min(10vw, 5rem);
+  width: ${(p) => p.width ?? 'min(12vw, 5rem)'};
   height: 100%;
+  cursor: pointer;
 `;

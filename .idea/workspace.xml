@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4de34934-1b55-45b2-985b-72cda5cd363d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Components/navigation/AppBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/navigation/AppBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/ui/HamburgerMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ui/HamburgerMenu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/ui/SearchIcon.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ui/SearchIcon.jsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1cI1goeG6LmONG3vy1idqAWDw6W" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.stylelint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.stylelint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.stylelint" value="D:\Temporary Work\On my own\mal-search\node_modules\stylelint" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4de34934-1b55-45b2-985b-72cda5cd363d" name="Default Changelist" comment="" />
+      <created>1590201406853</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590201406853</updated>
+      <workItem from="1590201410388" duration="168000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="479" y="17" width="578" height="801" key="find.popup" timestamp="1590201574783">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="479" y="17" width="578" height="801" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1590201574783" />
+  </component>
+</project>
