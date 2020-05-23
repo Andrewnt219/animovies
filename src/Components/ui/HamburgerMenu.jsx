@@ -39,7 +39,7 @@ const Bun = styled.button`
     }
   }
 
-  @media (min-width: ${(p) => p.theme.breakpoints.sm}) {
+  @media (min-width: ${(p) => p.theme.breakpoints.md}) {
     display: none;
   }
 `;

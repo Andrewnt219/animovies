@@ -9,7 +9,7 @@ export const AppBarLogo = styled(Logo)`
     font-size: min(8vw, 3rem);
   }
 
-  @media (min-width: ${(p) => p.theme.breakpoints.sm}) {
+  @media (min-width: ${(p) => p.theme.breakpoints.md}) {
     background: ${(p) => p.theme.primary};
 
     div {

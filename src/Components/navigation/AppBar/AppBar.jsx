@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
+
 import { withTheme } from 'styled-components/macro';
 import React, { useState } from 'react';
-import StyledLink from '../StyledLink';
 import SearchIcon from 'Components/ui/SearchIcon';
 import HamburgerMenu from 'Components/ui/HamburgerMenu';
 import { AppBarSearchBar } from './AppBarSearchBar';
@@ -9,23 +9,36 @@ import { FixedBar } from './FixedBar';
 import { AppBarLogo } from './AppBarLogo';
 import { AppBarNavItems } from './AppBarNavItems';
 import { AnimatePresence } from 'framer-motion';
+import FlexSpace from 'Components/ui/FlexSpace';
+import AppBarNavItem from './AppBarNavItem';
+import { MdHome, MdPlayArrow, MdGlobe } from 'react-icons/md';
+import { IoMdGlobe } from 'react-icons/io';
 
 function AppBar({ theme, isOpen, setIsOpen }) {
   const [isSearchOpen, setisSearchOpen] = useState(false);
 
   let links = (
     <>
-      <StyledLink to="/">Genre</StyledLink>
-      <StyledLink to="/">Home</StyledLink>
-      <StyledLink to="/">Country</StyledLink>
+      <AppBarNavItem to="/">
+        <MdHome />
+        <span>Home</span>
+      </AppBarNavItem>
+      <AppBarNavItem to="/">
+        <MdPlayArrow />
+        <span>Genre</span>
+      </AppBarNavItem>
+      <AppBarNavItem to="/">
+        <IoMdGlobe />
+        <span>Country</span>
+      </AppBarNavItem>
     </>
   );
   if (theme.name === 'anime') {
     links = (
       <>
-        <StyledLink to="/">Home</StyledLink>
-        <StyledLink to="/">Anime</StyledLink>
-        <StyledLink to="/">Manga</StyledLink>
+        <AppBarNavItem to="/">Home</AppBarNavItem>
+        <AppBarNavItem to="/">Anime</AppBarNavItem>
+        <AppBarNavItem to="/">Manga</AppBarNavItem>
       </>
     );
   }
@@ -36,11 +49,12 @@ function AppBar({ theme, isOpen, setIsOpen }) {
       <FixedBar height={FIXED_BAR_HEIGHT}>
         <HamburgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
         <AppBarLogo />
+        <AppBarNavItems>{links}</AppBarNavItems>
+        <FlexSpace breakpoint={theme.breakpoints.md} />
         <SearchIcon
           isSearchOpen={isSearchOpen}
           setIsSearchOpen={setisSearchOpen}
         />
-        <AppBarNavItems>{links}</AppBarNavItems>
       </FixedBar>
 
       <AnimatePresence>
