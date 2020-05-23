@@ -1,8 +1,9 @@
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 import { rgba } from 'polished';
+import { motion } from 'framer-motion';
 
-const SubMenu = styled.div`
+const SubMenu = styled(motion.div)`
   position: absolute;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
