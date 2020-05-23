@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { IconWrapper } from './IconWrapper';
 import { SearchBarInput } from './SearchBarInput';
 import { StyledSearchIcon } from './StyledSearchIcon';
 import { SearchContainer } from './SearchContainer';
-
 // SearchBar have to have hight in order to set IconWrapper 100% height
 function SearchBar({
   fontSize,
@@ -15,7 +15,7 @@ function SearchBar({
   iconWrapperWidth,
 }) {
   return (
-    <SearchContainer className={className} as="form">
+    <SearchContainer className={className}>
       <SearchBarInput fontSize={fontSize} />
 
       <IconWrapper

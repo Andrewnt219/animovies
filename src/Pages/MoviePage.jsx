@@ -9,7 +9,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoadingSelector } from 'Features/uiSlice';
 import NowPlayingSlider from 'Components/moviePage/nowPlayingSlider/NowPlayingSlider';
-import AppBar from 'Components/navigation/AppBar';
+import AppBar from 'Components/navigation/AppBar/AppBar';
 
 function MoviePage() {
   /**
