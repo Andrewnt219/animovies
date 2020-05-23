@@ -11,22 +11,45 @@ import { AppBarNavItems } from './AppBarNavItems';
 import { AnimatePresence } from 'framer-motion';
 import FlexSpace from 'Components/ui/FlexSpace';
 import AppBarNavItem from './AppBarNavItem';
-import { MdHome, MdPlayArrow, MdGlobe } from 'react-icons/md';
+import { MdHome, MdPlayArrow } from 'react-icons/md';
 import { IoMdGlobe } from 'react-icons/io';
+import { genreMap } from 'Apis/tmdb';
+import AppBarSubMenu from './AppBarSubMenu/AppBarSubMenu';
+import SubMenuItem from './AppBarSubMenu/SubMenuItem';
 
 function AppBar({ theme, isOpen, setIsOpen }) {
+  /**
+   * States
+   */
   const [isSearchOpen, setisSearchOpen] = useState(false);
 
+  /**
+   * Constants
+   */
+  const FIXED_BAR_HEIGHT = 'max(6rem, 5vw)';
+
+  /**
+   * Conditional rendering
+   */
   let links = (
     <>
       <AppBarNavItem to="/">
         <MdHome />
         <span>Home</span>
       </AppBarNavItem>
-      <AppBarNavItem to="/">
-        <MdPlayArrow />
-        <span>Genre</span>
-      </AppBarNavItem>
+
+      <AppBarSubMenu
+        Icon={MdPlayArrow}
+        title="Genre"
+        offsetTop={FIXED_BAR_HEIGHT}
+      >
+        {Object.values(genreMap).map((genre) => (
+          <SubMenuItem to={{ pathname: `/movies/${genre.name}` }}>
+            {genre.name}
+          </SubMenuItem>
+        ))}
+      </AppBarSubMenu>
+
       <AppBarNavItem to="/">
         <IoMdGlobe />
         <span>Country</span>
@@ -43,7 +66,6 @@ function AppBar({ theme, isOpen, setIsOpen }) {
     );
   }
 
-  const FIXED_BAR_HEIGHT = 'max(6rem, 5vw)';
   return (
     <>
       <FixedBar height={FIXED_BAR_HEIGHT}>

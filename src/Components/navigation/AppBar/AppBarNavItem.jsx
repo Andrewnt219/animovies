@@ -13,8 +13,10 @@ export default styled(StyledLink).attrs((p) => ({
   padding: 1rem 0 0 0;
   font-size: 1.5rem;
   margin: 0 2rem;
+  position: relative;
 
-  &:hover {
+  &:hover svg,
+  &:hover span {
     color: ${(p) => p.theme.white};
   }
 

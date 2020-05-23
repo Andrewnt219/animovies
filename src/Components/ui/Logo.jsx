@@ -34,6 +34,12 @@ const Container = styled.div`
   transition: opacity 150ms ease;
   margin: 0;
 
+  /* StyledLink legacy */
+  /* margin: 0 0.5rem; */
+  padding: 1rem;
+  font-size: 1.5rem;
+  border-radius: 4px;
+
   &:hover {
     opacity: 0.9;
   }
