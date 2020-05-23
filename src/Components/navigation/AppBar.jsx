@@ -7,6 +7,7 @@ import Logo from 'Components/ui/Logo';
 import SearchIcon from 'Components/ui/SearchIcon';
 import HamburgerMenu from 'Components/ui/HamburgerMenu';
 import Input from 'Components/ui/Input';
+import SearchBar from 'Components/ui/SearchBar/SearchBar';
 
 const FixedBar = styled.div`
   position: fixed;
@@ -49,16 +50,16 @@ const AppBarNavItems = styled(NavItems)`
   display: none;
 `;
 
-const SearchBar = styled(Input)`
-  position: fixed;
-  /* the height of FixedBar */
-  top: max(6rem, 6vw);
-  left: 0;
-  /* Same as FixedBar */
-  z-index: ${(p) => p.theme.zIndex.high};
-  width: 100vw;
-`;
-const SearchForm = styled.form``;
+// const SearchBar = styled(Input)`
+//   position: fixed;
+//   /* the height of FixedBar */
+//   top: max(6rem, 6vw);
+//   left: 0;
+//   /* Same as FixedBar */
+//   z-index: ${(p) => p.theme.zIndex.high};
+//   width: 100vw;
+// `;
+// const SearchForm = styled.form``;
 
 function AppBar({ theme, isOpen, setIsOpen }) {
   let links = (
@@ -85,9 +86,7 @@ function AppBar({ theme, isOpen, setIsOpen }) {
         <SearchIcon />
         <AppBarNavItems>{links}</AppBarNavItems>
       </FixedBar>
-      <SearchForm>
-        <SearchBar />
-      </SearchForm>
+      <SearchBar />
     </>
   );
 }
