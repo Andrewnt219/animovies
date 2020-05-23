@@ -1,14 +1,16 @@
 import { MdSearch } from 'react-icons/md';
-import styled from 'styled-components/macro';
-import React from 'react';
+import styled, { css } from 'styled-components/macro';
+import { rgba, radialGradient } from 'polished';
 
-function SearchIcon({ setIsSearchOpen }) {
-  return <StyledMdSearch onClick={() => setIsSearchOpen((prev) => !prev)} />;
-}
+// function SearchIcon({ setIsSearchOpen, isSearchOpen }) {
+//   return <StyledMdSearch isSearchOpen={isSearchOpen} onClick={} />;
+// }
 
-export default SearchIcon;
+// export default SearchIcon;
 
-const StyledMdSearch = styled(MdSearch)`
+export default styled(MdSearch).attrs((p) => ({
+  onClick: () => p.setIsSearchOpen((prev) => !prev),
+}))`
   color: ${(p) => p.theme.white};
   width: ${(p) => p.width ?? 'min(12vw, 5rem)'};
   height: 100%;

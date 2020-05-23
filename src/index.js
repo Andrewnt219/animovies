@@ -4,14 +4,12 @@ import App from 'App';
 import store from 'App/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-import GlobalStyle from 'Theme/global';
 import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <GlobalStyle />
         <App />
       </BrowserRouter>
     </Provider>

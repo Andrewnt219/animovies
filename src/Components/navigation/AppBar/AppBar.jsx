@@ -30,13 +30,16 @@ function AppBar({ theme, isOpen, setIsOpen }) {
     );
   }
 
-  const FIXED_BAR_HEIGHT = 'max(6rem, 6vw)';
+  const FIXED_BAR_HEIGHT = 'max(6rem, 5vw)';
   return (
     <>
       <FixedBar height={FIXED_BAR_HEIGHT}>
         <HamburgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
         <AppBarLogo />
-        <SearchIcon setIsSearchOpen={setisSearchOpen} />
+        <SearchIcon
+          isSearchOpen={isSearchOpen}
+          setIsSearchOpen={setisSearchOpen}
+        />
         <AppBarNavItems>{links}</AppBarNavItems>
       </FixedBar>
 

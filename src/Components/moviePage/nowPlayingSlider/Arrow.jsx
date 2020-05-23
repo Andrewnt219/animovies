@@ -29,10 +29,6 @@ const StyledArrowContainer = styled.div`
   &:hover {
     opacity: 0.5;
   }
-
-  &:active {
-    transform: translateY(4px);
-  }
 `;
 
 function Arrow({ isLeftArrow, theme, handleClick }) {

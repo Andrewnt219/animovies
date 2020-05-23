@@ -7,6 +7,8 @@ import animeTheme from 'Theme/animeTheme';
 import { AnimatePresence } from 'framer-motion';
 import Anime from 'Pages/Anime';
 import MoviePage from 'Pages/MoviePage';
+import GlobalStyle from 'Theme/global';
+
 function App(props) {
   return (
     <ThemeProvider
@@ -14,6 +16,8 @@ function App(props) {
         props.location.pathname.includes('movie') ? movieTheme : animeTheme
       }
     >
+      <GlobalStyle />
+
       <AnimatePresence>
         <Switch>
           <Route path="/movie" exact component={Landing} />
