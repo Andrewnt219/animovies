@@ -4,7 +4,7 @@ import SubMenu from './SubMenu';
 import { AnimatePresence } from 'framer-motion';
 import { animation } from 'Theme/variants';
 
-export default function AppBarSubMenu(props) {
+export default function DropDownMenu(props) {
   const [subMenuIsOpen, setSubMenuIsOpen] = useState(false);
 
   return (

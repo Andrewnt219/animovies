@@ -21,9 +21,7 @@ function NowPlayingSlideContent({ movies, translateX }) {
 }
 
 NowPlayingSlideContent.propTypes = {
-  movies: PropTypes.shape({
-    length: PropTypes.number,
-  }),
+  movies: PropTypes.array,
   translateX: PropTypes.number,
 };
 

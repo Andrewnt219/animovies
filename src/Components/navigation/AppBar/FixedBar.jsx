@@ -8,7 +8,7 @@ export const FixedBar = styled.div`
   width: 100%;
   height: ${(p) => p?.height};
   background: ${(p) => p.theme.secondary};
-  z-index: ${(p) => p.theme.zIndex.high};
+  z-index: ${(p) => p.theme.zIndex.med};
   display: flex;
   align-items: center;
   justify-content: space-between;

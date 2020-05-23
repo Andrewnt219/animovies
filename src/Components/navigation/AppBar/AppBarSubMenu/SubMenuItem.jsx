@@ -1,5 +1,4 @@
 import styled from 'styled-components/macro';
-import PropTypes from 'prop-types';
 import { darken, lighten } from 'polished';
 import StyledLink from 'Components/navigation/StyledLink';
 

@@ -12,7 +12,7 @@ import { AppBarNavItems } from './AppBarNavItems';
 import FlexSpace from 'Components/ui/FlexSpace';
 import AppBarNavItem from './AppBarNavItem';
 
-import GenreSubMenu from './movieNavigation/GenreSubMenu';
+import GenreSubMenu from './movieNavigation/GenreDropDownMenu';
 import HomeLink from './movieNavigation/HomeLink';
 import TvLink from './movieNavigation/TvLink';
 
@@ -54,10 +54,7 @@ function AppBar({ theme, isOpen, setIsOpen }) {
         <AppBarLogo />
         <AppBarNavItems>{links}</AppBarNavItems>
         <FlexSpace breakpoint={theme.breakpoints.md} />
-        <SearchIcon
-          isSearchOpen={isSearchOpen}
-          setIsSearchOpen={setisSearchOpen}
-        />
+        <SearchIcon setIsSearchOpen={setisSearchOpen} />
       </FixedBar>
 
       <AnimatePresence>

@@ -6,7 +6,7 @@ export const AppBarSearchBar = styled(SearchBar)`
   position: fixed;
   top: ${(p) => p.offsetTop ?? 0};
   left: ${(p) => p.offsetLeft ?? 0};
-  z-index: ${(p) => p.zIndex ?? p.theme.zIndex.high};
+  z-index: ${(p) => p.zIndex ?? p.theme.zIndex.med};
   width: 100vw;
 
   * {
