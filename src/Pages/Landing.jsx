@@ -30,10 +30,7 @@ const Main = styled(Flex)`
   transform: translate(-50%, -50%);
   width: 70vw;
   justify-content: space-between;
-
-  & > * {
-    margin-bottom: 2rem;
-  }
+  height: 50vmin;
 `;
 
 const fontSize = 'max(2vw, 1.5rem)';
