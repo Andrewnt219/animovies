@@ -1,21 +1,20 @@
 import PropTypes from 'prop-types';
-
+import { AnimatePresence } from 'framer-motion';
 import { withTheme } from 'styled-components/macro';
 import React, { useState } from 'react';
+
 import SearchIcon from 'Components/ui/SearchIcon';
 import HamburgerMenu from 'Components/ui/HamburgerMenu';
 import { AppBarSearchBar } from './AppBarSearchBar';
 import { FixedBar } from './FixedBar';
 import { AppBarLogo } from './AppBarLogo';
 import { AppBarNavItems } from './AppBarNavItems';
-import { AnimatePresence } from 'framer-motion';
 import FlexSpace from 'Components/ui/FlexSpace';
 import AppBarNavItem from './AppBarNavItem';
-import { MdHome, MdPlayArrow } from 'react-icons/md';
-import { IoMdGlobe } from 'react-icons/io';
-import { genreMap } from 'Apis/tmdb';
-import AppBarSubMenu from './AppBarSubMenu/AppBarSubMenu';
-import SubMenuItem from './AppBarSubMenu/SubMenuItem';
+
+import GenreSubMenu from './movieNavigation/GenreSubMenu';
+import HomeLink from './movieNavigation/HomeLink';
+import TvLink from './movieNavigation/TvLink';
 
 function AppBar({ theme, isOpen, setIsOpen }) {
   /**
@@ -33,27 +32,9 @@ function AppBar({ theme, isOpen, setIsOpen }) {
    */
   let links = (
     <>
-      <AppBarNavItem to="/">
-        <MdHome />
-        <span>Home</span>
-      </AppBarNavItem>
-
-      <AppBarSubMenu
-        Icon={MdPlayArrow}
-        title="Genre"
-        offsetTop={FIXED_BAR_HEIGHT}
-      >
-        {Object.values(genreMap).map((genre) => (
-          <SubMenuItem to={{ pathname: `/movies/${genre.name}` }}>
-            {genre.name}
-          </SubMenuItem>
-        ))}
-      </AppBarSubMenu>
-
-      <AppBarNavItem to="/">
-        <IoMdGlobe />
-        <span>Country</span>
-      </AppBarNavItem>
+      <HomeLink />
+      <TvLink />
+      <GenreSubMenu offsetTop={FIXED_BAR_HEIGHT} />
     </>
   );
   if (theme.name === 'anime') {
