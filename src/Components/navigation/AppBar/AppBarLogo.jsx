@@ -1,8 +1,12 @@
+/* --------------------------------- IMPORT --------------------------------- */
 import styled from 'styled-components/macro';
 import Logo from 'Components/ui/Logo';
+
+/* -------------------------------- COMPONENT ------------------------------- */
+// NOTE renders Logo in AppBar
 export const AppBarLogo = styled(Logo)`
-  border-radius: 0;
   height: 100%;
+  border-radius: 0;
 
   &,
   & > * {

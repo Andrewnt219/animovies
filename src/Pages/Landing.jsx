@@ -1,28 +1,36 @@
+/* --------------------------------- IMPORT --------------------------------- */
 import React from 'react';
 import styled from 'styled-components/macro';
-import Backdrop from 'Components/ui/Backdrop';
-import bg from 'Assets/bg.jpg';
-import MenuBar from 'Components/landingPage/LandingMenuBar';
-import SearchBar from 'Components/landingPage/SearchBar';
-import BrandName from 'Components/landingPage/BrandName';
-import Flex from 'Components/container/Flex';
 import { motion } from 'framer-motion';
-import LandingButton from 'Components/landingPage/LandingButton';
 import { withRouter } from 'react-router-dom';
+
+import bg from 'Assets/bg.jpg';
+
+import Backdrop from 'Components/ui/Backdrop';
+import LandingAppBar from 'Components/landingPage/LandingAppBar';
+import SearchBar from 'Components/landingPage/SearchBar';
+import LandingLogo from 'Components/landingPage/LandingLogo';
+import LandingButton from 'Components/landingPage/LandingButton';
+
+import Flex from 'Components/container/Flex';
 import { animation } from 'Theme/variants';
 
+/* --------------------------------- Styling -------------------------------- */
+// * Landing page layout
 const Layout = styled(motion.div)`
   width: 100%;
   height: 100%;
   background: url(${(p) => getBackground(p.theme.name).small}) center 4rem
     no-repeat;
 
+  /* Change to a bigger background */
   @media screen and (min-width: ${(p) => p.theme.breakpoints.md}) {
     background: url(${(p) => getBackground(p.theme.name).large}) center
       no-repeat;
   }
 `;
 
+// * Container for main content
 const Main = styled(Flex)`
   margin: 0 auto;
   position: fixed;
@@ -35,12 +43,18 @@ const Main = styled(Flex)`
   z-index: ${(p) => p.theme.zIndex.top};
 `;
 
+// * fontSize for SearchBar (also SearchIcon) and Button
 const fontSize = 'max(2vw, 1.5rem)';
 
-function Landing(props) {
+/* -------------------------------- Component ------------------------------- */
+// NOTE Render the landing page
+// location from Router
+function Landing({ location }) {
   return (
     <Layout
-      key={props.location.pathname}
+      // * These are for animation
+      // TODO - set App to motion div in order for exit to work
+      key={location.pathname}
       variants={animation.popup.fromLeft}
       initial={{ opacity: 0.7, x: '-100%' }}
       animate="enter"
@@ -49,15 +63,15 @@ function Landing(props) {
     >
       <Backdrop index={1} />
 
-      <MenuBar />
+      <LandingAppBar />
 
       <Main direction="column">
-        <BrandName />
+        <LandingLogo />
 
         <SearchBar fontSize={fontSize} />
 
         <LandingButton
-          to={{ pathname: props.location.pathname + '/all' }}
+          to={{ pathname: location.pathname + '/all' }}
           fontSize={fontSize}
         >
           Browse all
@@ -67,6 +81,10 @@ function Landing(props) {
   );
 }
 
+/* --------------------------------- HELPERS -------------------------------- */
+
+// NOTE return the url/path of large and small backgrounds for each theme
+// @param theme the cu
 function getBackground(theme) {
   return theme === 'movie'
     ? {

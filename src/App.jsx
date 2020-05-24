@@ -4,7 +4,6 @@ import Landing from 'Pages/Landing';
 import { ThemeProvider } from 'styled-components';
 import movieTheme from 'Theme/movieTheme';
 import animeTheme from 'Theme/animeTheme';
-import { AnimatePresence } from 'framer-motion';
 import Anime from 'Pages/Anime';
 import MoviePage from 'Pages/MoviePage';
 import GlobalStyle from 'Theme/global';

@@ -1,7 +1,10 @@
+/* --------------------------------- IMPORT --------------------------------- */
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 
+/* -------------------------------- COMPONENT ------------------------------- */
+// NOTE renders a responsive grid container
 const GridList = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(${(p) => p.min}, 1fr));

@@ -1,16 +1,24 @@
+/* --------------------------------- IMPORT --------------------------------- */
 import styled from 'styled-components/macro';
 import { darken, lighten } from 'polished';
+
 import StyledLink from 'Components/navigation/StyledLink';
 
+/* -------------------------------- COMPONENT ------------------------------- */
+// NOTE renders a grid-item for submenu
 const SubMenuItem = styled(StyledLink)`
-  text-align: center;
-  color: ${(p) => darken(0.2, p.theme.white)};
   width: 100%;
+  height: min-content;
   padding: 1rem 1rem;
   border-radius: 4px;
-  height: min-content;
+
+  text-align: center;
+  color: ${(p) => darken(0.2, p.theme.white)};
+
   justify-self: center;
+
   cursor: pointer;
+
   &:hover {
     font-weight: bold;
     color: ${(p) => lighten(0.2, p.theme.white)};

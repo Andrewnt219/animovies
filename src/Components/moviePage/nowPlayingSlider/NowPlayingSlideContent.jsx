@@ -1,8 +1,11 @@
+/* --------------------------------- IMPORT --------------------------------- */
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components/macro';
+
 import NowPlayingSlide from './NowPlayingSlide';
 
+/* --------------------------------- STYLING -------------------------------- */
 const StyledSlideContent = styled.div`
   display: flex;
   width: ${(p) => p.width}px;
@@ -10,6 +13,8 @@ const StyledSlideContent = styled.div`
   transition: transform 300ms ease;
 `;
 
+/* -------------------------------- COMPONENT ------------------------------- */
+// NOTE renders the container for content of the slider
 function NowPlayingSlideContent({ movies, translateX }) {
   const slideContentWidth = window.innerWidth * movies.length;
 
@@ -20,15 +25,18 @@ function NowPlayingSlideContent({ movies, translateX }) {
   );
 }
 
-NowPlayingSlideContent.propTypes = {
-  movies: PropTypes.array,
-  translateX: PropTypes.number,
-};
-
+/* --------------------------------- HELPERS -------------------------------- */
+// NOTE renders slides of nowplaying movies
 function renderedMovies(movies) {
   return movies.map((movie) => (
     <NowPlayingSlide key={movie.id} src={movie.backdrop_path} />
   ));
 }
+
+/* -------------------------------- VALIDATE -------------------------------- */
+NowPlayingSlideContent.propTypes = {
+  movies: PropTypes.array,
+  translateX: PropTypes.number,
+};
 
 export default NowPlayingSlideContent;

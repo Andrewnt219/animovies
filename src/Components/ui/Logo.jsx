@@ -1,8 +1,32 @@
+/* --------------------------------- IMPORT --------------------------------- */
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled, { css, withTheme } from 'styled-components/macro';
+
 import StyledLink from 'Components/navigation/StyledLink';
 
+/* -------------------------------- COMPONENT ------------------------------- */
+// NOTE render styled Logo
+// * size is for sync font-size
+function Logo({ theme, className, size = '1rem', isInverted }) {
+  const FONT_SIZE = css`
+    font-size: ${size};
+  `;
+
+  return (
+    <Container
+      className={className}
+      to={{ pathname: `/${theme.name}` }}
+      as={StyledLink}
+      fontSize={FONT_SIZE}
+    >
+      <BoldName isInverted={isInverted}>ANI</BoldName>Movies
+    </Container>
+  );
+}
+
+/* --------------------------------- STYLING -------------------------------- */
+// NOTE the emphasis characters of the Logo
 const BoldName = styled.div`
   display: inline-block;
   padding: 0 1vw;
@@ -11,6 +35,8 @@ const BoldName = styled.div`
   font-family: 'Pacifico', cursive;
   border-radius: 4px;
   font-weight: bold;
+
+  /* Inverts the color primary/white of the emphasis characters */
   ${(p) =>
     p.isInverted
       ? css`
@@ -23,7 +49,13 @@ const BoldName = styled.div`
         `}
 `;
 
+// NOTE the container for Logo
 const Container = styled.div`
+  &,
+  & > * {
+    ${(p) => p.fontSize}
+  }
+
   font-family: 'Pacifico', cursive;
   color: ${(p) => p.theme.white};
   display: flex;
@@ -43,35 +75,15 @@ const Container = styled.div`
   &:hover {
     opacity: 0.9;
   }
-
-  &,
-  & > * {
-    ${(p) => p.fontSize}
-  }
 `;
 
-function Logo({ theme, className, size = '1rem', isInverted }) {
-  const fontSize = css`
-    font-size: ${size};
-  `;
-  return (
-    <Container
-      className={className}
-      to={{ pathname: `/${theme.name}` }}
-      as={StyledLink}
-      fontSize={fontSize}
-    >
-      <BoldName isInverted={isInverted}>ANI</BoldName>Movies
-    </Container>
-  );
-}
-
+/* -------------------------------- VALIDATE -------------------------------- */
 Logo.propTypes = {
   className: PropTypes.string,
   isInverted: PropTypes.bool,
   size: PropTypes.string,
   theme: PropTypes.shape({
-    name: PropTypes.any,
+    name: PropTypes.string,
   }),
 };
 

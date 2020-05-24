@@ -1,21 +1,25 @@
+/* --------------------------------- IMPORT --------------------------------- */
 import PropTypes from 'prop-types';
 import { AnimatePresence } from 'framer-motion';
 import { withTheme } from 'styled-components/macro';
 import React, { useState } from 'react';
 
-import SearchIcon from 'Components/ui/SearchIcon';
-import HamburgerMenu from 'Components/ui/HamburgerMenu';
-import { AppBarSearchBar } from './AppBarSearchBar';
 import { FixedBar } from './FixedBar';
-import { AppBarLogo } from './AppBarLogo';
-import { AppBarNavItems } from './AppBarNavItems';
 import FlexSpace from 'Components/ui/FlexSpace';
-import AppBarNavItem from './AppBarNavItem';
+import HamburgerMenu from 'Components/ui/HamburgerMenu';
+import { AppBarLogo } from './AppBarLogo';
 
+import { AppBarSearchBar } from './AppBarSearchBar';
+import SearchIcon from 'Components/ui/SearchIcon';
+
+import { AppBarNavItems } from './AppBarNavItems';
+import AppBarNavItem from './AppBarNavItem';
 import GenreSubMenu from './movieNavigation/GenreDropDownMenu';
 import HomeLink from './movieNavigation/HomeLink';
 import TvLink from './movieNavigation/TvLink';
 
+/* -------------------------------- COMPONENT ------------------------------- */
+// NOTE renders an AppBar for main Layout
 function AppBar({ theme, isOpen, setIsOpen }) {
   /**
    * States
@@ -30,6 +34,7 @@ function AppBar({ theme, isOpen, setIsOpen }) {
   /**
    * Conditional rendering
    */
+  // * render different navigation items for each theme
   let links = (
     <>
       <HomeLink />
@@ -51,9 +56,13 @@ function AppBar({ theme, isOpen, setIsOpen }) {
     <>
       <FixedBar height={FIXED_BAR_HEIGHT}>
         <HamburgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+
         <AppBarLogo />
+
         <AppBarNavItems>{links}</AppBarNavItems>
+
         <FlexSpace breakpoint={theme.breakpoints.md} />
+
         <SearchIcon setIsSearchOpen={setisSearchOpen} />
       </FixedBar>
 
@@ -69,10 +78,14 @@ function AppBar({ theme, isOpen, setIsOpen }) {
   );
 }
 
+/* -------------------------------- VALIDATE -------------------------------- */
 AppBar.propTypes = {
   isOpen: PropTypes.bool,
   setIsOpen: PropTypes.func,
   theme: PropTypes.shape({
+    breakpoints: PropTypes.shape({
+      md: PropTypes.string,
+    }),
     name: PropTypes.string,
   }),
 };

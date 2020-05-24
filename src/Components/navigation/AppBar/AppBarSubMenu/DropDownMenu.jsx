@@ -1,10 +1,14 @@
+/* --------------------------------- IMPORT --------------------------------- */
 import React, { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
+
 import AppBarNavItem from '../AppBarNavItem';
 import SubMenu from './SubMenu';
-import { AnimatePresence } from 'framer-motion';
 import { animation } from 'Theme/variants';
 
-export default function DropDownMenu(props) {
+/* -------------------------------- COMPONENT ------------------------------- */
+// NOTE render a dropdownMenu when hovered
+export default function DropDownMenu({ Icon, title, offsetTop, children }) {
   const [subMenuIsOpen, setSubMenuIsOpen] = useState(false);
 
   return (
@@ -13,8 +17,10 @@ export default function DropDownMenu(props) {
       onMouseEnter={() => setSubMenuIsOpen(true)}
       onMouseLeave={() => setSubMenuIsOpen(false)}
     >
-      <props.Icon />
-      <span>{props.title}</span>
+      <Icon />
+
+      <span>{title}</span>
+
       <AnimatePresence>
         {subMenuIsOpen && (
           <SubMenu
@@ -23,9 +29,9 @@ export default function DropDownMenu(props) {
             exit="exit"
             transition="transition"
             variants={animation.popup.fromTop}
-            offsetTop={props.offsetTop}
+            offsetTop={offsetTop}
           >
-            {props.children}
+            {children}
           </SubMenu>
         )}
       </AnimatePresence>

@@ -1,4 +1,7 @@
+/* --------------------------------- IMPORT --------------------------------- */
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import {
   fetchMovies,
   nowPlayingSelector,
@@ -6,11 +9,13 @@ import {
   popularSelector,
   topRatedSelector, */
 } from 'Features/moviesSlice';
-import { useDispatch, useSelector } from 'react-redux';
 import { isLoadingSelector } from 'Features/uiSlice';
+
 import NowPlayingSlider from 'Components/moviePage/nowPlayingSlider/NowPlayingSlider';
 import MainLayout from 'HOC/MainLayout';
 
+/* -------------------------------- COMPONENT ------------------------------- */
+// NOTE Render the page at /all
 function MoviePage() {
   /**
    * State

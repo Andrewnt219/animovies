@@ -1,15 +1,13 @@
+/* --------------------------------- IMPORT --------------------------------- */
 import styled, { css } from 'styled-components/macro';
 import PropTypes from 'prop-types';
 import { darken } from 'polished';
 
+/* -------------------------------- COMPONENT ------------------------------- */
+// NOTE render a basic styled button
 const Button = styled.button`
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  background: none;
-  border: none;
   color: ${(p) => p.color ?? p.theme.white};
   font-size: ${(p) => p.fontSize ?? '1rem'};
-  border-radius: 5px;
 
   ${(p) =>
     p.outlined &&
@@ -22,13 +20,19 @@ const Button = styled.button`
       background-color: ${p.bgColor ?? p.theme.primary};
     `};
 
-  transition: background 200ms ease;
-
   &:hover {
     background-color: ${(p) => darken(0.05, p.bgColor ?? p.theme.primary)};
   }
+
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  /* background: none; */
+  cursor: pointer;
+  transition: background 200ms ease;
 `;
 
+/* -------------------------------- VALIDATE -------------------------------- */
 Button.propTypes = {
   bgColor: PropTypes.string,
   outlined: PropTypes.bool,

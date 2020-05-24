@@ -1,7 +1,11 @@
+/* --------------------------------- IMPORT --------------------------------- */
 import styled from 'styled-components/macro';
+
 import Button from 'Components/ui/Button';
 import StyledLink from 'Components/navigation/StyledLink';
 
+/* -------------------------------- COMPONENT ------------------------------- */
+// NOTE renders a link for Landing page
 const LandingButton = styled(Button).attrs((p) => ({
   contained: 'true',
   fontSize: p.fontSize,

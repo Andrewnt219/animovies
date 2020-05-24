@@ -1,6 +1,9 @@
+/* --------------------------------- IMPORT --------------------------------- */
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 
+/* -------------------------------- COMPONENT ------------------------------- */
+// NOTE manually typing these style is probably faster
 const Flex = styled.div`
   display: flex;
   flex-direction: ${(p) => p.direction ?? 'row'};
@@ -8,6 +11,7 @@ const Flex = styled.div`
   align-items: ${(p) => p.alignItems ?? 'center'};
 `;
 
+/* -------------------------------- VALIDATE -------------------------------- */
 Flex.propTypes = {
   direction: PropTypes.string,
   justify: PropTypes.string,

@@ -5,11 +5,16 @@ import { IconWrapper } from './IconWrapper';
 import { SearchBarInput } from './SearchBarInput';
 import { StyledSearchIcon } from './StyledSearchIcon';
 import { SearchContainer } from './SearchContainer';
+
 // SearchBar have to have hight in order to set IconWrapper 100% height
 function SearchBar({
+  // fontSize sets input's font and width+height of searchIcon
   fontSize,
+  // className to format the Container
   className,
+  // set searchIcon's color
   iconColor,
+  // All of these go to the icon wrapper
   iconWrapperHeight,
   iconBgColor,
   iconWrapperWidth,

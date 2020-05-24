@@ -1,9 +1,12 @@
-import styled from 'styled-components/macro';
+/* --------------------------------- IMPORT --------------------------------- */
 import React, { useReducer, useEffect, useRef } from 'react';
+import styled from 'styled-components/macro';
+
 import NowPlayingSlideContent from './NowPlayingSlideContent';
 import Arrow from './Arrow';
 import DotIndicator from './DotIndicator';
 
+/* --------------------------------- STYLING -------------------------------- */
 const StyledSlider = styled.div`
   position: relative;
   overflow-x: hidden;
@@ -11,6 +14,7 @@ const StyledSlider = styled.div`
   margin-top: max(5rem, 5vw);
 `;
 
+/* -------------------------------- COMPONENT ------------------------------- */
 /**
  * Reducer
  */
@@ -80,6 +84,7 @@ const currentSlideReducer = (state, { type, payload }) => {
   }
 };
 
+// NOTE renders a Slider for nowplaying movies, with content and controllers
 function NowPlayingSlider({ movies, autoPlayInMs = 3000 }) {
   /**
    * States

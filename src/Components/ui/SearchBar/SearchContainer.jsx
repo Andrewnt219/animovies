@@ -1,14 +1,12 @@
+/* --------------------------------- IMPORT --------------------------------- */
+import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import styled from 'styled-components/macro';
 import React from 'react';
 import { animation } from 'Theme/variants';
 
-const StyledContainer = styled(motion.form)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
+/* -------------------------------- COMPONENT ------------------------------- */
+// NOTE renders a form for SearchBar
 function SearchContainer({ children, className }) {
   return (
     <StyledContainer
@@ -23,5 +21,18 @@ function SearchContainer({ children, className }) {
     </StyledContainer>
   );
 }
+
+/* --------------------------------- STYLING -------------------------------- */
+const StyledContainer = styled(motion.form)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+/* -------------------------------- VALIDATE -------------------------------- */
+SearchContainer.propTypes = {
+  children: PropTypes.any,
+  className: PropTypes.string,
+};
 
 export { SearchContainer };
