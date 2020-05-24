@@ -18,16 +18,14 @@ function App(props) {
     >
       <GlobalStyle />
 
-      <AnimatePresence>
-        <Switch>
-          <Route path="/movie" exact component={Landing} />
-          <Route path="/anime" exact component={Landing} />
-          <Route path="/anime/all" exact component={Anime} />
-          <Route path="/movie/all" exact component={MoviePage} />
-          <Redirect from="/" to="/movie" exact />
-          <Redirect to="/404" exact />
-        </Switch>
-      </AnimatePresence>
+      <Switch>
+        <Route path="/movie" exact component={Landing} />
+        <Route path="/anime" exact component={Landing} />
+        <Route path="/anime/all" exact component={Anime} />
+        <Route path="/movie/all" exact component={MoviePage} />
+        <Redirect from="/" to="/movie" exact />
+        <Redirect to="/404" exact />
+      </Switch>
     </ThemeProvider>
   );
 }

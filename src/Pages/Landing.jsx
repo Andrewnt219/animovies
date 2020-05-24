@@ -9,6 +9,7 @@ import Flex from 'Components/container/Flex';
 import { motion } from 'framer-motion';
 import LandingButton from 'Components/landingPage/LandingButton';
 import { withRouter } from 'react-router-dom';
+import { animation } from 'Theme/variants';
 
 const Layout = styled(motion.div)`
   width: 100%;
@@ -39,10 +40,12 @@ const fontSize = 'max(2vw, 1.5rem)';
 function Landing(props) {
   return (
     <Layout
-      initial={{ opacity: 0.7 }}
-      animate={{ opacity: 1 }}
+      key={props.location.pathname}
+      variants={animation.popup.fromLeft}
+      initial={{ opacity: 0.7, x: '-100%' }}
+      animate="enter"
       transition={{ duration: 0.5 }}
-      exit={{ opacity: 0.7 }}
+      // exit={{ opacity: 0.7, y: 100 }}
     >
       <Backdrop index={1} />
 

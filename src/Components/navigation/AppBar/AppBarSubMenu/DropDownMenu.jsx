@@ -21,8 +21,8 @@ export default function DropDownMenu(props) {
             initial="initial"
             animate="enter"
             exit="exit"
+            transition="transition"
             variants={animation.popup.fromTop}
-            transition={{ duration: 0.2 }}
             offsetTop={props.offsetTop}
           >
             {props.children}

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components/macro';
 import React from 'react';
+import { animation } from 'Theme/variants';
 
 const StyledContainer = styled(motion.form)`
   display: flex;
@@ -12,10 +13,11 @@ function SearchContainer({ children, className }) {
   return (
     <StyledContainer
       className={className}
-      initial={{ opacity: 0, y: 5 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 5 }}
-      transition={{ duration: 0.2 }}
+      variants={animation.popup.fromBottom}
+      initial="initial"
+      animate="enter"
+      exit="exit"
+      transition="transition"
     >
       {children}
     </StyledContainer>
