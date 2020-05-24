@@ -31,6 +31,7 @@ const Main = styled(Flex)`
   width: 70vw;
   justify-content: space-between;
   height: 50vmin;
+  z-index: ${(p) => p.theme.zIndex.top};
 `;
 
 const fontSize = 'max(2vw, 1.5rem)';
@@ -43,7 +44,7 @@ function Landing(props) {
       transition={{ duration: 0.5 }}
       exit={{ opacity: 0.7 }}
     >
-      <Backdrop index={0} />
+      <Backdrop index={1} />
 
       <MenuBar />
 

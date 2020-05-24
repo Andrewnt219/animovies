@@ -22,9 +22,9 @@ export default {
   },
 
   zIndex: {
-    top: '100',
-    high: '99',
-    med: '50',
+    top: '1000',
+    high: '500',
+    med: '100',
     low: '1',
   },
 };

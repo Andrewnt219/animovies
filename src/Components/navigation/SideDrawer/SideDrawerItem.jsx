@@ -30,7 +30,7 @@ function SideDrawerItem({ children, title, as, to }) {
     <Container as={as} to={to}>
       <ItemHeader>{title}</ItemHeader>
       {children && (
-        <SubMenu min="8rem" maxWidth="100%" width="100%">
+        <SubMenu min="8rem" gap="1rem" maxWidth="100%" width="100%">
           {children}
         </SubMenu>
       )}

@@ -12,6 +12,7 @@ const SideDrawerContainer = styled.div`
   background-color: ${(p) => p.bgColor ?? p.theme.dark};
   z-index: ${(p) => p.theme.zIndex.top};
   padding: 0 1rem;
+  overflow: auto;
 `;
 function SideDrawer({ children, setIsMenuOpen, bgColor }) {
   return (
