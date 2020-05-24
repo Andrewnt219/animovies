@@ -2,8 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components/macro';
 import Backdrop from 'Components/ui/Backdrop';
+import { motion } from 'framer-motion';
 
-const SideDrawerContainer = styled.div`
+const SideDrawerContainer = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
@@ -14,17 +15,18 @@ const SideDrawerContainer = styled.div`
   padding: 0 1rem;
   overflow: auto;
 `;
-function SideDrawer({ children, setIsMenuOpen, bgColor }) {
+function SideDrawer({ children, setIsMenuOpen, bgColor, ...animation }) {
   return (
-    <React.Fragment>
+    <>
       <Backdrop handleClick={setIsMenuOpen.bind(this, false)} />
       <SideDrawerContainer
+        {...animation}
         onClick={() => setIsMenuOpen(false)}
         bgColor={bgColor}
       >
         {children()}
       </SideDrawerContainer>
-    </React.Fragment>
+    </>
   );
 }
 
