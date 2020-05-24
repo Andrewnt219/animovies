@@ -12,7 +12,7 @@ function GenreSubMenu({ offsetTop }) {
   );
 }
 
-function renderSubMenuItems() {
+export function renderSubMenuItems() {
   return Object.values(genreMap).map((genre) => (
     <SubMenuItem key={genre.id} to={{ pathname: `/movies/${genre.name}` }}>
       {genre.name}

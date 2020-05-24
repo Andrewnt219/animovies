@@ -2,7 +2,15 @@ import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 import { rgba } from 'polished';
 
-const Backdrop = styled.div`
+import React from 'react';
+
+function Backdrop({ handleClick }) {
+  return <StyledBackdrop onClick={handleClick} />;
+}
+
+export default Backdrop;
+
+const StyledBackdrop = styled.div`
   content: '';
   width: 100vw;
   height: 100vh;
@@ -15,6 +23,5 @@ const Backdrop = styled.div`
 
 Backdrop.propTypes = {
   index: PropTypes.number,
+  handleClick: PropTypes.func,
 };
-
-export default Backdrop;
