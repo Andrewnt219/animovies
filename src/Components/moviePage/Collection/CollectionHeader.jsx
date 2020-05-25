@@ -1,13 +1,18 @@
 /* --------------------------------- IMPORT --------------------------------- */
 import styled, { css } from 'styled-components/macro';
-import React, { useState } from 'react';
+import React from 'react';
+import { sentenceCase } from 'change-case';
+
 import StyledLink from 'Components/navigation/StyledLink';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE renders a grid-container with SectionName, another sub-grid with subitems, and a view more button
-function CategoryHeader({ sectionName, links }) {
-  const [activeMenuIndex, setActiveMenuIndex] = useState(0);
-
+function CollectionHeader({
+  sectionName,
+  subMenuNames,
+  activeMenu,
+  setActiveMenu,
+}) {
   return (
     <CategoryContainer>
       <SectionName>{sectionName}</SectionName>
@@ -15,22 +20,20 @@ function CategoryHeader({ sectionName, links }) {
       <Button to="/">View More</Button>
 
       <ItemsContainer>
-        {renderItems(links, activeMenuIndex, setActiveMenuIndex)}
+        {renderItems(subMenuNames, activeMenu, setActiveMenu)}
       </ItemsContainer>
     </CategoryContainer>
   );
 }
 
-function renderItems(links, activeMenuIndex, setActiveMenuIndex) {
-  return links.map(({ name, to, ...config }, idx) => (
+function renderItems(subMenuNames, activeMenu, setActiveMenu) {
+  return subMenuNames.map((name) => (
     <Item
       key={name}
-      to={to}
-      {...config}
-      active={activeMenuIndex === idx}
-      onClick={() => setActiveMenuIndex(idx)}
+      active={activeMenu === name}
+      onClick={() => setActiveMenu(name)}
     >
-      {name}
+      {sentenceCase(name)}
     </Item>
   ));
 }
@@ -76,7 +79,7 @@ const ItemsContainer = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
 `;
 
-const Item = styled(StyledLink)`
+const Item = styled.div`
   ${(p) => css`
     background: ${p.active && p.theme.primary};
   `}
@@ -88,6 +91,8 @@ const Item = styled(StyledLink)`
 
   padding: 1rem;
   border-radius: 4px;
+
+  cursor: pointer;
 
   &:hover {
     filter: brightness(1.1);
@@ -115,4 +120,4 @@ const Button = styled(StyledLink)`
     filter: brightness(1.1);
   }
 `;
-export default CategoryHeader;
+export default CollectionHeader;

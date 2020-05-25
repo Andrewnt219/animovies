@@ -1,65 +1,49 @@
 /* --------------------------------- IMPORT --------------------------------- */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  fetchMovies,
-  nowPlayingSelector,
-  /* upComingSelector,
-  popularSelector,
-  topRatedSelector, */
-} from 'Features/moviesSlice';
+import { fetchCollection, moviesSelector } from 'Features/collectionSlice';
 import { isLoadingSelector } from 'Features/uiSlice';
 
 import NowPlayingSlider from 'Components/moviePage/nowPlayingSlider/NowPlayingSlider';
 import MainLayout from 'HOC/MainLayout';
-import CategoryHeader from 'Components/moviePage/content/CategoryHeader';
+import Collection from 'Components/moviePage/Collection/Collection';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE Render the page at /all
 function MoviePage() {
-  /**
-   * State
-   */
   const dispatch = useDispatch();
   const isLoading = useSelector(isLoadingSelector);
 
-  /**
-   * RETRIEVING MOVIES FROM THE STORE
-   */
-  const nowPlayingMovies = useSelector(nowPlayingSelector);
-  // const popularMovies = useSelector(popularSelector);
-  // const upComingMovies = useSelector(upComingSelector);
-  // const topRatedMovies = useSelector(topRatedSelector);
+  const movies = useSelector(moviesSelector);
+  // Except the nowPlaying movies
+  const SUB_MOVIE_NAMES = Object.keys(movies).slice(1).sort();
+
+  // because useState won't change value after the first rener
+  // initial value is the first SUB_MOVIE_NAME alphabetically
+  const [activeMovieCollection, setActiveMovieCollection] = useState('popular');
 
   /**
    * FETCHING MOVIES FROM API
    */
   useEffect(() => {
-    dispatch(fetchMovies());
+    dispatch(fetchCollection());
   }, [dispatch]);
-
-  const links = [
-    {
-      to: '/',
-      name: 'Cinema Movies',
-    },
-    {
-      to: '/',
-      name: 'Cinema Series',
-    },
-    {
-      to: '/',
-      name: 'Cinema Episodes',
-    },
-  ];
 
   return isLoading ? (
     <div>Loading...</div>
   ) : (
     <MainLayout>
-      <NowPlayingSlider movies={nowPlayingMovies} />
-      <CategoryHeader sectionName="Suggestions" links={links} />
+      <NowPlayingSlider movies={movies.nowPlaying} />
+      <Collection
+        header={{
+          sectionName: 'Movies',
+          subMenuNames: SUB_MOVIE_NAMES,
+          activeMenu: activeMovieCollection,
+          setActiveMenu: setActiveMovieCollection,
+        }}
+        collection={movies[activeMovieCollection]}
+      />
     </MainLayout>
   );
 }

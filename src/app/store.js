@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import moviesReducer from 'Features/moviesSlice';
+import collectionReducer from 'Features/collectionSlice';
 import uiReducer from 'Features/uiSlice';
 
 export default configureStore({
   reducer: {
-    movies: moviesReducer,
+    collection: collectionReducer,
     ui: uiReducer,
   },
 });
