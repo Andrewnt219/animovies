@@ -1,23 +1,26 @@
-/* --------------------------------- IMPORT --------------------------------- */
-import styled from 'styled-components/macro';
-import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
+// NOTE filtering props passed to ReactRouter Link
 
-/* -------------------------------- COMPONENT ------------------------------- */
-// NOTE renders a NavLink with removed decoration
-const StyledLink = styled(NavLink)`
-  color: ${(p) => p.color ?? p.theme.white};
+import { Link as RRLink } from 'react-router-dom';
+import React from 'react';
+import styled, { css } from 'styled-components/macro';
 
-  &:visited {
-    color: ${(p) => p.color ?? p.theme.white};
-  }
+function Link({ to, className, children }) {
+  return (
+    <RRLink to={to} className={className}>
+      {children}
+    </RRLink>
+  );
+}
 
+const StyledLink = styled(Link)`
   text-decoration: none;
-`;
+  ${(p) => css`
+    color: ${p.color ?? p.theme.white};
 
-/* -------------------------------- VALIDATE -------------------------------- */
-StyledLink.propTypes = {
-  color: PropTypes.string,
-};
+    &:hover {
+      color: ${p.color ?? p.theme.white};
+    }
+  `}
+`;
 
 export default StyledLink;

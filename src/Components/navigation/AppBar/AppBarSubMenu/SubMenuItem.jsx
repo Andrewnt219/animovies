@@ -2,11 +2,11 @@
 import styled from 'styled-components/macro';
 import { darken, lighten } from 'polished';
 
-import StyledLink from 'Components/navigation/StyledLink';
+import StyledNavLink from 'Components/navigation/StyledNavLink.jsx';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE renders a grid-item for submenu
-const SubMenuItem = styled(StyledLink)`
+const SubMenuItem = styled(StyledNavLink)`
   width: 100%;
   height: min-content;
   padding: 1rem 1rem;

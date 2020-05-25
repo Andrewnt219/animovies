@@ -13,6 +13,7 @@ import { isLoadingSelector } from 'Features/uiSlice';
 
 import NowPlayingSlider from 'Components/moviePage/nowPlayingSlider/NowPlayingSlider';
 import MainLayout from 'HOC/MainLayout';
+import CategoryHeader from 'Components/moviePage/content/CategoryHeader';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE Render the page at /all
@@ -38,12 +39,27 @@ function MoviePage() {
     dispatch(fetchMovies());
   }, [dispatch]);
 
+  const links = [
+    {
+      to: '/',
+      name: 'Cinema Movies',
+    },
+    {
+      to: '/',
+      name: 'Cinema Series',
+    },
+    {
+      to: '/',
+      name: 'Cinema Episodes',
+    },
+  ];
+
   return isLoading ? (
     <div>Loading...</div>
   ) : (
     <MainLayout>
       <NowPlayingSlider movies={nowPlayingMovies} />
-      <h1>CONTENT</h1>
+      <CategoryHeader sectionName="Suggestions" links={links} />
     </MainLayout>
   );
 }

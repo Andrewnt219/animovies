@@ -1,11 +1,11 @@
 /* --------------------------------- IMPORT --------------------------------- */
 import styled from 'styled-components/macro';
-import StyledLink from '../StyledLink';
+import StyledNavLink from '../StyledNavLink.jsx';
 import { lighten } from 'polished';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE render a StyledLink in AppBar
-export default styled(StyledLink).attrs((p) => ({
+export default styled(StyledNavLink).attrs((p) => ({
   color: lighten(0.4, p.theme.dark),
 }))`
   display: flex;

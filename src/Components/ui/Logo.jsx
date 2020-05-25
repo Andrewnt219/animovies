@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled, { css, withTheme } from 'styled-components/macro';
 
-import StyledLink from 'Components/navigation/StyledLink';
+import StyledNavLink from 'Components/navigation/StyledNavLink.jsx';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE render styled Logo
@@ -17,7 +17,7 @@ function Logo({ theme, className, size = '1rem', isInverted }) {
     <Container
       className={className}
       to={{ pathname: `/${theme.name}` }}
-      as={StyledLink}
+      as={StyledNavLink}
       fontSize={FONT_SIZE}
     >
       <BoldName isInverted={isInverted}>ANI</BoldName>Movies

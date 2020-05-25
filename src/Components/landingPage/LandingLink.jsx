@@ -2,11 +2,11 @@
 import styled from 'styled-components/macro';
 import { darken } from 'polished';
 
-import StyledLink from 'Components/navigation/StyledLink';
+import StyledNavLink from 'Components/navigation/StyledNavLink.jsx';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE renders navigation links for Landing page
-export default styled(StyledLink).attrs((p) => ({
+export default styled(StyledNavLink).attrs((p) => ({
   color: darken(0.1, p.theme.white),
 }))`
   padding: 1rem;

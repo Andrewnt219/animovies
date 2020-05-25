@@ -8,6 +8,22 @@ export default Axios.create({
   },
 });
 
+export function findGenreId(genreName) {
+  //prettier-ignore
+  return Object
+    .values(genreMap)
+    .find((genre) => genre.name.toUpperCase() === String(genreName).toUpperCase())
+    .id;
+}
+
+export function findGenreName(genreId) {
+  //prettier-ignore
+  return Object
+    .values(genreMap)
+    .find((genre) => genre.id === Number(genreId))
+    .name;
+}
+
 export const genreMap = {
   '12': {
     id: 12,
