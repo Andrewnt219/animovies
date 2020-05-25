@@ -55,10 +55,9 @@ function Landing({ location }) {
       // * These are for animation
       // TODO - set App to motion div in order for exit to work
       key={location.pathname}
-      variants={animation.popup.fromLeft}
-      initial={{ opacity: 0.7, x: '-100%' }}
-      animate="enter"
-      transition={{ duration: 0.5 }}
+      initial={{ scale: 0.5 }}
+      animate={{ scale: 1 }}
+      transition={{ duration: 0.25 }}
       // exit={{ opacity: 0.7, y: 100 }}
     >
       <Backdrop index={1} />
