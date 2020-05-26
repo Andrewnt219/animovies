@@ -5,6 +5,7 @@ import styled from 'styled-components/macro';
 import NowPlayingSlideContent from './NowPlayingSlideContent';
 import Arrow from './Arrow';
 import DotIndicator from './DotIndicator';
+import SliderContext from 'Context/SliderContext';
 
 /* --------------------------------- STYLING -------------------------------- */
 const StyledSlider = styled.div`
@@ -123,47 +124,54 @@ function NowPlayingSlider({ movies, autoPlayInMs = 3000 }) {
     };
   });
 
+  // Closure to retain the timerId even after passing down to children
+  const pauseSlideShow = () => {
+    return () => window.clearInterval(autoPlayTimer.current);
+  };
+
+  const resumeSlideShow = () => {
+    dispatchCurrentSlide({ type: 'NEXT_SLIDE' });
+  };
+
   return (
-    <StyledSlider
-      // PAUSE autoplay
-      onMouseEnter={() => window.clearInterval(autoPlayTimer.current)}
-      onMouseLeave={() => dispatchCurrentSlide({ type: 'NEXT_SLIDE' })}
-    >
-      <NowPlayingSlideContent
-        movies={movies}
-        activeSlide={currentSlide.index}
-        translateX={currentSlide.transitionValue}
-      />
+    <SliderContext.Provider value={{ pauseSlideShow, resumeSlideShow }}>
+      <StyledSlider>
+        <NowPlayingSlideContent
+          movies={movies}
+          activeSlide={currentSlide.index}
+          translateX={currentSlide.transitionValue}
+        />
 
-      <Arrow
-        isLeftArrow
-        handleClick={() =>
-          dispatchCurrentSlide({
-            type: 'PREV_SLIDE',
-            payload: { autoPlayTimer: autoPlayTimer.current },
-          })
-        }
-      />
-      <Arrow
-        handleClick={() =>
-          dispatchCurrentSlide({
-            type: 'NEXT_SLIDE',
-            payload: { autoPlayTimer: autoPlayTimer.current },
-          })
-        }
-      />
+        <Arrow
+          isLeftArrow
+          handleClick={() =>
+            dispatchCurrentSlide({
+              type: 'PREV_SLIDE',
+              payload: { autoPlayTimer: autoPlayTimer.current },
+            })
+          }
+        />
+        <Arrow
+          handleClick={() =>
+            dispatchCurrentSlide({
+              type: 'NEXT_SLIDE',
+              payload: { autoPlayTimer: autoPlayTimer.current },
+            })
+          }
+        />
 
-      <DotIndicator
-        movies={movies}
-        activeIdx={currentSlide.index}
-        handleDotClick={(index) =>
-          dispatchCurrentSlide({
-            type: 'DOT_CLICKED',
-            payload: { index, autoPlayTimer: autoPlayTimer.current },
-          })
-        }
-      />
-    </StyledSlider>
+        <DotIndicator
+          movies={movies}
+          activeIdx={currentSlide.index}
+          handleDotClick={(index) =>
+            dispatchCurrentSlide({
+              type: 'DOT_CLICKED',
+              payload: { index, autoPlayTimer: autoPlayTimer.current },
+            })
+          }
+        />
+      </StyledSlider>
+    </SliderContext.Provider>
   );
 }
 

@@ -1,24 +1,36 @@
 /* --------------------------------- IMPORT --------------------------------- */
 import styled from 'styled-components/macro';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { rgba } from 'polished';
 import { MdInfoOutline } from 'react-icons/md';
+import { AnimatePresence } from 'framer-motion';
 
 import HoveredCollectionItem from '../Collection/HoveredCollectionItem';
-import { AnimatePresence } from 'framer-motion';
+import SliderContext from 'Context/SliderContext';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 function NowPlayingSlide({ item }) {
   const [showInfo, setShowInfo] = useState(false);
+  const sliderControllers = useContext(SliderContext);
+
+  const handleInfoClicked = () => {
+    sliderControllers.pauseSlideShow()();
+    setShowInfo(true);
+  };
+
+  const handlePopupClicked = () => {
+    sliderControllers.resumeSlideShow();
+    setShowInfo(false);
+  };
 
   return (
     <StyledSlide src={item.backdrop_path}>
-      {!showInfo && <InfoButton onClick={setShowInfo.bind(this, true)} />}
+      {!showInfo && <InfoButton onClick={handleInfoClicked} />}
       <AnimatePresence>
         {showInfo && (
           <PopupContainer
             item={item}
-            handleClick={setShowInfo.bind(this, false)}
+            handleClick={handlePopupClicked}
             //
             initial={{ opacity: 0, y: '-50%', x: '-50%', scale: 0 }}
             animate={{ opacity: 1, y: '-50%', x: '-50%', scale: 1 }}
