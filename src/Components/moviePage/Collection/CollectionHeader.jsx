@@ -17,7 +17,7 @@ function CollectionHeader({
     <CategoryContainer>
       <SectionName>{sectionName}</SectionName>
 
-      <Button to="/">View More</Button>
+      <Button to="/">VIEW MORE</Button>
 
       <ItemsContainer>
         {renderItems(subMenuNames, activeMenu, setActiveMenu)}

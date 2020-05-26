@@ -6,6 +6,7 @@ import { darken } from 'polished';
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE render a basic styled button
 const Button = styled.button`
+  text-align: center;
   color: ${(p) => p.color ?? p.theme.white};
   font-size: ${(p) => p.fontSize ?? '1rem'};
 

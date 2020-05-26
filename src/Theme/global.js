@@ -9,6 +9,7 @@ export default createGlobalStyle`
   html, body, #root {
     width: 100%;
     height: 100%;
+    background-color: ${(p) => p.theme.secondary}
   }
   
   *, *::before, *::after {

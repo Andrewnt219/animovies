@@ -16,25 +16,16 @@ function App(props) {
         props.location.pathname.includes('movie') ? movieTheme : animeTheme
       }
     >
-      <StyledApp>
-        <GlobalStyle />
-
-        <Switch>
-          <Route path="/movie" exact component={Landing} />
-          <Route path="/anime" exact component={Landing} />
-          <Route path="/anime/all" exact component={Anime} />
-          <Route path="/movie/all" exact component={MoviePage} />
-          <Redirect from="/" to="/movie" exact />
-          <Redirect to="/404" exact />
-        </Switch>
-      </StyledApp>
+      <GlobalStyle />
+      <Switch>
+        <Route path="/movie" exact component={Landing} />
+        <Route path="/anime" exact component={Landing} />
+        <Route path="/anime/all" exact component={Anime} />
+        <Route path="/movie/all" exact component={MoviePage} />
+        <Redirect from="/" to="/movie" exact />
+        <Redirect to="/404" exact />
+      </Switch>
     </ThemeProvider>
   );
 }
-
-const StyledApp = styled.div`
-  background-color: ${(p) => p.theme.secondary};
-  width: 100%;
-  height: 100%;
-`;
 export default withRouter(App);

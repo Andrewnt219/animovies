@@ -13,6 +13,7 @@ export const AppBarSearchBar = styled(SearchBar)`
   z-index: ${(p) => p.zIndex ?? p.theme.zIndex.med};
 
   width: 100vw;
+  box-shadow: 0 2px 5px #000;
 
   * {
     border-radius: 0;

@@ -3,7 +3,7 @@ export default {
   primary: '#BF1F5A',
   secondary: '#404040',
   white: '#F2F2F2',
-  sub1: '#BF1FA4',
+  sub1: '#FED500',
   bright: '#F2695C',
   dark: '#404040',
 
