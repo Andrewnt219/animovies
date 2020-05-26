@@ -124,7 +124,11 @@ function NowPlayingSlider({ movies, autoPlayInMs = 3000 }) {
   });
 
   return (
-    <StyledSlider>
+    <StyledSlider
+      // PAUSE autoplay
+      onMouseEnter={() => window.clearInterval(autoPlayTimer.current)}
+      onMouseLeave={() => dispatchCurrentSlide({ type: 'NEXT_SLIDE' })}
+    >
       <NowPlayingSlideContent
         movies={movies}
         activeSlide={currentSlide.index}

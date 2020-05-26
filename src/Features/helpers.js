@@ -1,4 +1,4 @@
-import { genreMap } from '../Apis/tmdb';
+import { movieGenreMap } from '../Apis/tmdb';
 export async function asyncDispatchWrapper(
   fn,
   dispatch,
@@ -27,7 +27,7 @@ export function formatMovies(movies) {
   });
 }
 function mapGenreIdsToNames(genres) {
-  return genres.map((genreId) => genreMap[genreId]);
+  return genres.map((genreId) => movieGenreMap[genreId]);
 }
 function mapPathToImg(path) {
   const ORIGIN = 'http://image.tmdb.org/t/p/original';

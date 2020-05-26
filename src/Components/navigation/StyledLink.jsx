@@ -13,6 +13,13 @@ const Link = React.forwardRef(({ to, className, children }, ref) => {
 });
 
 const StyledLink = styled(Link)`
+  ${(p) =>
+    p.button &&
+    css`
+      display: block;
+      width: 100%;
+    `}
+
   text-decoration: none;
   font-size: inherit;
   color: ${(p) => p.color ?? p.theme.white};
@@ -21,12 +28,9 @@ const StyledLink = styled(Link)`
     color: ${(p) => p.color ?? p.theme.white};
   }
 
-  ${(p) =>
-    p.button &&
-    css`
-      display: block;
-      width: 100%;
-    `}
+  & > button {
+    height: 100%;
+  }
 `;
 
 export default StyledLink;

@@ -8,7 +8,7 @@ export default Axios.create({
   },
 });
 
-export function findGenreId(genreName) {
+export function findGenreId(genreName, genreMap) {
   //prettier-ignore
   return Object
     .values(genreMap)
@@ -16,7 +16,7 @@ export function findGenreId(genreName) {
     .id;
 }
 
-export function findGenreName(genreId) {
+export function findGenreName(genreId, genreMap) {
   //prettier-ignore
   return Object
     .values(genreMap)
@@ -24,7 +24,7 @@ export function findGenreName(genreId) {
     .name;
 }
 
-export const genreMap = {
+export const movieGenreMap = {
   '12': {
     id: 12,
     name: 'Adventure',
@@ -100,5 +100,72 @@ export const genreMap = {
   '10770': {
     id: 10770,
     name: 'TV Movie',
+  },
+};
+
+export const tvGenreMap = {
+  '16': {
+    id: 16,
+    name: 'Animation',
+  },
+  '18': {
+    id: 18,
+    name: 'Drama',
+  },
+  '35': {
+    id: 35,
+    name: 'Comedy',
+  },
+  '37': {
+    id: 37,
+    name: 'Western',
+  },
+  '80': {
+    id: 80,
+    name: 'Crime',
+  },
+  '99': {
+    id: 99,
+    name: 'Documentary',
+  },
+  '9648': {
+    id: 9648,
+    name: 'Mystery',
+  },
+  '10751': {
+    id: 10751,
+    name: 'Family',
+  },
+  '10759': {
+    id: 10759,
+    name: 'Action & Adventure',
+  },
+  '10762': {
+    id: 10762,
+    name: 'Kids',
+  },
+  '10763': {
+    id: 10763,
+    name: 'News',
+  },
+  '10764': {
+    id: 10764,
+    name: 'Reality',
+  },
+  '10765': {
+    id: 10765,
+    name: 'Sci-Fi & Fantasy',
+  },
+  '10766': {
+    id: 10766,
+    name: 'Soap',
+  },
+  '10767': {
+    id: 10767,
+    name: 'Talk',
+  },
+  '10768': {
+    id: 10768,
+    name: 'War & Politics',
   },
 };

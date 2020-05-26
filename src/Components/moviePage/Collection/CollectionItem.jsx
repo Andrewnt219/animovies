@@ -18,8 +18,16 @@ function CollectionItem({ item }) {
 
       <AnimatePresence>
         {isItemHovered && (
-          <HoveredCollectionItem item={item}>
-            {item.overview}
+          <HoveredCollectionItem
+            item={item}
+            key={item.title}
+            variants={animation.popup.fromBottom}
+            initial="initial"
+            animate="enter"
+            exit="exit"
+            transition="transition"
+          >
+            {item.overview.slice(0, 100) + '...'}
           </HoveredCollectionItem>
         )}
       </AnimatePresence>

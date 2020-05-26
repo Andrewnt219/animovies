@@ -28,9 +28,7 @@ function NowPlayingSlideContent({ movies, translateX }) {
 /* --------------------------------- HELPERS -------------------------------- */
 // NOTE renders slides of nowplaying movies
 function renderedMovies(movies) {
-  return movies.map((movie) => (
-    <NowPlayingSlide key={movie.id} src={movie.backdrop_path} />
-  ));
+  return movies.map((movie) => <NowPlayingSlide key={movie.id} item={movie} />);
 }
 
 /* -------------------------------- VALIDATE -------------------------------- */
