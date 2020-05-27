@@ -1,20 +1,15 @@
 import { genreMap } from '../Apis/tmdb';
-export async function asyncDispatchWrapper(
-  fn,
-  dispatch,
-  actionFailed,
-  actionSuccess
-) {
+import { actionSuccess, actionFailed } from './uiSlice';
+export async function asyncDispatchWrapper(fn, dispatch) {
   try {
     await fn();
-    actionSuccess && dispatch(actionSuccess());
+    dispatch(actionSuccess());
   } catch (error) {
-    actionFailed &&
-      dispatch(
-        actionFailed(
-          error?.response?.data?.status_message ?? 'Something went wrong'
-        )
-      );
+    dispatch(
+      actionFailed(
+        error?.response?.data?.status_message ?? 'Something went wrong'
+      )
+    );
   }
 }
 

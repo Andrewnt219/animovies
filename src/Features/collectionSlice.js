@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import tmdb, { genreMap } from 'Apis/tmdb';
+import tmdb from 'Apis/tmdb';
 import { asyncDispatchWrapper, formatCollection } from './helpers';
-import { startAction, actionFailed, actionSuccess } from './uiSlice';
+import { startAction } from './uiSlice';
 
 const collectionSlice = createSlice({
   name: 'collection',
@@ -56,5 +56,5 @@ export const fetchCollection = (payload) => (dispatch) => {
       })
     );
   }
-  asyncDispatchWrapper(sendHttp, dispatch, actionFailed, actionSuccess);
+  asyncDispatchWrapper(sendHttp, dispatch);
 };
