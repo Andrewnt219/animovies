@@ -18,16 +18,16 @@ export async function asyncDispatchWrapper(
   }
 }
 
-export function formatMovies(movies) {
-  return movies.map((movie) => {
-    movie.genre_ids = [...mapGenreIdsToNames(movie.genre_ids)];
+export function formatCollection(collection, genreMap = movieGenreMap) {
+  return collection.map((movie) => {
+    movie.genre_ids = [...mapGenreIdsToNames(movie.genre_ids, genreMap)];
     movie.backdrop_path = mapPathToImg(movie.backdrop_path);
     movie.poster_path = mapPathToImg(movie.poster_path);
     return movie;
   });
 }
-function mapGenreIdsToNames(genres) {
-  return genres.map((genreId) => movieGenreMap[genreId]);
+function mapGenreIdsToNames(genres, genreMap) {
+  return genres.map((genreId) => genreMap[genreId]);
 }
 function mapPathToImg(path) {
   const ORIGIN = 'http://image.tmdb.org/t/p/original';
