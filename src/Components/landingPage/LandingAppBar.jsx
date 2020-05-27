@@ -11,11 +11,11 @@ function LandingAppBar() {
   return (
     <Fixed bgColor="none" margin="2rem 0 0 0">
       <NavItems>
-        <LandingLink to="/movie" exact>
+        <LandingLink to="/tmdb" exact>
           Movies
         </LandingLink>
 
-        <LandingLink to="/anime" exact>
+        <LandingLink to="/jikan" exact>
           Anime
         </LandingLink>
       </NavItems>

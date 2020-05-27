@@ -45,7 +45,7 @@ function CollectionItemInfo({
 
       <Overview>{children}</Overview>
 
-      <StyledLink button to={`/${itemType}/${item.id}`}>
+      <StyledLink button to={`${itemType}/${item.id}`}>
         <ItemButton contained>Details</ItemButton>
       </StyledLink>
 

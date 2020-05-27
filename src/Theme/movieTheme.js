@@ -1,5 +1,6 @@
 export default {
-  name: 'movie',
+  //* named after the route
+  name: 'tmdb',
   primary: '#BF1F5A',
   secondary: '#404040',
   white: '#F2F2F2',

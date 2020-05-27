@@ -19,13 +19,11 @@ import Flex from 'Components/container/Flex';
 const Layout = styled(motion.div)`
   width: 100%;
   height: 100%;
-  background: url(${(p) => getBackground(p.theme.name).small}) center 4rem
-    no-repeat;
+  background: url(${(p) => getBackground(p.api).small}) center 4rem no-repeat;
 
   /* Change to a bigger background */
   @media screen and (min-width: ${(p) => p.theme.breakpoints.md}) {
-    background: url(${(p) => getBackground(p.theme.name).large}) center
-      no-repeat;
+    background: url(${(p) => getBackground(p.api).large}) center no-repeat;
   }
 `;
 
@@ -48,7 +46,7 @@ const fontSize = 'max(2vw, 1.5rem)';
 /* -------------------------------- Component ------------------------------- */
 // NOTE Render the landing page
 // location from Router
-function Landing({ location }) {
+function Landing({ location, match }) {
   return (
     <Layout
       // * These are for animation
@@ -57,7 +55,9 @@ function Landing({ location }) {
       initial={{ scale: 0.5 }}
       animate={{ scale: 1 }}
       transition={{ duration: 0.25 }}
-    // exit={{ opacity: 0.7, y: 100 }}
+      // exit={{ opacity: 0.7, y: 100 }}
+      //
+      api={match.params.api}
     >
       <Backdrop index={1} />
 
@@ -83,18 +83,18 @@ function Landing({ location }) {
 
 // NOTE return the url/path of large and small backgrounds for each theme
 // @param theme the cu
-function getBackground(theme) {
-  return theme === 'movie'
+function getBackground(api) {
+  return api === 'jikan'
     ? {
-      small:
-        'https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=925&q=80',
-      large: bg,
-    }
+        small: 'https://static.zerochan.net/Nagi.no.Asukara.full.1657636.jpg',
+        large:
+          'https://vignette.wikia.nocookie.net/makotoshinkai/images/6/64/Weathering-02.jpg/revision/latest?cb=20190528233137',
+      }
     : {
-      small: 'https://static.zerochan.net/Nagi.no.Asukara.full.1657636.jpg',
-      large:
-        'https://vignette.wikia.nocookie.net/makotoshinkai/images/6/64/Weathering-02.jpg/revision/latest?cb=20190528233137',
-    };
+        small:
+          'https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=925&q=80',
+        large: bg,
+      };
 }
 
 export default withRouter(Landing);

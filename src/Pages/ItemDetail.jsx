@@ -9,33 +9,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchItemDetail, activeItemSelector } from 'Features/activeItemSlice';
 
 function ItemDetail() {
-  const { itemType } = useParams();
-  const { pathname: locationPathname } = useLocation();
+  const { api, itemType, itemId } = useParams();
   const dispatch = useDispatch();
   const item = useSelector(activeItemSelector);
 
   useEffect(() => {
-    switch (itemType) {
-      case 'movie':
-        dispatch(fetchItemDetail(tmdb, locationPathname));
+    const url = `/${itemType}/${itemId}`;
+
+    switch (api) {
+      case 'tmdb':
+        dispatch(fetchItemDetail(tmdb, url));
         break;
 
-      case 'tv':
-        dispatch(fetchItemDetail(tmdb, locationPathname));
-        break;
-
-      case 'anime':
-        dispatch(fetchItemDetail(jikan, locationPathname));
-        break;
-
-      case 'manga':
-        dispatch(fetchItemDetail(jikan, locationPathname));
+      case 'jikan':
+        dispatch(fetchItemDetail(jikan, url));
         break;
 
       default:
         throw new Error('Unknown item type!');
     }
-  }, [locationPathname, itemType, dispatch]);
+  }, [api, itemType, itemId, dispatch]);
   return <MainLayout>{JSON.stringify(item)}</MainLayout>;
 }
 

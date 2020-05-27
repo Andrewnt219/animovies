@@ -1,14 +1,16 @@
 /* --------------------------------- IMPORT --------------------------------- */
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled, { css, withTheme } from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 
 import StyledNavLink from 'Components/navigation/StyledNavLink.jsx';
+import { useParams } from 'react-router-dom';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE render styled Logo
 // * size is for sync font-size
-function Logo({ theme, className, size = '1rem', isInverted }) {
+function Logo({ className, size = '1rem', isInverted }) {
+  const { api } = useParams();
   const FONT_SIZE = css`
     font-size: ${size};
   `;
@@ -16,7 +18,7 @@ function Logo({ theme, className, size = '1rem', isInverted }) {
   return (
     <Container
       className={className}
-      to={{ pathname: `/${theme.name}` }}
+      to={{ pathname: `/${api}` }}
       as={StyledNavLink}
       fontSize={FONT_SIZE}
     >
@@ -87,4 +89,4 @@ Logo.propTypes = {
   }),
 };
 
-export default withTheme(Logo);
+export default Logo;

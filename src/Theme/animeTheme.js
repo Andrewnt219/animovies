@@ -1,7 +1,8 @@
 import theme from './movieTheme';
 export default {
   ...theme,
-  name: 'anime',
+  //* named after the route
+  name: 'jikan',
   primary: '#325CD9',
   secondary: '#DFE5F2',
   white: '#DFE5F2',
