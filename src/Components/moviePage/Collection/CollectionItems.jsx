@@ -8,7 +8,7 @@ function CollectionItems({ collection }) {
 
 function renderItem({ collection }) {
   return collection.map((item, idx) => (
-    <CollectionItem key={item.id + idx} item={item} />
+    <CollectionItem key={item.id} item={item} />
   ));
 }
 
