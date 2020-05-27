@@ -71,8 +71,12 @@ const PopupContainer = styled(CollectionItemInfo)`
   /* Framer already does this  */
   /* transform: translate(-50%, -50%); */
 
+  /* Avoid setting padding because padding is set in the original Component  */
   & > *:last-child {
-    margin-bottom: 20%;
+    margin-bottom: 10%;
+  }
+  & > *:first-child {
+    margin-top: 10%;
   }
 
   @media (min-width: ${(p) => p.theme.breakpoints.md}) {
@@ -83,6 +87,9 @@ const PopupContainer = styled(CollectionItemInfo)`
 
     & > *:last-child {
       margin-bottom: 0;
+    }
+    & > *:first-child {
+      margin-top: 0;
     }
   }
 `;
