@@ -20,6 +20,7 @@ function HoveredCollectionItem({
     <Container
       className={className}
       onClick={handleClick}
+      isClickAble={Boolean(handleClick)}
       //
       {...animation}
     >
@@ -64,7 +65,7 @@ const Container = styled(motion.div)`
   gap: 0.5rem;
 
   flex-direction: column;
-  cursor: pointer;
+  cursor: ${(p) => (p.isClickAble ? 'pointer' : 'auto')};
 
   position: absolute;
   top: 0;

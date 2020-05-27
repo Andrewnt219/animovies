@@ -4,6 +4,7 @@ import React from 'react';
 import { sentenceCase } from 'change-case';
 
 import StyledLink from 'Components/navigation/StyledLink';
+import { darken } from 'polished';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE renders a grid-container with SectionName, another sub-grid with subitems, and a view more button
@@ -44,12 +45,18 @@ const CategoryContainer = styled.div`
   grid-template-areas:
     'name button'
     'items items';
-  row-gap: 1rem;
+  row-gap: 2rem;
 
   color: ${(p) => p.theme.white};
   font-size: 1.25rem;
 
   margin: 0 1rem;
+
+  @media (min-width: ${(p) => p.theme.breakpoints.md}) {
+    grid-template-areas: 'name items button';
+    grid-template-columns: max-content 1fr auto;
+    column-gap: 2rem;
+  }
 `;
 
 const SectionName = styled.p`
@@ -65,7 +72,7 @@ const SectionName = styled.p`
     content: '';
     display: inline-block;
 
-    margin-right: 0.25rem;
+    margin-right: 1rem;
     width: 0.5rem;
     height: 100%;
     background-color: ${(p) => p.theme.primary};
@@ -85,7 +92,8 @@ const Item = styled.div`
   `}
 
   text-align: center;
-  color: inherit;
+  /* Color is after the inherited color CategoryContainer */
+  color: ${(p) => (p.active ? p.theme.white : darken(0.3, p.theme.white))};
   text-decoration: none;
   font-size: inherit;
 
@@ -96,6 +104,8 @@ const Item = styled.div`
 
   &:hover {
     filter: brightness(1.1);
+    /* Color is after the inherited color from CategoryContainer*/
+    color: ${(p) => p.theme.white};
   }
 `;
 

@@ -1,6 +1,7 @@
 /* --------------------------------- IMPORT --------------------------------- */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components/macro';
 
 import { fetchCollection, moviesSelector } from 'Features/collectionSlice';
 import { isLoadingSelector } from 'Features/uiSlice';
@@ -34,18 +35,26 @@ function MoviePage() {
     <div>Loading...</div>
   ) : (
     <MainLayout>
-      <NowPlayingSlider movies={movies.nowPlaying} />
-      <Collection
-        header={{
-          sectionName: 'Movies',
-          subMenuNames: SUB_MOVIE_NAMES,
-          activeMenu: activeMovieCollection,
-          setActiveMenu: setActiveMovieCollection,
-        }}
-        collection={movies[activeMovieCollection]}
-      />
+      <MoviePageContainer>
+        <NowPlayingSlider movies={movies.nowPlaying} />
+
+        <Collection
+          header={{
+            sectionName: 'Movies',
+            subMenuNames: SUB_MOVIE_NAMES,
+            activeMenu: activeMovieCollection,
+            setActiveMenu: setActiveMovieCollection,
+          }}
+          collection={movies[activeMovieCollection]}
+        />
+      </MoviePageContainer>
     </MainLayout>
   );
 }
+
+const MoviePageContainer = styled.div`
+  display: grid;
+  row-gap: 2rem;
+`;
 
 export default MoviePage;

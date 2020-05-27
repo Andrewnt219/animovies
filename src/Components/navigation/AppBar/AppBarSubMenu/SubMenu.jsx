@@ -19,6 +19,7 @@ const AppBarSubMenu = styled(GridList).attrs({
   left: 0;
 
   background-color: ${() => rgba('black', 0.8)};
+  border-left: 4px solid ${(p) => p.theme.primary};
 `;
 
 /* -------------------------------- VALIDATE -------------------------------- */

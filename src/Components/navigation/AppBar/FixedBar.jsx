@@ -18,6 +18,7 @@ export const FixedBar = styled.div`
   width: 100%;
   background: ${(p) => p.theme.secondary};
   padding: 0 1rem;
+  box-shadow: 0 2px 2px #000;
 
   @media (min-width: ${(p) => p.theme.breakpoints.sm}) {
     padding-left: 0;

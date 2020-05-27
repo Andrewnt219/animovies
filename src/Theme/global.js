@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { darken } from 'polished';
 
 export default createGlobalStyle`  
   :root {
@@ -9,7 +10,7 @@ export default createGlobalStyle`
   html, body, #root {
     width: 100%;
     height: 100%;
-    background-color: ${(p) => p.theme.secondary}
+    background-color: ${(p) => darken(0.1, p.theme.secondary)}
   }
   
   *, *::before, *::after {

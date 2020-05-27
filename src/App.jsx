@@ -7,7 +7,6 @@ import animeTheme from 'Theme/animeTheme';
 import Anime from 'Pages/Anime';
 import MoviePage from 'Pages/MoviePage';
 import GlobalStyle from 'Theme/global';
-import styled from 'styled-components';
 
 function App(props) {
   return (

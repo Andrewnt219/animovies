@@ -16,7 +16,7 @@ const Container = styled.div`
   padding: 1rem;
 
   & > *:first-child {
-    margin-bottom: min(3vw, 1.5rem);
+    margin-bottom: min(5vw, 2rem);
   }
 `;
 export default Collection;

@@ -5,6 +5,7 @@ import CollectionItemInfo from './CollectionItemInfo';
 import { AnimatePresence, motion } from 'framer-motion';
 import { animation } from 'Theme/variants';
 
+// NOTE renders a container, and controls hover state for popup info
 function CollectionItem({ item }) {
   const [itemHoverRef, isItemHovered] = useHover();
 
@@ -31,6 +32,7 @@ function CollectionItem({ item }) {
           </CollectionItemInfo>
         )}
       </AnimatePresence>
+
       {/* Why not tenary you might ask? I cannot get Framer to work with tenary */}
       <AnimatePresence>
         {!isItemHovered && (
