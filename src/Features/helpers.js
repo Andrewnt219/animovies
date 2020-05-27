@@ -21,6 +21,13 @@ export function formatCollection(collection) {
     return movie;
   });
 }
+export function formatTmdbItem(item) {
+  return {
+    ...item,
+    backdrop_path: mapPathToImg(item.backdrop_path),
+    poster_path: mapPathToImg(item.poster_path),
+  };
+}
 function mapGenreIdsToNames(genres) {
   return genres.map((genreId) => genreMap[genreId]);
 }

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { asyncDispatchWrapper } from './helpers';
+import { asyncDispatchWrapper, formatTmdbItem } from './helpers';
 import { startAction } from './uiSlice';
 import tmdb from 'Apis/tmdb';
 import jikan from 'Apis/jikan';
@@ -8,7 +8,7 @@ const activeItemSlice = createSlice({
   initialState: {},
   reducers: {
     fetchItemDetailSuccess: (state, { payload }) => {
-      return payload;
+      return { ...payload };
     },
   },
 });
@@ -33,7 +33,7 @@ export const fetchTmdbDetail = ({ itemType, itemId }) => (dispatch) => {
 
     //* MERGING responses
     const payload = {
-      itemDetail,
+      itemDetail: formatTmdbItem(itemDetail),
       videos: { ...videos.results },
       recommendations: [...recommendations.results],
     };
