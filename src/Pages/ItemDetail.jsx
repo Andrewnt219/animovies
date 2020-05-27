@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
 import MainLayout from 'HOC/MainLayout';
 import styled from 'styled-components/macro';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { showError } from 'Features/uiSlice';
 
-import tmdb from 'Apis/tmdb';
-import jikan from 'Apis/jikan';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchItemDetail, activeItemSelector } from 'Features/activeItemSlice';
+import {
+  fetchJikanDetail,
+  fetchTmdbDetail,
+  activeItemSelector,
+} from 'Features/activeItemSlice';
+import Collection from 'Components/moviePage/Collection/Collection';
 
 function ItemDetail() {
   const { api, itemType, itemId } = useParams();
@@ -14,22 +18,25 @@ function ItemDetail() {
   const item = useSelector(activeItemSelector);
 
   useEffect(() => {
-    const url = `/${itemType}/${itemId}`;
-
+    const itemParams = { itemType, itemId };
     switch (api) {
       case 'tmdb':
-        dispatch(fetchItemDetail(tmdb, url));
+        dispatch(fetchTmdbDetail(itemParams));
         break;
 
       case 'jikan':
-        dispatch(fetchItemDetail(jikan, url));
+        dispatch(fetchJikanDetail(itemParams));
         break;
 
       default:
-        throw new Error('Unknown item type!');
+        dispatch(showError('Bad request!'));
     }
   }, [api, itemType, itemId, dispatch]);
-  return <MainLayout>{JSON.stringify(item)}</MainLayout>;
+
+  return (
+    <MainLayout>{/* <Details></Details>
+      <Collection /> */}</MainLayout>
+  );
 }
 
 export default ItemDetail;

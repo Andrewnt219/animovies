@@ -18,7 +18,7 @@ function Logo({ className, size = '1rem', isInverted }) {
   return (
     <Container
       className={className}
-      to={{ pathname: `/${api}` }}
+      to="/"
       as={StyledNavLink}
       fontSize={FONT_SIZE}
     >

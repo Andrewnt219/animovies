@@ -23,6 +23,7 @@ function MoviePage() {
 
   const movies = useSelector(moviesSelector);
   const tvSeries = useSelector(tvSeriesSelector);
+
   // Except the nowPlaying movies
   const SUB_MOVIE_NAMES = Object.keys(movies).slice(1).sort();
   // tvSeries version
