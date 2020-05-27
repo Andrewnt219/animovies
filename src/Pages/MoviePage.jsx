@@ -13,6 +13,7 @@ import { isLoadingSelector } from 'Features/uiSlice';
 import NowPlayingSlider from 'Components/moviePage/nowPlayingSlider/NowPlayingSlider';
 import MainLayout from 'HOC/MainLayout';
 import Collection from 'Components/moviePage/Collection/Collection';
+import ItemContext from 'Context/ItemContext';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE Render the page at /all
@@ -47,25 +48,29 @@ function MoviePage() {
       <MoviePageContainer>
         <NowPlayingSlider movies={movies.nowPlaying} />
 
-        <Collection
-          header={{
-            sectionName: 'Movies',
-            subMenuNames: SUB_MOVIE_NAMES,
-            activeMenu: activeMovieCollection,
-            setActiveMenu: setActiveMovieCollection,
-          }}
-          collection={movies[activeMovieCollection]}
-        />
+        <ItemContext.Provider value="movie">
+          <Collection
+            header={{
+              sectionName: 'Movies',
+              subMenuNames: SUB_MOVIE_NAMES,
+              activeMenu: activeMovieCollection,
+              setActiveMenu: setActiveMovieCollection,
+            }}
+            collection={movies[activeMovieCollection]}
+          />
+        </ItemContext.Provider>
 
-        <Collection
-          header={{
-            sectionName: 'TV Series',
-            subMenuNames: SUB_TV_NAMES,
-            activeMenu: activeTvCollection,
-            setActiveMenu: setActiveTvCollection,
-          }}
-          collection={tvSeries[activeTvCollection]}
-        />
+        <ItemContext.Provider value="tv">
+          <Collection
+            header={{
+              sectionName: 'TV Series',
+              subMenuNames: SUB_TV_NAMES,
+              activeMenu: activeTvCollection,
+              setActiveMenu: setActiveTvCollection,
+            }}
+            collection={tvSeries[activeTvCollection]}
+          />
+        </ItemContext.Provider>
       </MoviePageContainer>
     </MainLayout>
   );

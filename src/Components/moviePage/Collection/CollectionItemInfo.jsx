@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import styled, { css, useTheme } from 'styled-components/macro';
-import React from 'react';
+import React, { useContext } from 'react';
 import { rgba, lighten, darken } from 'polished';
 import Button from 'Components/ui/Button';
 import StyledLink from 'Components/navigation/StyledLink';
 import { motion } from 'framer-motion';
+import ItemContext from 'Context/ItemContext';
 
 // NOTE renders extra info about the item
 function CollectionItemInfo({
@@ -18,7 +19,9 @@ function CollectionItemInfo({
   //
   ...animation
 }) {
+  //* contexts
   const theme = useTheme();
+  const itemType = useContext(ItemContext);
 
   return (
     <Container
@@ -42,7 +45,7 @@ function CollectionItemInfo({
 
       <Overview>{children}</Overview>
 
-      <StyledLink button to={`/movies/${item.id}`}>
+      <StyledLink button to={`/${itemType}/${item.id}`}>
         <ItemButton contained>Details</ItemButton>
       </StyledLink>
 
