@@ -79,6 +79,9 @@ const currentSlideReducer = (state, { type, payload }) => {
         transitionValue: _getTransitionValue(payload.index),
       };
 
+    case 'RESUME':
+      return { ...state };
+
     // Probably action's name typo
     default:
       throw new Error('UNKNOWN SLIDE ACTION');
@@ -130,7 +133,7 @@ function NowPlayingSlider({ movies, autoPlayInMs = 3000 }) {
   };
 
   const resumeSlideShow = () => {
-    dispatchCurrentSlide({ type: 'NEXT_SLIDE' });
+    dispatchCurrentSlide({ type: 'RESUME' });
   };
 
   return (
