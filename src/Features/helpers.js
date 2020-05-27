@@ -1,4 +1,4 @@
-import { movieGenreMap } from '../Apis/tmdb';
+import { genreMap } from '../Apis/tmdb';
 export async function asyncDispatchWrapper(
   fn,
   dispatch,
@@ -18,7 +18,7 @@ export async function asyncDispatchWrapper(
   }
 }
 
-export function formatCollection(collection, genreMap = movieGenreMap) {
+export function formatCollection(collection) {
   return collection.map((movie) => {
     movie.genre_ids = [...mapGenreIdsToNames(movie.genre_ids, genreMap)];
     movie.backdrop_path = mapPathToImg(movie.backdrop_path);
@@ -26,7 +26,7 @@ export function formatCollection(collection, genreMap = movieGenreMap) {
     return movie;
   });
 }
-function mapGenreIdsToNames(genres, genreMap) {
+function mapGenreIdsToNames(genres) {
   return genres.map((genreId) => genreMap[genreId]);
 }
 function mapPathToImg(path) {

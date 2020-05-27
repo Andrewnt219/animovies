@@ -26,6 +26,7 @@ function CollectionItem({ item }) {
         {isItemHovered && (
           <CollectionItemInfo
             item={item}
+            //
             key={item.title}
             variants={animation.popup.fromBottom}
             initial="initial"

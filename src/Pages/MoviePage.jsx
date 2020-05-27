@@ -3,7 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 
-import { fetchCollection, moviesSelector } from 'Features/collectionSlice';
+import {
+  fetchCollection,
+  moviesSelector,
+  tvSeriesSelector,
+} from 'Features/collectionSlice';
 import { isLoadingSelector } from 'Features/uiSlice';
 
 import NowPlayingSlider from 'Components/moviePage/nowPlayingSlider/NowPlayingSlider';
@@ -17,12 +21,17 @@ function MoviePage() {
   const isLoading = useSelector(isLoadingSelector);
 
   const movies = useSelector(moviesSelector);
+  const tvSeries = useSelector(tvSeriesSelector);
   // Except the nowPlaying movies
   const SUB_MOVIE_NAMES = Object.keys(movies).slice(1).sort();
+  // tvSeries version
+  const SUB_TV_NAMES = Object.keys(tvSeries).slice(0).sort();
 
   // because useState won't change value after the first rener
   // initial value is the first SUB_MOVIE_NAME alphabetically
   const [activeMovieCollection, setActiveMovieCollection] = useState('popular');
+  // tvSeries version
+  const [activeTvCollection, setActiveTvCollection] = useState('onTheAir');
 
   /**
    * FETCHING MOVIES FROM API
@@ -46,6 +55,16 @@ function MoviePage() {
             setActiveMenu: setActiveMovieCollection,
           }}
           collection={movies[activeMovieCollection]}
+        />
+
+        <Collection
+          header={{
+            sectionName: 'TV Series',
+            subMenuNames: SUB_TV_NAMES,
+            activeMenu: activeTvCollection,
+            setActiveMenu: setActiveTvCollection,
+          }}
+          collection={tvSeries[activeTvCollection]}
         />
       </MoviePageContainer>
     </MainLayout>

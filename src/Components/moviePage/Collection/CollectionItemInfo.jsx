@@ -7,11 +7,15 @@ import StyledLink from 'Components/navigation/StyledLink';
 import { motion } from 'framer-motion';
 
 // NOTE renders extra info about the item
-function HoveredCollectionItem({
+function CollectionItemInfo({
+  //* item must have title'', genre_ids[{name}], vote_average'', release_date'DATE'
   item,
   children,
-  className,
+  //
   handleClick,
+  //
+  className,
+  //
   ...animation
 }) {
   const theme = useTheme();
@@ -24,13 +28,16 @@ function HoveredCollectionItem({
       //
       {...animation}
     >
-      <Header>{item.title}</Header>
+      <Header>{item.title || item.original_name}</Header>
 
       <Info>{item.genre_ids.map((genre) => genre.name).join(', ')}</Info>
 
       <SubHeader>
         <SubInfo contained>Score: {item.vote_average}</SubInfo>
-        <SubInfo>{new Date(item.release_date).getFullYear()}</SubInfo>
+        <SubInfo>
+          {/* dealing with different object formats */}
+          {new Date(item.release_date || item.first_air_date).getFullYear()}
+        </SubInfo>
       </SubHeader>
 
       <Overview>{children}</Overview>
@@ -46,7 +53,7 @@ function HoveredCollectionItem({
   );
 }
 
-HoveredCollectionItem.propTypes = {
+CollectionItemInfo.propTypes = {
   children: PropTypes.string,
   item: PropTypes.shape({
     genre_ids: PropTypes.array,
@@ -57,7 +64,7 @@ HoveredCollectionItem.propTypes = {
   }),
 };
 
-export default HoveredCollectionItem;
+export default CollectionItemInfo;
 
 // NOTE renders extra info about the item when ItemContainer is hovered
 const Container = styled(motion.div)`

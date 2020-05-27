@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import tmdb, { tvGenreMap, movieGenreMap } from 'Apis/tmdb';
+import tmdb, { genreMap } from 'Apis/tmdb';
 import { asyncDispatchWrapper, formatCollection } from './helpers';
 import { startAction, actionFailed, actionSuccess } from './uiSlice';
 
@@ -38,15 +38,15 @@ export const fetchCollection = (payload) => (dispatch) => {
 
     //* preparing payloads
     const movies = {
-      nowPlaying: [...formatCollection(nowPlayings.results, movieGenreMap)],
-      popular: [...formatCollection(populars.results), movieGenreMap],
-      topRated: [...formatCollection(topRateds.results), movieGenreMap],
-      upComing: [...formatCollection(upComings.results), movieGenreMap],
+      nowPlaying: [...formatCollection(nowPlayings.results)],
+      popular: [...formatCollection(populars.results)],
+      topRated: [...formatCollection(topRateds.results)],
+      upComing: [...formatCollection(upComings.results)],
     };
     const tvSeries = {
-      onTheAir: [...formatCollection(tvOnTheAir.results, tvGenreMap)],
-      topRated: [...formatCollection(tvTopRateds.results, tvGenreMap)],
-      popular: [...formatCollection(tvPopulars.results, tvGenreMap)],
+      onTheAir: [...formatCollection(tvOnTheAir.results)],
+      topRated: [...formatCollection(tvTopRateds.results)],
+      popular: [...formatCollection(tvPopulars.results)],
     };
 
     dispatch(
