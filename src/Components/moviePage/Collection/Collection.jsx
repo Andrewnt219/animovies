@@ -8,6 +8,7 @@ function Collection({ header, collection }) {
   return (
     <Container>
       <CollectionHeader {...header} />
+
       <CollectionItems collection={collection} />
     </Container>
   );

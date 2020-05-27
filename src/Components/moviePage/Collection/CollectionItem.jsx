@@ -14,6 +14,11 @@ function CollectionItem({ item }) {
       ref={itemHoverRef}
       to={`/movies/${item.id}`}
       isHovered={isItemHovered}
+      //
+      variants={animation.popup.fromTop}
+      initial="initial"
+      animate="enter"
+      transition="transition"
     >
       <ItemImg src={item.poster_path} alt="movie_poster" />
 
@@ -53,7 +58,7 @@ function CollectionItem({ item }) {
 
 /* --------------------------------- STYLING -------------------------------- */
 // NOTE renders a container with hovered backdrop
-const ItemContainer = styled.div`
+const ItemContainer = styled(motion.div)`
   ${(p) => css`
     color: ${p.theme.white};
     border-top: 2px solid
