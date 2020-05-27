@@ -6,7 +6,7 @@ import Button from 'Components/ui/Button';
 import StyledLink from 'Components/navigation/StyledLink';
 import { motion } from 'framer-motion';
 
-// NOTE renders extra info about the hovered item
+// NOTE renders extra info about the item
 function HoveredCollectionItem({
   item,
   children,
@@ -89,6 +89,7 @@ const Header = styled.p`
   white-space: nowrap;
   overflow: hidden;
 `;
+
 // NOTE renders a row-flexed  contained SubHeader
 const SubHeader = styled.div`
   display: flex;
@@ -121,6 +122,7 @@ const Overview = styled.p`
   font-size: inherit;
 `;
 
+// NOTE renders a max-width button
 const ItemButton = styled(Button)`
   font-weight: bold;
   font-size: inherit;

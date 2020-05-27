@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components/macro';
 import useHover from 'Hooks/useHover';
-import HoveredCollectionItem from './HoveredCollectionItem';
+import CollectionItemInfo from './CollectionItemInfo';
 import { AnimatePresence, motion } from 'framer-motion';
 import { animation } from 'Theme/variants';
 
@@ -18,7 +18,7 @@ function CollectionItem({ item }) {
 
       <AnimatePresence>
         {isItemHovered && (
-          <HoveredCollectionItem
+          <CollectionItemInfo
             item={item}
             key={item.title}
             variants={animation.popup.fromBottom}
@@ -28,7 +28,7 @@ function CollectionItem({ item }) {
             transition="transition"
           >
             {item.overview.slice(0, 100) + '...'}
-          </HoveredCollectionItem>
+          </CollectionItemInfo>
         )}
       </AnimatePresence>
       {/* Why not tenary you might ask? I cannot get Framer to work with tenary */}

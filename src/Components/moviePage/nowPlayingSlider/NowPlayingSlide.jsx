@@ -5,7 +5,7 @@ import { rgba } from 'polished';
 import { MdInfoOutline } from 'react-icons/md';
 import { AnimatePresence } from 'framer-motion';
 
-import HoveredCollectionItem from '../Collection/HoveredCollectionItem';
+import CollectionItemInfo from '../Collection/CollectionItemInfo';
 import SliderContext from 'Context/SliderContext';
 
 /* -------------------------------- COMPONENT ------------------------------- */
@@ -14,18 +14,19 @@ function NowPlayingSlide({ item }) {
   const sliderControllers = useContext(SliderContext);
 
   const handleInfoClicked = () => {
-    sliderControllers.pauseSlideShow()();
     setShowInfo(true);
+    sliderControllers.pauseSlideShow()();
   };
 
   const handlePopupClicked = () => {
-    sliderControllers.resumeSlideShow();
     setShowInfo(false);
+    sliderControllers.resumeSlideShow();
   };
 
   return (
     <StyledSlide src={item.backdrop_path}>
       {!showInfo && <InfoButton onClick={handleInfoClicked} />}
+
       <AnimatePresence>
         {showInfo && (
           <PopupContainer
@@ -62,7 +63,8 @@ const StyledSlide = styled.div`
   height: 100vmin;
 `;
 
-const PopupContainer = styled(HoveredCollectionItem)`
+// NOTE restyled the Container for large item, added style on medium screen and up
+const PopupContainer = styled(CollectionItemInfo)`
   top: 50%;
   left: 50%;
 
@@ -76,6 +78,8 @@ const PopupContainer = styled(HoveredCollectionItem)`
   @media (min-width: ${(p) => p.theme.breakpoints.md}) {
     width: 50%;
     height: 50%;
+    border-top: 2px solid ${(p) => p.theme.white};
+    box-shadow: 0 2px 2px #000;
 
     & > *:last-child {
       margin-bottom: 0;
@@ -95,6 +99,7 @@ const InfoButton = styled(MdInfoOutline)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: all 200ms ease;
 
   &:hover {
     opacity: 1;
