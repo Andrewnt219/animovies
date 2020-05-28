@@ -1,34 +1,56 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { asyncDispatchWrapper, formatTmdbItem } from './helpers';
-import { startAction } from './uiSlice';
+import { asyncDispatchWrapper, formatTmdbItem, fetchRequests } from './helpers';
+
 import tmdb from 'Apis/tmdb';
 import jikan from 'Apis/jikan';
 const activeItemSlice = createSlice({
   name: 'activeItem',
-  initialState: {},
+  initialState: {
+    isLoading: true,
+    error: null,
+    item: {},
+  },
   reducers: {
+    fetchItemDetailRequest: (state) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+
     fetchItemDetailSuccess: (state, { payload }) => {
-      return { ...payload };
+      state.isLoading = false;
+      state.item = payload;
+    },
+
+    fetchItemDetailFail: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
     },
   },
 });
 
 export default activeItemSlice.reducer;
-export const activeItemSelector = (state) => state.activeItem;
-export const { fetchItemDetailSuccess } = activeItemSlice.actions;
+export const activeItemSelector = (state) => state.activeItem.item;
+export const activeItemIsLoadingSelector = (state) =>
+  state.activeItem.isLoading;
+export const activeItemError = (state) => state.activeItem.error;
+export const {
+  fetchItemDetailSuccess,
+  fetchItemDetailRequest,
+  fetchItemDetailFail,
+} = activeItemSlice.actions;
 
 export const fetchTmdbDetail = ({ itemType, itemId }) => (dispatch) => {
   async function getItemDetail() {
-    dispatch(startAction());
-
+    dispatch(fetchItemDetailRequest());
+    const URLS = [
+      `/${itemType}/${itemId}`,
+      `/${itemType}/${itemId}/videos`,
+      `/${itemType}/${itemId}/recommendations`,
+    ];
     //* FETCHING
-    //get item detail
-    const { data: itemDetail } = await tmdb.get(`/${itemType}/${itemId}`);
-    // get item videos
-    const { data: videos } = await tmdb.get(`/${itemType}/${itemId}/videos`);
-    // get item recommendations
-    const { data: recommendations } = await tmdb.get(
-      `/${itemType}/${itemId}/recommendations`
+    const [itemDetail, videos, recommendations] = await fetchRequests(
+      tmdb,
+      URLS
     );
 
     //* MERGING responses
@@ -40,16 +62,16 @@ export const fetchTmdbDetail = ({ itemType, itemId }) => (dispatch) => {
 
     dispatch(fetchItemDetailSuccess(payload));
   }
-  asyncDispatchWrapper(getItemDetail, dispatch);
+  asyncDispatchWrapper(getItemDetail, dispatch, fetchItemDetailFail);
 };
 
 export const fetchJikanDetail = ({ itemType, itemId }) => (dispatch) => {
   async function getItemDetail() {
-    dispatch(startAction());
+    dispatch(fetchItemDetailRequest());
 
     const res = await jikan.get(`/${itemType}/${itemId}`);
 
     dispatch(fetchItemDetailSuccess(res.data));
   }
-  asyncDispatchWrapper(getItemDetail, dispatch);
+  asyncDispatchWrapper(getItemDetail, dispatch, fetchItemDetailFail);
 };

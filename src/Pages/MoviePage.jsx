@@ -7,8 +7,8 @@ import {
   fetchCollection,
   moviesSelector,
   tvSeriesSelector,
+  collectionIsLoadingSelector,
 } from 'Features/collectionSlice';
-import { isLoadingSelector } from 'Features/uiSlice';
 
 import NowPlayingSlider from 'Components/moviePage/nowPlayingSlider/NowPlayingSlider';
 import MainLayout from 'HOC/MainLayout';
@@ -19,7 +19,7 @@ import ItemContext from 'Context/ItemContext';
 // NOTE Render the page at /all
 function MoviePage() {
   const dispatch = useDispatch();
-  const isLoading = useSelector(isLoadingSelector);
+  const isLoading = useSelector(collectionIsLoadingSelector);
 
   const movies = useSelector(moviesSelector);
   const tvSeries = useSelector(tvSeriesSelector);

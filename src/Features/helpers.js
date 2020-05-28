@@ -1,36 +1,58 @@
 import { genreMap } from '../Apis/tmdb';
-import { actionSuccess, actionFailed } from './uiSlice';
-export async function asyncDispatchWrapper(fn, dispatch) {
+
+/* --------------------------- formating requests --------------------------- */
+
+//NOTE put async action in a trycatch block and dispatch suitable action
+export async function asyncDispatchWrapper(fn, dispatch, actionFailed) {
   try {
     await fn();
-    dispatch(actionSuccess());
   } catch (error) {
-    dispatch(
-      actionFailed(
-        error?.response?.data?.status_message ?? 'Something went wrong'
-      )
-    );
+    console.log(error);
+    dispatch(actionFailed(error?.response?.data?.status_message ?? error));
   }
 }
 
-export function formatCollection(collection) {
-  return collection.map((movie) => {
-    movie.genre_ids = [...mapGenreIdsToNames(movie.genre_ids, genreMap)];
-    movie.backdrop_path = mapPathToImg(movie.backdrop_path);
-    movie.poster_path = mapPathToImg(movie.poster_path);
-    return movie;
-  });
+// NOTE send request and format the reponse from tmdb
+export async function fetchRequests(api, urls) {
+  const responses = [];
+  for (const url of urls) {
+    responses.push((await api.get(url)).data);
+  }
+  return responses;
 }
+
+/* ------------------ formatting the response(s) from TMDB ------------------ */
+
+//* format the collections from tmdb
+export function formatTmdbCollections(collections) {
+  return collections.map((collection) =>
+    formatTmdbCollection(collection.results)
+  );
+}
+
+//* format one collection from tmdb
+export function formatTmdbCollection(collection) {
+  return collection.map((movie) => formatTmdbItem(movie));
+}
+
+// * format an individual Tmdb item
 export function formatTmdbItem(item) {
   return {
     ...item,
+    genre_ids: mapGenreIdsToNames(item.genre_ids),
     backdrop_path: mapPathToImg(item.backdrop_path),
     poster_path: mapPathToImg(item.poster_path),
   };
 }
+
+/* --------------------------- formatting helpers --------------------------- */
+
+// * populate genre_ids (if exists) to [{id, name}]
 function mapGenreIdsToNames(genres) {
-  return genres.map((genreId) => genreMap[genreId]);
+  return genres?.map((genreId) => genreMap[genreId]);
 }
+
+// * rewrite the full path for imgs
 function mapPathToImg(path) {
   const ORIGIN = 'http://image.tmdb.org/t/p/original';
   const notFound =

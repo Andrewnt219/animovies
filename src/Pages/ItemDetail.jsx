@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import MainLayout from 'HOC/MainLayout';
 import styled from 'styled-components/macro';
 import { useParams } from 'react-router-dom';
-import { showError, isLoadingSelector } from 'Features/uiSlice';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchJikanDetail,
   fetchTmdbDetail,
   activeItemSelector,
+  activeItemIsLoadingSelector,
 } from 'Features/activeItemSlice';
 import Collection from 'Components/moviePage/Collection/Collection';
 import BackdropImg from 'Components/ui/BackdropImg';
@@ -19,7 +19,7 @@ function ItemDetail() {
   const { itemDetail, videos, recommendations } = useSelector(
     activeItemSelector
   );
-  const isLoading = useSelector(isLoadingSelector);
+  const isLoading = useSelector(activeItemIsLoadingSelector);
 
   useEffect(() => {
     const itemParams = { itemType, itemId };
@@ -33,7 +33,7 @@ function ItemDetail() {
         break;
 
       default:
-        dispatch(showError('Bad request!'));
+        throw new Error('Bad request!');
     }
   }, [api, itemType, itemId, dispatch]);
 
