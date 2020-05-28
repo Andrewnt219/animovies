@@ -1,46 +1,38 @@
 /* --------------------------------- IMPORT --------------------------------- */
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
 import {
   fetchCollection,
-  moviesSelector,
-  tvSeriesSelector,
   collectionIsLoadingSelector,
+  collectionsSelector,
 } from 'Features/collectionSlice';
 
 import NowPlayingSlider from 'Components/moviePage/nowPlayingSlider/NowPlayingSlider';
 import MainLayout from 'HOC/MainLayout';
 import Collection from 'Components/moviePage/Collection/Collection';
 import ItemContext from 'Context/ItemContext';
+import { useFetch } from 'Hooks/useFetch';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE Render the page at /all
 function MoviePage() {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(collectionIsLoadingSelector);
-
-  const movies = useSelector(moviesSelector);
-  const tvSeries = useSelector(tvSeriesSelector);
+  const [{ movies, tvSeries }, isLoading] = useFetch(
+    fetchCollection,
+    collectionsSelector,
+    collectionIsLoadingSelector
+  );
 
   // Except the nowPlaying movies
-  const SUB_MOVIE_NAMES = Object.keys(movies).slice(1).sort();
+  const MOVIE_MENUS = extractSubCollection(movies);
   // tvSeries version
-  const SUB_TV_NAMES = Object.keys(tvSeries).slice(0).sort();
+  const TV_MENUS = extractSubCollection(tvSeries);
 
   // because useState won't change value after the first rener
   // initial value is the first SUB_MOVIE_NAME alphabetically
   const [activeMovieCollection, setActiveMovieCollection] = useState('popular');
   // tvSeries version
   const [activeTvCollection, setActiveTvCollection] = useState('onTheAir');
-
-  /**
-   * FETCHING MOVIES FROM API
-   */
-  useEffect(() => {
-    dispatch(fetchCollection());
-  }, [dispatch]);
 
   return isLoading ? (
     <div>Loading...</div>
@@ -53,7 +45,7 @@ function MoviePage() {
           <Collection
             header={{
               sectionName: 'Movies',
-              subMenuNames: SUB_MOVIE_NAMES,
+              subMenuNames: MOVIE_MENUS.slice(1),
               activeMenu: activeMovieCollection,
               setActiveMenu: setActiveMovieCollection,
             }}
@@ -65,7 +57,7 @@ function MoviePage() {
           <Collection
             header={{
               sectionName: 'TV Series',
-              subMenuNames: SUB_TV_NAMES,
+              subMenuNames: TV_MENUS,
               activeMenu: activeTvCollection,
               setActiveMenu: setActiveTvCollection,
             }}
@@ -81,5 +73,9 @@ const MoviePageContainer = styled.div`
   display: grid;
   row-gap: 2rem;
 `;
+
+function extractSubCollection(collection) {
+  return Object.keys(collection).sort();
+}
 
 export default MoviePage;

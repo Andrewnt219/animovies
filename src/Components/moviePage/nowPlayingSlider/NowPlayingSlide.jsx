@@ -67,6 +67,7 @@ const StyledSlide = styled.div`
 const PopupContainer = styled(CollectionItemInfo)`
   top: 50%;
   left: 50%;
+  font-size: 2rem;
 
   /* Framer already does this  */
   /* transform: translate(-50%, -50%); */

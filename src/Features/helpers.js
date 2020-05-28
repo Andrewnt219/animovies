@@ -26,13 +26,18 @@ export async function fetchRequests(api, urls) {
 //* format the collections from tmdb
 export function formatTmdbCollections(collections) {
   return collections.map((collection) =>
-    formatTmdbCollection(collection.results)
+    formatCollection(collection.results, formatTmdbItem)
   );
 }
 
+//* format the collections from jikan
+export function formatJikanCollections(collections) {
+  return collections.map((collection) => formatCollection(collection.top));
+}
+
 //* format one collection from tmdb
-export function formatTmdbCollection(collection) {
-  return collection.map((movie) => formatTmdbItem(movie));
+export function formatCollection(collection, formatter) {
+  return collection.map((item) => (formatter ? formatter(item) : item));
 }
 
 // * format an individual Tmdb item
