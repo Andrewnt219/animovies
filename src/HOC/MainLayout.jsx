@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import AppBar from 'Components/navigation/AppBar/AppBar';
 import SideDrawer from 'Components/navigation/SideDrawer/SideDrawer';
 import MovieSideDrawer from 'Components/navigation/SideDrawer/movieNavigation/MovieSideDrawer';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { animation } from 'Theme/variants';
 
 /* -------------------------------- COMPONENT ------------------------------- */
@@ -16,7 +16,12 @@ function MainLayout({ children }) {
   const [sideDrawerIsOpen, setSideDrawerIsOpen] = useState(false);
 
   return (
-    <>
+    <motion.div
+      variants={animation.popup.fromBottom}
+      initial="initial"
+      animate="enter"
+      transition="duration"
+    >
       <AnimatePresence>
         {sideDrawerIsOpen && (
           <SideDrawer
@@ -36,7 +41,7 @@ function MainLayout({ children }) {
 
       <AppBar isOpen={sideDrawerIsOpen} setIsOpen={setSideDrawerIsOpen} />
       {children}
-    </>
+    </motion.div>
   );
 }
 

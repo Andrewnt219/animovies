@@ -67,7 +67,7 @@ const StyledSlide = styled.div`
 const PopupContainer = styled(CollectionItemInfo)`
   top: 50%;
   left: 50%;
-  font-size: 2rem;
+  font-size: min(4vw, 2rem);
 
   /* Framer already does this  */
   /* transform: translate(-50%, -50%); */
@@ -77,7 +77,7 @@ const PopupContainer = styled(CollectionItemInfo)`
     margin-bottom: 10%;
   }
   & > *:first-child {
-    margin-top: 10%;
+    margin-top: 5%;
   }
 
   @media (min-width: ${(p) => p.theme.breakpoints.md}) {

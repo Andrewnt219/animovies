@@ -18,6 +18,11 @@ const Container = styled.div`
 
   gap: 1rem;
   font-size: 1.25rem;
+
+  @media (min-width: ${(p) => p.theme.breakpoints.md}) {
+    font-size: 1.75rem;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  }
 `;
 
 export default CollectionItems;

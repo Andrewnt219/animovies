@@ -17,7 +17,7 @@ export default {
   breakpoints: {
     xs: '340px',
     sm: '600px',
-    md: '960px',
+    md: '900px',
     lg: '1280px',
     xl: '1920px',
   },

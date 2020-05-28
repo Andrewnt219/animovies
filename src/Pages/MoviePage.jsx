@@ -13,6 +13,7 @@ import MainLayout from 'HOC/MainLayout';
 import Collection from 'Components/moviePage/Collection/Collection';
 import ItemContext from 'Context/ItemContext';
 import { useFetch } from 'Hooks/useFetch';
+import { motion } from 'framer-motion';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE Render the page at /all
@@ -69,7 +70,7 @@ function MoviePage() {
   );
 }
 
-const MoviePageContainer = styled.div`
+const MoviePageContainer = styled(motion.div)`
   display: grid;
   row-gap: 2rem;
 `;

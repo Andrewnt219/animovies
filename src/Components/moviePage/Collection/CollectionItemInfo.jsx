@@ -108,18 +108,14 @@ const SubHeader = styled.div`
 
   margin-left: -1rem;
   width: calc(100% + 2rem);
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   background: ${(p) => lighten(0.1, p.theme.black)};
 `;
 
 // NOTE renders info inside SubHeader
 const SubInfo = styled.p`
-  ${(p) =>
-    p.contained &&
-    css`
-      background: ${p.theme.sub1};
-      color: ${p.theme.black};
-    `}
+  background: ${(p) => p.contained && p.theme.sub1};
+  color: ${(p) => p.contained && p.theme.black};
 
   font-size: inherit;
 
@@ -131,6 +127,7 @@ const SubInfo = styled.p`
 // NOTE renders an overview
 const Overview = styled.p`
   font-size: inherit;
+  grid-row: auto / span 3;
 `;
 
 // NOTE renders a max-width button
@@ -147,4 +144,5 @@ const Info = styled.p`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  font-style: italic;
 `;
