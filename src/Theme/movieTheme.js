@@ -15,7 +15,7 @@ export default {
   black: '#404040',
 
   breakpoints: {
-    xs: '340px',
+    xs: '450px',
     sm: '600px',
     md: '900px',
     lg: '1280px',

@@ -34,7 +34,7 @@ function CollectionItem({ item }) {
             exit="exit"
             transition="transition"
           >
-            {item.overview.slice(0, 100) + '...'}
+            {item.overview.slice(0, 90) + '...'}
           </CollectionItemInfo>
         )}
       </AnimatePresence>

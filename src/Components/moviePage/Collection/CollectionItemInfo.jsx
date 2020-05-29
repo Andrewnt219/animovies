@@ -45,13 +45,13 @@ function CollectionItemInfo({
 
       <Overview>{children}</Overview>
 
-      <StyledLink button to={`${itemType}/${item.id}`}>
+      <StyledLink button to={`/tmdb/${itemType}/${item.id}`}>
         <ItemButton contained>Details</ItemButton>
       </StyledLink>
-
+      {/* 
       <ItemButton contained bgColor={darken(0.1, theme.secondary)}>
         Favorite
-      </ItemButton>
+      </ItemButton> */}
     </Container>
   );
 }
@@ -88,7 +88,7 @@ const Container = styled(motion.div)`
   height: 100%;
   background: ${(p) => rgba(p.theme.black, 0.9)};
   border-radius: inherit;
-  padding: 1rem;
+  padding: min(3vw, 1.5rem) 1rem;
 `;
 
 // NOTE renders the movie's title

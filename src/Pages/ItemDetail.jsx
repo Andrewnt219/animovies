@@ -5,13 +5,15 @@ import { useParams } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  fetchJikanDetail,
+  // fetchJikanDetail,
   fetchTmdbDetail,
   activeItemSelector,
   activeItemIsLoadingSelector,
 } from 'Features/activeItemSlice';
 import Collection from 'Components/moviePage/Collection/Collection';
-import BackdropImg from 'Components/ui/BackdropImg';
+import BaseBackdropImg from 'Components/ui/BackdropImg';
+import Details from 'Components/itemDetail/Details';
+import _ from 'lodash';
 
 function ItemDetail() {
   const { api, itemType, itemId } = useParams();
@@ -28,9 +30,9 @@ function ItemDetail() {
         dispatch(fetchTmdbDetail(itemParams));
         break;
 
-      case 'jikan':
-        dispatch(fetchJikanDetail(itemParams));
-        break;
+      // case 'jikan':
+      //   dispatch(fetchJikanDetail(itemParams));
+      //   break;
 
       default:
         throw new Error('Bad request!');
@@ -45,11 +47,52 @@ function ItemDetail() {
         src={itemDetail.backdrop_path}
         width="100vw"
         height="100vmin"
-      />
-      {/* <Details></Details>
-      <Collection /> */}
+        //
+        rgbaValue={0.7}
+      ></BackdropImg>
+      <ItemDetailContainer>
+        <Details
+          item={_.pick(itemDetail, [
+            'title',
+            'overview',
+            'genres',
+            'runtime',
+            'poster_path',
+            'vote_average',
+            'popularity',
+            'release_date',
+            'production_companies',
+            'imdb_id',
+          ])}
+        />
+
+        <Collection
+          header={{
+            sectionName: 'Recommendations',
+          }}
+          collection={recommendations}
+        />
+      </ItemDetailContainer>
     </MainLayout>
   );
 }
+
+const BackdropImg = styled(BaseBackdropImg)`
+  position: relative;
+
+  @media (min-width: ${(p) => p.theme.breakpoints.sm}) {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+`;
+
+const ItemDetailContainer = styled.div`
+  @media (min-width: ${(p) => p.theme.breakpoints.sm}) {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+`;
 
 export default ItemDetail;

@@ -1,34 +1,26 @@
 /* --------------------------------- IMPORT --------------------------------- */
-import styled, { css } from 'styled-components/macro';
+import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
-import { darken } from 'polished';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE render a basic styled button
 const Button = styled.button`
   text-align: center;
-  color: ${(p) => p.color ?? p.theme.white};
-  font-size: ${(p) => p.fontSize ?? '1rem'};
+  color: inherit;
+  font-size: inherit;
 
-  ${(p) =>
-    p.outlined &&
-    css`
-      border: 1px solid ${p.theme.primary};
-    `};
-  ${(p) =>
-    p.contained &&
-    css`
-      background-color: ${p.bgColor ?? p.theme.primary};
-    `};
+  background: ${(p) =>
+    p.contained ? p.bgColor ?? p.theme.primary : 'transparent'};
+  border: 1px solid
+    ${(p) => (p.outlined ? p.borderColor ?? p.theme.white : 'transparent')};
 
   &:hover {
-    background-color: ${(p) => darken(0.05, p.bgColor ?? p.theme.primary)};
+    filter: brightness(0.9);
   }
 
   padding: 0.5rem 1rem;
-  border: none;
   border-radius: 5px;
-  /* background: none; */
+
   cursor: pointer;
   transition: background 200ms ease;
 `;

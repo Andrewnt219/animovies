@@ -21,7 +21,7 @@ import { useParams } from 'react-router-dom';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE renders an AppBar for main Layout
-function AppBar({ theme, isOpen, setIsOpen }) {
+function AppBar({ theme, isOpen, setIsOpen, barHeight }) {
   /**
    * States
    */
@@ -30,7 +30,6 @@ function AppBar({ theme, isOpen, setIsOpen }) {
   /**
    * Constants
    */
-  const FIXED_BAR_HEIGHT = 'max(6rem, 5vw)';
 
   /**
    * Conditional rendering
@@ -40,7 +39,7 @@ function AppBar({ theme, isOpen, setIsOpen }) {
     <>
       <HomeLink />
       <TvLink />
-      <GenreSubMenu offsetTop={FIXED_BAR_HEIGHT} />
+      <GenreSubMenu offsetTop={barHeight} />
     </>
   );
   if (api === 'jikan') {
@@ -55,7 +54,7 @@ function AppBar({ theme, isOpen, setIsOpen }) {
 
   return (
     <>
-      <FixedBar height={FIXED_BAR_HEIGHT}>
+      <FixedBar height={barHeight}>
         <HamburgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
 
         <AppBarLogo />
@@ -70,7 +69,7 @@ function AppBar({ theme, isOpen, setIsOpen }) {
       <AnimatePresence>
         {isSearchOpen && (
           <AppBarSearchBar
-            offsetTop={FIXED_BAR_HEIGHT}
+            offsetTop={barHeight}
             fontSize="clamp(1.5rem, 3vw,2rem)"
           />
         )}

@@ -11,14 +11,20 @@ export default styled.div`
   width: ${(p) => p.width};
   height: ${(p) => p.height};
 
-  &::before {
+  &::after {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
+  
 
     width: 100%;
     height: 100%;
-    background: ${(p) => rgba(p.theme.black, 0.9)};
+    background: ${(p) => rgba(p.theme.black, p.rgbaValue ?? 0.9)};
+  }
+
+  & > * {
+    position: absolute;
+    z-index: 1;
   }
 `;

@@ -15,14 +15,17 @@ function CollectionHeader({
   setActiveMenu,
 }) {
   return (
-    <CategoryContainer>
+    <CategoryContainer isGrid={Boolean(subMenuNames)}>
       <SectionName>{sectionName}</SectionName>
 
-      <Button to="/">VIEW MORE</Button>
-
-      <ItemsContainer>
-        {renderItems(subMenuNames, activeMenu, setActiveMenu)}
-      </ItemsContainer>
+      {subMenuNames && (
+        <>
+          <Button to="/">VIEW MORE</Button>
+          <ItemsContainer>
+            {renderItems(subMenuNames, activeMenu, setActiveMenu)}
+          </ItemsContainer>
+        </>
+      )}
     </CategoryContainer>
   );
 }
@@ -45,7 +48,7 @@ const CategoryContainer = styled.div`
   grid-template-areas:
     'name button'
     'items items';
-  row-gap: 2rem;
+  row-gap: ${(p) => p.isGrid && '2rem'};
 
   color: ${(p) => p.theme.white};
   font-size: 1.25rem;

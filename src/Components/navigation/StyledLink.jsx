@@ -25,7 +25,7 @@ const StyledLink = styled(Link)`
   color: ${(p) => p.color ?? p.theme.white};
 
   &:hover {
-    color: ${(p) => p.color ?? p.theme.white};
+    filter: brightness(${(p) => p.brightness ?? 1.125});
   }
 
   & > button {

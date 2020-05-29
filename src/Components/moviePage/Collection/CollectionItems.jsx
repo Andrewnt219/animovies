@@ -7,9 +7,7 @@ function CollectionItems({ collection }) {
 }
 
 function renderItem({ collection }) {
-  return collection.map((item, idx) => (
-    <CollectionItem key={item.id} item={item} />
-  ));
+  return collection.map((item) => <CollectionItem key={item.id} item={item} />);
 }
 
 const Container = styled.div`
@@ -21,7 +19,7 @@ const Container = styled.div`
 
   @media (min-width: ${(p) => p.theme.breakpoints.md}) {
     font-size: 1.75rem;
-    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   }
 `;
 
