@@ -48,12 +48,16 @@ function ItemDetail() {
         width="100vw"
         height="100vmin"
         //
-        rgbaValue={0.7}
+        rgbaValue={0.8}
       ></BackdropImg>
+
       <ItemDetailContainer>
         <Details
+          trailerId={videos[0]?.key}
           item={_.pick(itemDetail, [
             'title',
+            'original_name',
+            'first_air_date',
             'overview',
             'genres',
             'runtime',
@@ -63,6 +67,7 @@ function ItemDetail() {
             'release_date',
             'production_companies',
             'imdb_id',
+            'homepage',
           ])}
         />
 

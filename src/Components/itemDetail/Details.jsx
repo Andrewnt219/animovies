@@ -6,15 +6,18 @@ import { sentenceCase } from 'change-case';
 import { useLocation } from 'react-router-dom';
 import StyledLink from 'Components/navigation/StyledLink';
 
-function Details({ item }) {
+function Details({ item, trailerId }) {
   const {
     title,
     genres,
+    first_air_date,
+    original_name,
     runtime,
     poster_path,
     overview,
     production_companies,
     imdb_id,
+    homepage,
     ...fields
   } = item;
 
@@ -22,20 +25,34 @@ function Details({ item }) {
 
   return (
     <Container>
+      {trailerId && (
+        <Trailer
+          src={`https://www.youtube.com/embed/${trailerId}`}
+          title={title}
+        ></Trailer>
+      )}
       <Location>
         <StyledLink to="/tmdb/all">Home</StyledLink>
         &nbsp; > &nbsp;
-        <StyledLink to={pathname}>{title}</StyledLink>
+        <StyledLink to={pathname}>{title || original_name}</StyledLink>
       </Location>
-      <Header>{title}</Header>
+      <Header>{title || original_name}</Header>
       <SubHeader>
         <SubInfo>{genres.map((genre) => genre.name).join(', ')}</SubInfo>
-        <SubInfo>{runtime} minutes</SubInfo>
+        <SubInfo>{runtime || 'N/A'} minutes</SubInfo>
       </SubHeader>
       <Poster src={poster_path} />
 
       <Controllers>
-        <Button outlined>Trailer</Button>
+        <Button
+          outlined
+          as="a"
+          target="_blank"
+          rel="noreferrer noopener"
+          href={homepage}
+        >
+          Site
+        </Button>
 
         <Button
           contained
@@ -70,7 +87,7 @@ const Container = styled.div`
   display: grid;
   padding: 2rem 1rem;
   grid-template-columns: 40vw auto;
-  gap: 1rem;
+  gap: min(2rem, 3vw);
   grid-template-areas:
     'location location'
     'header   header'
@@ -92,13 +109,15 @@ const Container = styled.div`
 
   @media (min-width: ${(p) => p.theme.breakpoints.sm}) {
     grid-template-areas:
-      'location location'
-      'subheader  controllers'
-      'header     header'
-      'overview   overview'
-      'fields     fields';
+      'location   location    trailer'
+      'subheader  controllers trailer'
+      'header     header      trailer'
+      'overview   overview    trailer'
+      'fields     fields      trailer';
+  }
 
-    width: 60vw;
+  @media (min-width: ${(p) => p.theme.breakpoints.lg}) {
+    grid-template-columns: auto auto 40vw;
   }
 `;
 
@@ -109,6 +128,10 @@ const Location = styled.p`
 `;
 const Header = styled.h1`
   grid-area: header;
+  @media (min-width: ${(p) => p.theme.breakpoints.sm}) {
+    color: ${(p) => p.theme.primary};
+    text-shadow: 2px 2px #000;
+  }
 `;
 
 const SubHeader = styled.div`
@@ -120,10 +143,17 @@ const SubHeader = styled.div`
     flex-direction: row;
     align-items: center;
   }
+
+  & > *:last-child {
+    margin-bottom: 0;
+  }
 `;
 const SubInfo = styled.p`
+  margin-bottom: 1rem;
+
   @media (min-width: ${(p) => p.theme.breakpoints.sm}) {
     margin-right: 2rem;
+    margin-bottom: 0;
   }
 `;
 
@@ -150,8 +180,10 @@ const Controllers = styled.div`
 const Button = styled(BaseButton)`
   border-radius: 5rem;
   padding: 1rem;
-  width: 50%;
+  width: 40%;
   text-decoration: none;
+
+  cursor: ${(p) => p.disabled && 'not-allowed'};
 `;
 
 const Overview = styled.div`
@@ -164,6 +196,18 @@ const Overview = styled.div`
 const FieldsContainer = styled.div`
   display: grid;
   grid-area: fields;
+  row-gap: 1rem;
+`;
+
+const Trailer = styled.iframe`
+  display: none;
+
+  @media (min-width: ${(p) => p.theme.breakpoints.lg}) {
+    position: relative;
+    display: block;
+    grid-area: trailer;
+    margin-left: 2rem;
+  }
 `;
 
 export default Details;

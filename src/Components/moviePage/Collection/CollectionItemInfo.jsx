@@ -20,7 +20,6 @@ function CollectionItemInfo({
   ...animation
 }) {
   //* contexts
-  const theme = useTheme();
   const itemType = useContext(ItemContext);
 
   return (
@@ -82,7 +81,7 @@ const Container = styled(motion.div)`
   left: 0;
 
   color: inherit;
-  font-size: smaller;
+  font-size: inherit;
 
   width: 100%;
   height: 100%;
