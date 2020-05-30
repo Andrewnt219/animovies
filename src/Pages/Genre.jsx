@@ -1,4 +1,9 @@
 import React, { useEffect, useMemo } from 'react';
+import queryString from 'query-string';
+import styled from 'styled-components/macro';
+import { useParams, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
 import MainLayout from 'HOC/MainLayout';
 import Collection from 'Components/moviePage/Collection/Collection';
 import {
@@ -6,11 +11,9 @@ import {
   genreIsLoadingSelector,
   genreCollectionSelector,
 } from 'Features/genreSlice';
-import { useParams, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import FilterPanel from 'Components/genre/FilterPanel';
+
 import PageIndicator from 'Components/genre/PageIndicator';
-import queryString from 'query-string';
+import GenreFilter from 'Components/genre/GenreFilter';
 
 function Genre() {
   const dispatch = useDispatch();
@@ -26,27 +29,35 @@ function Genre() {
     dispatch(fetchGenre({ genreName, page, queries }));
   }, [dispatch, genreName, page, queries]);
 
-  return isLoading ? (
-    <div>Loading...</div>
-  ) : (
+  return (
     <MainLayout>
-      <FilterPanel />
+      <GenreName>{genreName}</GenreName>
+      <GenreFilter />
       <PageIndicator />
-      <Collection
-        header={{
-          sectionName: 'Movies',
-        }}
-        collection={movies}
-      />
-      <Collection
-        header={{
-          sectionName: 'TV Series',
-        }}
-        collection={tvSeries}
-      />
-      <PageIndicator />
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          <Collection
+            header={{
+              sectionName: 'Movies',
+            }}
+            collection={movies}
+          />
+          <Collection
+            header={{
+              sectionName: 'TV Series',
+            }}
+            collection={tvSeries}
+          />
+        </>
+      )}
     </MainLayout>
   );
 }
+
+const GenreName = styled.h1`
+  text-align: center;
+`;
 
 export default Genre;

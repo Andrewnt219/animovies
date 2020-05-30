@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
-import React, { useContext } from 'react';
+import React from 'react';
 import { rgba, lighten } from 'polished';
 import Button from 'Components/ui/Button';
 import StyledLink from 'Components/navigation/StyledLink';
 import { motion } from 'framer-motion';
-import ItemContext from 'Context/ItemContext';
 
 // NOTE renders extra info about the item
 function CollectionItemInfo({
@@ -19,9 +18,6 @@ function CollectionItemInfo({
   //
   ...animation
 }) {
-  //* contexts
-  const itemType = useContext(ItemContext);
-
   return (
     <Container
       className={className}

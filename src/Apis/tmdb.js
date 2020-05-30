@@ -8,6 +8,7 @@ export default Axios.create({
   },
 });
 
+/* ---------------------------------- GENRE --------------------------------- */
 export function findGenreId(genreName) {
   //prettier-ignore
   return Object
