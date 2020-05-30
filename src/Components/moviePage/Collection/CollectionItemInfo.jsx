@@ -44,7 +44,10 @@ function CollectionItemInfo({
 
       <Overview>{children}</Overview>
 
-      <StyledLink button to={`/tmdb/${itemType}/${item.id}`}>
+      <StyledLink
+        button
+        to={`/tmdb/${item.first_air_date ? 'tv' : 'movie'}/${item.id}`}
+      >
         <ItemButton contained>Details</ItemButton>
       </StyledLink>
       {/* 
