@@ -8,6 +8,7 @@ import MoviePage from 'Pages/MoviePage';
 // import AnimePage from 'Pages/AnimePage';
 import GlobalStyle from 'Theme/global';
 import ItemDetail from 'Pages/ItemDetail';
+import Genre from 'Pages/Genre';
 
 function App() {
   const { pathname } = useLocation();
@@ -16,6 +17,7 @@ function App() {
     <ThemeProvider theme={pathname.includes('jikan') ? animeTheme : movieTheme}>
       <GlobalStyle />
       <Switch>
+        <Route path="/:api/discover/:genreName" component={Genre} />
         <Route path="/:api/:itemType/:itemId" component={ItemDetail} />
 
         <Route path="/:api/all" component={MoviePage} />
