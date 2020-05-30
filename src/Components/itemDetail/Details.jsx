@@ -6,6 +6,7 @@ import { sentenceCase } from 'change-case';
 import { useLocation } from 'react-router-dom';
 import StyledLink from 'Components/navigation/StyledLink';
 
+// NOTE renders detail about the selected item
 function Details({ item, trailerId }) {
   const {
     title,
@@ -15,7 +16,6 @@ function Details({ item, trailerId }) {
     runtime,
     poster_path,
     overview,
-    production_companies,
     imdb_id,
     homepage,
     ...fields
@@ -31,16 +31,20 @@ function Details({ item, trailerId }) {
           title={title}
         ></Trailer>
       )}
+
       <Location>
         <StyledLink to="/tmdb/all">Home</StyledLink>
         &nbsp; > &nbsp;
         <StyledLink to={pathname}>{title || original_name}</StyledLink>
       </Location>
+
       <Header>{title || original_name}</Header>
+
       <SubHeader>
         <SubInfo>{genres.map((genre) => genre.name).join(', ')}</SubInfo>
         <SubInfo>{runtime || 'N/A'} minutes</SubInfo>
       </SubHeader>
+
       <Poster src={poster_path} />
 
       <Controllers>
@@ -67,20 +71,20 @@ function Details({ item, trailerId }) {
 
       <Overview>{overview}</Overview>
 
-      <FieldsContainer>
-        <Field title="Producers">
-          {production_companies.map((company) => company.name).join(', ')}
-        </Field>
-        {Object.entries(fields).map(([label, value], idx) => (
-          <Field key={idx} title={sentenceCase(label)}>
-            {value}
-          </Field>
-        ))}
-      </FieldsContainer>
+      <FieldsContainer>{renderFields(fields)}</FieldsContainer>
     </Container>
   );
 }
 
+function renderFields(fields) {
+  return Object.entries(fields).map(([label, value], idx) => (
+    <Field key={idx} title={sentenceCase(label)}>
+      {value}
+    </Field>
+  ));
+}
+
+// NOTE renders a  grid-container
 const Container = styled.div`
   color: ${(p) => p.theme.white};
   font-size: clamp(1.25rem, 2vw, 2rem);

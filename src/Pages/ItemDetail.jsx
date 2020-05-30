@@ -15,6 +15,7 @@ import BaseBackdropImg from 'Components/ui/BackdropImg';
 import Details from 'Components/itemDetail/Details';
 import _ from 'lodash';
 
+// NOTE renders ItemDetail page, with a backdrop, info and recommendations
 function ItemDetail() {
   const { api, itemType, itemId } = useParams();
   const dispatch = useDispatch();
@@ -65,7 +66,7 @@ function ItemDetail() {
             'vote_average',
             'popularity',
             'release_date',
-            'production_companies',
+
             'imdb_id',
             'homepage',
           ])}

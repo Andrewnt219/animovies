@@ -86,6 +86,8 @@ const PopupContainer = styled(CollectionItemInfo)`
     border-top: 2px solid ${(p) => p.theme.white};
     box-shadow: 0 2px 2px #000;
 
+    font-size: inherit;
+
     & > *:last-child {
       margin-bottom: 0;
     }

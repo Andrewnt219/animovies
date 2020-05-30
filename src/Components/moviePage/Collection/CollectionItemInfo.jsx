@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import styled, { css, useTheme } from 'styled-components/macro';
+import styled from 'styled-components/macro';
 import React, { useContext } from 'react';
-import { rgba, lighten, darken } from 'polished';
+import { rgba, lighten } from 'polished';
 import Button from 'Components/ui/Button';
 import StyledLink from 'Components/navigation/StyledLink';
 import { motion } from 'framer-motion';
@@ -81,7 +81,7 @@ const Container = styled(motion.div)`
   left: 0;
 
   color: inherit;
-  font-size: inherit;
+  font-size: smaller;
 
   width: 100%;
   height: 100%;
