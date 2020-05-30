@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
+import FilterContext from 'Context/FilterContext';
 
 function FilterChoice({ queryKey, queryValue, label, ...inputConfig }) {
+  const { handleChange } = useContext(FilterContext);
+
   return (
     <Container>
       <ChoiceLabel>{label}</ChoiceLabel>
-      <Choice type="text" {...inputConfig} />
+      <Choice type="text" {...inputConfig} onChange={handleChange} />
     </Container>
   );
 }
