@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import tmdb, { findGenreId } from 'Apis/tmdb';
-import { asyncDispatchWrapper } from './helpers';
+import {
+  asyncDispatchWrapper,
+  formatCollection,
+  formatTmdbItem,
+} from './helpers';
 
 const genreSlice = createSlice({
   name: 'genre',
@@ -37,9 +41,9 @@ export const {
 } = genreSlice.actions;
 export const genreIsLoadingSelector = (state) => state.genre.isLoading;
 export const genreErrorSelector = (state) => state.genre.error;
-export const genreGenreSelector = (state) => state.genre.collection;
+export const genreCollectionSelector = (state) => state.genre.collection;
 
-export const fetchGenre = ({ genreName, page }) => (dispatch) => {
+export const fetchGenre = ({ genreName, page, queries }) => (dispatch) => {
   const genreId = findGenreId(genreName);
 
   asyncDispatchWrapper(
@@ -54,23 +58,30 @@ export const fetchGenre = ({ genreName, page }) => (dispatch) => {
     const { data: moviesResponse } = await sendDiscoverRequest(
       'movie',
       genreId,
-      page
+      page,
+      queries
     );
-    const { data: tvResponse } = await sendDiscoverRequest('tv', genreId, page);
+    const { data: tvResponse } = await sendDiscoverRequest(
+      'tv',
+      genreId,
+      page,
+      queries
+    );
 
     dispatch(
       fetchGenreSuccess({
-        movies: moviesResponse.results,
-        tvSeries: tvResponse.results,
+        movies: formatCollection(moviesResponse.results, formatTmdbItem),
+        tvSeries: formatCollection(tvResponse.results, formatTmdbItem),
       })
     );
   }
 };
-function sendDiscoverRequest(endpoint, genreId, page) {
+function sendDiscoverRequest(endpoint, genreId, page, queries) {
   return tmdb.get(`discover/${endpoint}`, {
     params: {
       page,
       with_genres: genreId,
+      ...queries,
     },
   });
 }

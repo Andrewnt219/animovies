@@ -5,6 +5,7 @@ export default createGlobalStyle`
   :root {
     font-family: 'Roboto', sans-serif;
     font-size: 10px;
+    color: ${(p) => p.theme.white};
   }
 
   html, body, #root {

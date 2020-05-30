@@ -20,7 +20,10 @@ function GenreSubMenu({ offsetTop }) {
 // NOTE renders a list of genres
 export function renderSubMenuItems() {
   return Object.values(genreMap).map((genre) => (
-    <SubMenuItem key={genre.id} to={{ pathname: `/movies/${genre.name}` }}>
+    <SubMenuItem
+      key={genre.id}
+      to={{ pathname: `/tmdb/discover/${genre.name}/1` }}
+    >
       {genre.name}
     </SubMenuItem>
   ));

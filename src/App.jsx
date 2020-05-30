@@ -17,7 +17,7 @@ function App() {
     <ThemeProvider theme={pathname.includes('jikan') ? animeTheme : movieTheme}>
       <GlobalStyle />
       <Switch>
-        <Route path="/:api/discover/:genreName" component={Genre} />
+        <Route path="/:api/discover/:genreName/:page" component={Genre} />
         <Route path="/:api/:itemType/:itemId" component={ItemDetail} />
 
         <Route path="/:api/all" component={MoviePage} />
