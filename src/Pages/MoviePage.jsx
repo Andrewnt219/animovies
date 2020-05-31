@@ -14,6 +14,7 @@ import Collection from 'Components/moviePage/Collection/Collection';
 import ItemContext from 'Context/ItemContext';
 import { useFetch } from 'Hooks/useFetch';
 import { motion } from 'framer-motion';
+import LoadingIndicator from 'Components/ui/LoadingIndicator/LoadingIndicator';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE Render the page at /all
@@ -36,7 +37,7 @@ function MoviePage() {
   const [activeTvCollection, setActiveTvCollection] = useState('onTheAir');
 
   return isLoading ? (
-    <div>Loading...</div>
+    <LoadingIndicator />
   ) : (
     <MainLayout>
       <MoviePageContainer>

@@ -14,6 +14,7 @@ import Collection from 'Components/moviePage/Collection/Collection';
 import BaseBackdropImg from 'Components/ui/BackdropImg';
 import Details from 'Components/itemDetail/Details';
 import _ from 'lodash';
+import LoadingIndicator from 'Components/ui/LoadingIndicator/LoadingIndicator';
 
 // NOTE renders ItemDetail page, with a backdrop, info and recommendations
 function ItemDetail() {
@@ -41,7 +42,7 @@ function ItemDetail() {
   }, [api, itemType, itemId, dispatch]);
 
   return isLoading ? (
-    <div>LOADING...</div>
+    <LoadingIndicator />
   ) : (
     <MainLayout>
       <BackdropImg

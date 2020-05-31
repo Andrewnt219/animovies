@@ -44,7 +44,7 @@ function SearchResults() {
           currentPageNumber={page}
         />
       </Header>
-      {isLoading && <div>Loading...</div>}
+
       {movies.length !== 0 && (
         <>
           <Collection
