@@ -16,7 +16,7 @@ function Logo({ className, size = '1rem', isInverted }) {
   return (
     <Container
       className={className}
-      to="/"
+      to="/tmdb/all"
       as={StyledNavLink}
       fontSize={FONT_SIZE}
     >

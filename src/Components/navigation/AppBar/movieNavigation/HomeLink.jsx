@@ -8,7 +8,7 @@ import AppBarNavItem from '../AppBarNavItem';
 // NOTE renders a link to /
 function HomeLink() {
   return (
-    <AppBarNavItem to="/">
+    <AppBarNavItem to="/tmdb/all">
       <MdHome />
 
       <span>Home</span>

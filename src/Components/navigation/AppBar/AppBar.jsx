@@ -38,7 +38,6 @@ function AppBar({ theme, isOpen, setIsOpen, barHeight }) {
   let links = (
     <>
       <HomeLink />
-      <TvLink />
       <GenreSubMenu offsetTop={barHeight} />
     </>
   );

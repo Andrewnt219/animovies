@@ -18,12 +18,7 @@ function MainLayout({ children }) {
   const FIXED_BAR_HEIGHT = 'max(6rem, 5vw)';
 
   return (
-    <motion.div
-      variants={animation.popup.fromBottom}
-      initial="initial"
-      animate="enter"
-      transition="duration"
-    >
+    <>
       <AnimatePresence>
         {sideDrawerIsOpen && (
           <SideDrawer
@@ -46,12 +41,20 @@ function MainLayout({ children }) {
         isOpen={sideDrawerIsOpen}
         setIsOpen={setSideDrawerIsOpen}
       />
-      <Main offsetTop={FIXED_BAR_HEIGHT}>{children}</Main>
-    </motion.div>
+      <Main
+        variants={animation.popup.fromBottom}
+        initial="initial"
+        animate="enter"
+        transition="duration"
+        offsetTop={FIXED_BAR_HEIGHT}
+      >
+        {children}
+      </Main>
+    </>
   );
 }
 
-const Main = styled.main`
+const Main = styled(motion.main)`
   margin-top: ${(p) => p.offsetTop};
   height: 100%;
 `;
