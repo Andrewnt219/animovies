@@ -16,11 +16,11 @@ function App() {
 
   useEffect(() => {
     const localTheme = window.localStorage.getItem('theme');
-    setTheme(JSON.parse(localTheme));
+    localTheme && setTheme(JSON.parse(localTheme));
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme ?? movieTheme}>
       <GlobalStyle />
 
       <ThemeSwitcher currentTheme={theme} switchTheme={setTheme} />
