@@ -74,10 +74,10 @@ const PopupContainer = styled(CollectionItemInfo)`
 
   /* Avoid setting padding because padding is set in the original Component  */
   & > *:last-child {
-    margin-bottom: 10%;
+    margin-bottom: 5%;
   }
   & > *:first-child {
-    margin-top: 5%;
+    margin-top: 10%;
   }
 
   @media (min-width: ${(p) => p.theme.breakpoints.md}) {

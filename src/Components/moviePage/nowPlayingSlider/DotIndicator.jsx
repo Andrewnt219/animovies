@@ -9,7 +9,7 @@ import Flex from 'Components/container/Flex';
 /* --------------------------------- STYLING -------------------------------- */
 const DotsContainer = styled(Flex)`
   position: absolute;
-  bottom: 0.5rem;
+  top: 2rem;
   left: 50%;
   transform: translate(-50%, -0.5rem);
 
