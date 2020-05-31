@@ -8,9 +8,10 @@ import StyledNavLink from 'Components/navigation/StyledNavLink.jsx';
 // NOTE renders a link for Landing page
 const LandingButton = styled(Button).attrs((p) => ({
   contained: 'true',
-  fontSize: p.fontSize,
+
   as: StyledNavLink,
 }))`
+  font-size: ${(p) => p.fontSize};
   padding: 1rem 3rem;
   box-shadow: 0 2px 5px ${(p) => p.theme.dark};
 `;

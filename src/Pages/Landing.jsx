@@ -19,7 +19,7 @@ import useTitle from 'Hooks/useTitle';
 // * Landing page layout
 const Layout = styled(motion.div)`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: url(${(p) => getBackground(p.api).small}) center 4rem no-repeat;
 
   /* Change to a bigger background */
@@ -63,7 +63,7 @@ function Landing({ location, match }) {
     >
       <Backdrop index={1} />
 
-      <LandingAppBar />
+      {/* <LandingAppBar /> */}
 
       <Main direction="column">
         <LandingLogo />
