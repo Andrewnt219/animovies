@@ -15,6 +15,7 @@ import ItemContext from 'Context/ItemContext';
 import { useFetch } from 'Hooks/useFetch';
 import { motion } from 'framer-motion';
 import LoadingIndicator from 'Components/ui/LoadingIndicator/LoadingIndicator';
+import useTitle from 'Hooks/useTitle';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE Render the page at /all
@@ -35,6 +36,8 @@ function MoviePage() {
   const [activeMovieCollection, setActiveMovieCollection] = useState('popular');
   // tvSeries version
   const [activeTvCollection, setActiveTvCollection] = useState('onTheAir');
+
+  useTitle('All movies');
 
   return isLoading ? (
     <LoadingIndicator />

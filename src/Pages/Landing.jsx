@@ -13,6 +13,7 @@ import LandingLogo from 'Components/landingPage/LandingLogo';
 import LandingButton from 'Components/landingPage/LandingButton';
 
 import Flex from 'Components/container/Flex';
+import useTitle from 'Hooks/useTitle';
 
 /* --------------------------------- Styling -------------------------------- */
 // * Landing page layout
@@ -47,6 +48,7 @@ const fontSize = 'max(2vw, 1.5rem)';
 // NOTE Render the landing page
 // location from Router
 function Landing({ location, match }) {
+  useTitle('Welcome to AniMovies');
   return (
     <Layout
       // * These are for animation

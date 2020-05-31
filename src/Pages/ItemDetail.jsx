@@ -15,6 +15,7 @@ import BaseBackdropImg from 'Components/ui/BackdropImg';
 import Details from 'Components/itemDetail/Details';
 import _ from 'lodash';
 import LoadingIndicator from 'Components/ui/LoadingIndicator/LoadingIndicator';
+import useTitle from 'Hooks/useTitle';
 
 // NOTE renders ItemDetail page, with a backdrop, info and recommendations
 function ItemDetail() {
@@ -25,6 +26,7 @@ function ItemDetail() {
   );
   const isLoading = useSelector(activeItemIsLoadingSelector);
 
+  useTitle(itemDetail.title || itemDetail.original_name);
   useEffect(() => {
     const itemParams = { itemType, itemId };
     switch (api) {

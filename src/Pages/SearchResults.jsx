@@ -13,6 +13,7 @@ import {
   fetchSearch,
 } from 'Features/searchSlice';
 import LoadingIndicator from 'Components/ui/LoadingIndicator/LoadingIndicator';
+import useTitle from 'Hooks/useTitle';
 
 function SearchResults() {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ function SearchResults() {
   const { movies, tvSeries, numberOfPages } = useSelector(
     searchCollectionSelector
   );
-
+  useTitle(`Search "${searchTerm}"`);
   useEffect(() => {
     dispatch(fetchSearch({ searchTerm, page }));
   }, [dispatch, searchTerm, page]);

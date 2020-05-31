@@ -60,6 +60,7 @@ const FilterSections = styled.div`
   padding: 2rem;
   background: ${(p) => p.theme.black};
   width: 100vw;
+  box-shadow: 0 2px 2px #000;
 `;
 
 export default BaseFilter;

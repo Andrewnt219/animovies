@@ -16,6 +16,7 @@ import BaseFilter from 'Components/genre/Filter/BaseFilter';
 import FilterContext from 'Context/FilterContext';
 import PageIndicator from 'Components/genre/PageIndicator';
 import LoadingIndicator from 'Components/ui/LoadingIndicator/LoadingIndicator';
+import useTitle from 'Hooks/useTitle';
 
 function Genre() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function Genre() {
     [search, filterConfig]
   );
 
+  useTitle(genreName);
   useEffect(() => {
     dispatch(fetchGenre({ genreName, page, queries }));
   }, [dispatch, genreName, page, queries]);
