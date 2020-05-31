@@ -107,13 +107,13 @@ const SubHeader = styled.div`
   margin-left: -1rem;
   width: calc(100% + 2rem);
   padding: 0.5rem 1rem;
-  background: ${(p) => lighten(0.1, p.theme.black)};
+  background: ${(p) => lighten(0.1, p.theme.dark)};
 `;
 
 // NOTE renders info inside SubHeader
 const SubInfo = styled.p`
   background: ${(p) => p.contained && p.theme.sub1};
-  color: ${(p) => p.contained && p.theme.black};
+  color: ${(p) => p.contained && p.theme.dark};
 
   font-size: inherit;
 

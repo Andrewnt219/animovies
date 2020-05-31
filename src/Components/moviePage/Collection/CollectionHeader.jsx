@@ -20,7 +20,6 @@ function CollectionHeader({
 
       {subMenuNames && (
         <>
-          <Button to="/">VIEW MORE</Button>
           <ItemsContainer>
             {renderItems(subMenuNames, activeMenu, setActiveMenu)}
           </ItemsContainer>

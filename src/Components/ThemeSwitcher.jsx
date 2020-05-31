@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import { IoMdColorPalette } from 'react-icons/io';
 import movieTheme from 'Theme/movieTheme';
 import blueTheme from 'Theme/blueTheme';
+import greenTheme from 'Theme/greenTheme';
 
 import Backdrop from './ui/Backdrop';
 
@@ -22,8 +23,8 @@ function ThemeSwitcher({ switchTheme }) {
               onClick={() => switchTheme(blueTheme)}
             />
             <Theme
-              bgColor={blueTheme.primary}
-              onClick={() => switchTheme(movieTheme)}
+              bgColor={greenTheme.primary}
+              onClick={() => switchTheme(greenTheme)}
             />
             <Theme
               bgColor={blueTheme.primary}
