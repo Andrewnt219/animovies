@@ -57,7 +57,7 @@ const PageNumber = styled(Button)`
       font-weight: bold;
     `}
 
-  margin: 0 1rem;
+  margin: 0 1.5vw;
 
   &:hover {
     background: ${(p) => rgba(p.theme.primary, 0.5)};

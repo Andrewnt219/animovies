@@ -26,7 +26,7 @@ function ItemDetail() {
   );
   const isLoading = useSelector(activeItemIsLoadingSelector);
 
-  useTitle(itemDetail.title || itemDetail.original_name);
+  useTitle(itemDetail?.title || itemDetail?.original_name);
   useEffect(() => {
     const itemParams = { itemType, itemId };
     switch (api) {

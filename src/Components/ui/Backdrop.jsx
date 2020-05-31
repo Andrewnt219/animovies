@@ -6,8 +6,8 @@ import { rgba } from 'polished';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE renders a fullscreen backdrop
-function Backdrop({ handleClick }) {
-  return <StyledBackdrop onClick={handleClick} />;
+function Backdrop({ handleClick, children }) {
+  return <StyledBackdrop onClick={handleClick}>{children}</StyledBackdrop>;
 }
 
 /* --------------------------------- STYLING -------------------------------- */

@@ -9,8 +9,9 @@ export default createGlobalStyle`
   }
 
   html, body, #root {
+    position: relative;
     width: 100%;
-    height: 100%;
+    
     background-color: ${(p) => darken(0.1, p.theme.secondary)}
   }
   
