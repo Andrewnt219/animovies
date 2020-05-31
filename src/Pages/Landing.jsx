@@ -53,9 +53,9 @@ function Landing({ location, match }) {
       // * These are for animation
       // TODO - set App to motion div in order for exit to work
       key={location.pathname}
-      initial={{ scale: 0.5 }}
-      animate={{ scale: 1 }}
-      transition={{ duration: 0.25 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
       // exit={{ opacity: 0.7, y: 100 }}
       //
       // api={match.params.api}
