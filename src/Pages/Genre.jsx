@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import queryString from 'query-string';
 import styled from 'styled-components/macro';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 import MainLayout from 'HOC/MainLayout';
@@ -15,11 +15,12 @@ import {
 import BaseFilter from 'Components/genre/Filter/BaseFilter';
 import FilterContext from 'Context/FilterContext';
 import PageIndicator from 'Components/genre/PageIndicator';
+import LoadingIndicator from 'Components/ui/LoadingIndicator/LoadingIndicator';
 
 function Genre() {
   const dispatch = useDispatch();
   const { genreName, page } = useParams();
-
+  const history = useHistory();
   const { search } = useLocation();
 
   const isLoading = useSelector(genreIsLoadingSelector);
@@ -57,8 +58,14 @@ function Genre() {
   return (
     <MainLayout>
       <Header>
-        <GenreName>{genreName}</GenreName>
-        <PageIndicator numberOfPages={numberOfPages} />
+        <GenreName>{isLoading ? <LoadingIndicator /> : genreName}</GenreName>
+        <PageIndicator
+          numberOfPages={numberOfPages}
+          handleChange={(_, page) =>
+            history.push(`/tmdb/discover/${genreName}/${page}`)
+          }
+          currentPageNumber={page}
+        />
 
         <FilterContext.Provider
           value={{
@@ -72,7 +79,7 @@ function Genre() {
           />
         </FilterContext.Provider>
       </Header>
-      {isLoading && <div>Loading...</div>}
+
       {movies.length !== 0 && (
         <>
           <Collection
@@ -104,7 +111,9 @@ const Header = styled.div`
 `;
 const GenreName = styled.h1`
   grid-area: genreName;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: xx-large;
 `;
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components/macro';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import queryString from 'query-string';
 import { useDispatch, useSelector } from 'react-redux';
 import MainLayout from 'HOC/MainLayout';
@@ -12,9 +12,11 @@ import {
   searchCollectionSelector,
   fetchSearch,
 } from 'Features/searchSlice';
+import LoadingIndicator from 'Components/ui/LoadingIndicator/LoadingIndicator';
 
 function SearchResults() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { search } = useLocation();
   const { page, searchTerm } = queryString.parse(search);
 
@@ -27,11 +29,20 @@ function SearchResults() {
     dispatch(fetchSearch({ searchTerm, page }));
   }, [dispatch, searchTerm, page]);
 
+  const handleChange = (_, page) =>
+    history.push(`/tmdb/search?searchTerm=${searchTerm}&page=${page}`);
+
   return (
     <MainLayout>
       <Header>
-        <GenreName>Results for "{searchTerm}"</GenreName>
-        <PageIndicator numberOfPages={numberOfPages} />
+        <GenreName>
+          {isLoading ? <LoadingIndicator /> : `Results for "${searchTerm}"`}
+        </GenreName>
+        <PageIndicator
+          handleChange={handleChange}
+          numberOfPages={numberOfPages}
+          currentPageNumber={page}
+        />
       </Header>
       {isLoading && <div>Loading...</div>}
       {movies.length !== 0 && (
@@ -65,7 +76,9 @@ const Header = styled.div`
 `;
 const GenreName = styled.h1`
   grid-area: genreName;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: xx-large;
 `;
 

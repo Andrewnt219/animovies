@@ -3,14 +3,15 @@ import { usePagination } from '@material-ui/lab/Pagination';
 import styled, { css } from 'styled-components/macro';
 import Button from 'Components/ui/Button';
 import { rgba } from 'polished';
-import { useParams, useHistory } from 'react-router-dom';
 
-export default function PageIndicator({ numberOfPages }) {
-  const history = useHistory();
-  const { genreName, page: currentPageNumber } = useParams();
+export default function PageIndicator({
+  numberOfPages,
+  handleChange,
+  currentPageNumber,
+}) {
   const { items } = usePagination({
     count: numberOfPages,
-    onChange: (_, page) => history.push(`/tmdb/discover/${genreName}/${page}`),
+    onChange: handleChange,
     hideNextButton: true,
     hidePrevButton: true,
   });
