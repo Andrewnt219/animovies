@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/animovies/static/css/main.6355ea8a.chunk.css",
-    "main.js": "/animovies/static/js/main.60282161.chunk.js",
-    "main.js.map": "/animovies/static/js/main.60282161.chunk.js.map",
+    "main.js": "/animovies/static/js/main.5cd52a03.chunk.js",
+    "main.js.map": "/animovies/static/js/main.5cd52a03.chunk.js.map",
     "runtime-main.js": "/animovies/static/js/runtime-main.1f247ad6.js",
     "runtime-main.js.map": "/animovies/static/js/runtime-main.1f247ad6.js.map",
-    "static/js/2.41260886.chunk.js": "/animovies/static/js/2.41260886.chunk.js",
-    "static/js/2.41260886.chunk.js.map": "/animovies/static/js/2.41260886.chunk.js.map",
+    "static/js/2.e4bb4c78.chunk.js": "/animovies/static/js/2.e4bb4c78.chunk.js",
+    "static/js/2.e4bb4c78.chunk.js.map": "/animovies/static/js/2.e4bb4c78.chunk.js.map",
     "index.html": "/animovies/index.html",
-    "precache-manifest.3eb98e1ca2e63c8c0bbe0911b6cd8325.js": "/animovies/precache-manifest.3eb98e1ca2e63c8c0bbe0911b6cd8325.js",
+    "precache-manifest.8e7722c5f68031753d585399e9a10dd2.js": "/animovies/precache-manifest.8e7722c5f68031753d585399e9a10dd2.js",
     "service-worker.js": "/animovies/service-worker.js",
     "static/css/main.6355ea8a.chunk.css.map": "/animovies/static/css/main.6355ea8a.chunk.css.map",
-    "static/js/2.41260886.chunk.js.LICENSE.txt": "/animovies/static/js/2.41260886.chunk.js.LICENSE.txt",
+    "static/js/2.e4bb4c78.chunk.js.LICENSE.txt": "/animovies/static/js/2.e4bb4c78.chunk.js.LICENSE.txt",
     "static/media/bg.jpg": "/animovies/static/media/bg.25af6611.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.1f247ad6.js",
-    "static/js/2.41260886.chunk.js",
+    "static/js/2.e4bb4c78.chunk.js",
     "static/css/main.6355ea8a.chunk.css",
-    "static/js/main.60282161.chunk.js"
+    "static/js/main.5cd52a03.chunk.js"
   ]
 }
