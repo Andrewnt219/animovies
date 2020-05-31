@@ -7,7 +7,7 @@ import { animation } from 'Theme/variants';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE renders a form for SearchBar
-function SearchContainer({ children, className }) {
+function SearchContainer({ children, className, handleSubmit }) {
   return (
     <StyledContainer
       className={className}
@@ -16,6 +16,8 @@ function SearchContainer({ children, className }) {
       animate="enter"
       exit="exit"
       transition="transition"
+      //
+      onSubmit={handleSubmit}
     >
       {children}
     </StyledContainer>

@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useRef } from 'react';
 
 import { IconWrapper } from './IconWrapper';
 import { SearchBarInput } from './SearchBarInput';
 import { StyledSearchIcon } from './StyledSearchIcon';
 import { SearchContainer } from './SearchContainer';
+import { useHistory } from 'react-router-dom';
 
 // SearchBar have to have hight in order to set IconWrapper 100% height
 function SearchBar({
@@ -19,9 +20,18 @@ function SearchBar({
   iconBgColor,
   iconWrapperWidth,
 }) {
+  const inputRef = useRef();
+
+  const history = useHistory();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    history.push(`/tmdb/search?searchTerm=${inputRef.current.value}&page=1`);
+  };
+
   return (
-    <SearchContainer className={className}>
-      <SearchBarInput fontSize={fontSize} />
+    <SearchContainer className={className} handleSubmit={handleSubmit}>
+      <SearchBarInput ref={inputRef} fontSize={fontSize} />
 
       <IconWrapper
         as="button"

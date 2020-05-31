@@ -9,6 +9,7 @@ import MoviePage from 'Pages/MoviePage';
 import GlobalStyle from 'Theme/global';
 import ItemDetail from 'Pages/ItemDetail';
 import Genre from 'Pages/Genre';
+import SearchResults from 'Pages/SearchResults';
 
 function App() {
   const { pathname } = useLocation();
@@ -20,11 +21,9 @@ function App() {
         <Route path="/:api/discover/:genreName/:page" component={Genre} />
         <Route path="/:api/:itemType/:itemId" component={ItemDetail} />
 
+        <Route path="/tmdb/search" component={SearchResults} />
         <Route path="/:api/all" component={MoviePage} />
         {/* <Route path="/jikan/all" component={AnimePage} /> */}
-
-        <Route path="/user" render={() => <div>User</div>} />
-        <Route path="/favorite" render={() => <div>Favorite</div>} />
 
         <Route path="/:api" component={Landing} />
 
