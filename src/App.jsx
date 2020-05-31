@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Landing from 'Pages/Landing';
 import { ThemeProvider } from 'styled-components';
-import movieTheme from 'Theme/movieTheme';
-import MoviePage from 'Pages/MoviePage';
-// import AnimePage from 'Pages/AnimePage';
+
 import GlobalStyle from 'Theme/global';
-import ItemDetail from 'Pages/ItemDetail';
-import Genre from 'Pages/Genre';
-import SearchResults from 'Pages/SearchResults';
+import movieTheme from 'Theme/movieTheme';
 import ThemeSwitcher from 'Components/ThemeSwitcher';
+import LoadingIndicator from 'Components/ui/LoadingIndicator/LoadingIndicator';
+
+const Landing = React.lazy(() => import('Pages/Landing'));
+const MoviePage = React.lazy(() => import('Pages/MoviePage'));
+const ItemDetail = React.lazy(() => import('Pages/ItemDetail'));
+const Genre = React.lazy(() => import('Pages/Genre'));
+const SearchResults = React.lazy(() => import('Pages/SearchResults'));
 
 function App() {
   const [theme, setTheme] = useState(movieTheme);
@@ -24,20 +26,22 @@ function App() {
       <GlobalStyle />
 
       <ThemeSwitcher currentTheme={theme} switchTheme={setTheme} />
-      <Switch>
-        <Route path="/tmdb/discover/:genreName/:page" component={Genre} />
-        <Route path="/tmdb/:itemType/:itemId" component={ItemDetail} />
+      <Suspense fallback={<LoadingIndicator />}>
+        <Switch>
+          <Route path="/tmdb/discover/:genreName/:page" component={Genre} />
+          <Route path="/tmdb/:itemType/:itemId" component={ItemDetail} />
 
-        <Route path="/tmdb/search" component={SearchResults} />
-        <Route path="/tmdb/all" component={MoviePage} />
-        {/* <Route path="/jikan/all" component={AnimePage} /> */}
+          <Route path="/tmdb/search" component={SearchResults} />
+          <Route path="/tmdb/all" component={MoviePage} />
+          {/* <Route path="/jikan/all" component={AnimePage} /> */}
 
-        <Route path="/tmdb" component={Landing} />
-        <Route path="/404" render={() => <h1>404</h1>} />
+          <Route path="/tmdb" component={Landing} />
+          <Route path="/404" render={() => <h1>404</h1>} />
 
-        <Redirect from="/" to="/tmdb" exact />
-        <Redirect to="/404" />
-      </Switch>
+          <Redirect from="/" to="/tmdb" exact />
+          <Redirect to="/404" />
+        </Switch>
+      </Suspense>
     </ThemeProvider>
   );
 }
