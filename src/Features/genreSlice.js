@@ -14,6 +14,7 @@ const genreSlice = createSlice({
     collection: {
       movies: [],
       tvSeries: [],
+      numberOfPages: 0,
     },
   },
   reducers: {
@@ -25,6 +26,7 @@ const genreSlice = createSlice({
       state.isLoading = false;
       state.collection.movies = payload.movies;
       state.collection.tvSeries = payload.tvSeries;
+      state.collection.numberOfPages = payload.numberOfPages;
     },
     fetchGenreFailed: (state, { payload }) => {
       state.isLoading = false;
@@ -72,6 +74,10 @@ export const fetchGenre = ({ genreName, page, queries }) => (dispatch) => {
       fetchGenreSuccess({
         movies: formatCollection(moviesResponse.results, formatTmdbItem),
         tvSeries: formatCollection(tvResponse.results, formatTmdbItem),
+        numberOfPages:
+          moviesResponse.total_pages > tvResponse.total_pages
+            ? tvResponse.total_pages
+            : moviesResponse.total_pages,
       })
     );
   }

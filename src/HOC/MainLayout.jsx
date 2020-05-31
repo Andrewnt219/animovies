@@ -53,6 +53,7 @@ function MainLayout({ children }) {
 
 const Main = styled.main`
   margin-top: ${(p) => p.offsetTop};
+  height: 100%;
 `;
 
 export default MainLayout;

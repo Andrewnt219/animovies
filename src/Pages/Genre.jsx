@@ -12,9 +12,9 @@ import {
   genreCollectionSelector,
 } from 'Features/genreSlice';
 
-import PageIndicator from 'Components/genre/PageIndicator';
 import BaseFilter from 'Components/genre/Filter/BaseFilter';
 import FilterContext from 'Context/FilterContext';
+import PageIndicator from 'Components/genre/PageIndicator';
 
 function Genre() {
   const dispatch = useDispatch();
@@ -23,7 +23,9 @@ function Genre() {
   const { search } = useLocation();
 
   const isLoading = useSelector(genreIsLoadingSelector);
-  const { movies, tvSeries } = useSelector(genreCollectionSelector);
+  const { movies, tvSeries, numberOfPages } = useSelector(
+    genreCollectionSelector
+  );
 
   const [showFilter, setShowFilter] = useState(false);
   const [filterConfig, setFilterConfig] = useState({});
@@ -54,23 +56,24 @@ function Genre() {
 
   return (
     <MainLayout>
-      <GenreName>{genreName}</GenreName>
-      <FilterContext.Provider
-        value={{
-          handleChange,
-        }}
-      >
-        <BaseFilter
-          filterSectionsObj={filterMap}
-          showFilter={showFilter}
-          handleClick={() => setShowFilter((prev) => !prev)}
-        />
-      </FilterContext.Provider>
+      <Header>
+        <GenreName>{genreName}</GenreName>
+        <PageIndicator numberOfPages={numberOfPages} />
 
-      <PageIndicator />
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
+        <FilterContext.Provider
+          value={{
+            handleChange,
+          }}
+        >
+          <BaseFilter
+            filterSectionsObj={filterMap}
+            showFilter={showFilter}
+            handleClick={() => setShowFilter((prev) => !prev)}
+          />
+        </FilterContext.Provider>
+      </Header>
+      {isLoading && <div>Loading...</div>}
+      {movies.length !== 0 && (
         <>
           <Collection
             header={{
@@ -78,6 +81,7 @@ function Genre() {
             }}
             collection={movies}
           />
+
           <Collection
             header={{
               sectionName: 'TV Series',
@@ -90,8 +94,18 @@ function Genre() {
   );
 }
 
+const Header = styled.div`
+  display: grid;
+  grid-template-areas:
+    'genreName      genreName'
+    'pageIndicator  filter';
+  row-gap: 2rem;
+  padding: 1rem;
+`;
 const GenreName = styled.h1`
+  grid-area: genreName;
   text-align: center;
+  font-size: xx-large;
 `;
 
 const filterMap = {

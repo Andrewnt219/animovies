@@ -24,8 +24,23 @@ function renderFilterChoices(filterChoicesObj) {
   ));
 }
 
-const Container = styled.div``;
-const Header = styled.h1``;
-const FilterChoices = styled.div``;
+const Container = styled.div`
+  display: grid;
+
+  grid-template-columns: 1fr 2fr;
+  column-gap: 1rem;
+`;
+const Header = styled.p`
+  font-size: larger;
+  display: flex;
+  font-weight: bolder;
+  align-items: center;
+`;
+const FilterChoices = styled.div`
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+`;
 
 export default FilterSection;
