@@ -57,9 +57,9 @@ const FilterSections = styled.div`
   display: grid;
   row-gap: 2rem;
   font-size: min(3vw, 1.5rem);
-  padding: 2rem;
+  padding: 2rem 10vw;
   background: ${(p) => p.theme.black};
-  width: 100vw;
+  width: 90vw;
   box-shadow: 0 2px 2px #000;
 `;
 
