@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ae56960eac5f26005550d306c487ec01",
+    "revision": "d4dc895fc04c31ae1845ccc2fe27e772",
     "url": "/animovies/index.html"
   },
   {
-    "revision": "1a99bfc1b1c2170a3c35",
+    "revision": "1579d59059c82dca86f8",
     "url": "/animovies/static/css/main.6355ea8a.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/animovies/static/js/2.41260886.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1a99bfc1b1c2170a3c35",
-    "url": "/animovies/static/js/main.f4af49c2.chunk.js"
+    "revision": "1579d59059c82dca86f8",
+    "url": "/animovies/static/js/main.60282161.chunk.js"
   },
   {
     "revision": "a128522ab26e02833922",
