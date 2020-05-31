@@ -6,6 +6,7 @@
     "node": "v12.16.1",
     "yarn": "v1.22.0"
   },
+  "homepage": "https://andrewnt219.github.io/animovies",
   "dependencies": {
     "@material-ui/core": "^4.9.14",
     "@material-ui/lab": "^4.0.0-alpha.54",
@@ -17,6 +18,7 @@
     "axios": "0.18.1",
     "change-case": "^4.1.1",
     "framer-motion": "^1.11.0",
+    "gh-pages": "^3.0.0",
     "jikanjs": "^0.7.0",
     "lodash": "^4.17.15",
     "moment": "^2.26.0",
@@ -39,7 +41,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:css": "stylelint \"./src/**/*.js\""
+    "lint:css": "stylelint \"./src/**/*.js\"",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
