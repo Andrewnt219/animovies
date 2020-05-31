@@ -6,13 +6,21 @@ import { rgba } from 'polished';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE renders a fullscreen backdrop
-function Backdrop({ handleClick, children }) {
-  return <StyledBackdrop onClick={handleClick}>{children}</StyledBackdrop>;
+function Backdrop({ handleClick, children, index }) {
+  return (
+    <StyledBackdrop
+      index={index}
+      clickAble={Boolean(handleClick)}
+      onClick={handleClick}
+    >
+      {children}
+    </StyledBackdrop>
+  );
 }
 
 /* --------------------------------- STYLING -------------------------------- */
 const StyledBackdrop = styled.div`
-  z-index: ${(p) => p.index ?? p.theme.zIndex.high};
+  z-index: ${(p) => p.theme.zIndex[p.index] ?? p.theme.zIndex.high};
 
   content: '';
   width: 100vw;
@@ -21,11 +29,12 @@ const StyledBackdrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  cursor: ${(p) => p.clickAble && 'pointer'};
 `;
 
 /* -------------------------------- VALIDATE -------------------------------- */
 Backdrop.propTypes = {
-  index: PropTypes.number,
+  index: PropTypes.string,
   handleClick: PropTypes.func,
 };
 

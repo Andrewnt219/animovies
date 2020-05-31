@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { IoMdColorPalette } from 'react-icons/io';
 import movieTheme from 'Theme/movieTheme';
@@ -7,33 +7,56 @@ import greenTheme from 'Theme/greenTheme';
 import yellowTheme from 'Theme/yellowTheme';
 
 import Backdrop from './ui/Backdrop';
+import { AnimatePresence, motion } from 'framer-motion';
+import { animation } from 'Theme/variants';
 
 function ThemeSwitcher({ switchTheme }) {
   const [showThemePanel, setShowThemePanel] = useState(false);
+
+  const handleClick = (theme) => {
+    switchTheme(theme);
+    window.localStorage.setItem('theme', JSON.stringify(theme));
+  };
+
   return (
     <React.Fragment>
-      {showThemePanel && (
-        <Backdrop>
-          <ThemePanel>
-            <Theme
-              bgColor={movieTheme.primary}
-              onClick={() => switchTheme(movieTheme)}
-            />
-            <Theme
-              bgColor={greenTheme.primary}
-              onClick={() => switchTheme(greenTheme)}
-            />
-            <Theme
-              bgColor={blueTheme.primary}
-              onClick={() => switchTheme(blueTheme)}
-            />
-            <Theme
-              bgColor={yellowTheme.primary}
-              onClick={() => switchTheme(yellowTheme)}
-            />
-          </ThemePanel>
-        </Backdrop>
-      )}
+      <AnimatePresence>
+        {showThemePanel && (
+          <React.Fragment>
+            <Backdrop
+              index="med"
+              handleClick={() => setShowThemePanel(false)}
+            ></Backdrop>
+            <ThemePanel
+              variants={animation.stagger.container}
+              initial="hidden"
+              animate="show"
+              exit="hidden"
+            >
+              <Theme
+                variants={animation.stagger.child}
+                bgColor={movieTheme.primary}
+                onClick={() => handleClick(movieTheme)}
+              />
+              <Theme
+                variants={animation.stagger.child}
+                bgColor={greenTheme.primary}
+                onClick={() => handleClick(greenTheme)}
+              />
+              <Theme
+                variants={animation.stagger.child}
+                bgColor={blueTheme.primary}
+                onClick={() => handleClick(blueTheme)}
+              />
+              <Theme
+                variants={animation.stagger.child}
+                bgColor={yellowTheme.primary}
+                onClick={() => handleClick(yellowTheme)}
+              />
+            </ThemePanel>
+          </React.Fragment>
+        )}
+      </AnimatePresence>
       <SwitchButton onClick={() => setShowThemePanel((prev) => !prev)}>
         <IoMdColorPalette />
       </SwitchButton>
@@ -64,10 +87,12 @@ const SwitchButton = styled.button`
   }
 `;
 
-const ThemePanel = styled.div`
+const ThemePanel = styled(motion.div)`
   position: fixed;
   top: 50%;
   left: 50%;
+  z-index: ${(p) => p.theme.zIndex.high};
+
   transform: translate(-50%, -50%);
   padding: 2rem;
   display: grid;
@@ -75,7 +100,7 @@ const ThemePanel = styled.div`
   gap: 2vmin;
 `;
 
-const Theme = styled.div`
+const Theme = styled(motion.div)`
   background-color: ${(p) => p.bgColor};
   width: 15vmin;
   height: 15vmin;

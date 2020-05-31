@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Landing from 'Pages/Landing';
 import { ThemeProvider } from 'styled-components';
 import movieTheme from 'Theme/movieTheme';
@@ -14,11 +14,16 @@ import ThemeSwitcher from 'Components/ThemeSwitcher';
 function App() {
   const [theme, setTheme] = useState(movieTheme);
 
+  useEffect(() => {
+    const localTheme = window.localStorage.getItem('theme');
+    setTheme(JSON.parse(localTheme));
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
 
-      <ThemeSwitcher switchTheme={setTheme} />
+      <ThemeSwitcher currentTheme={theme} switchTheme={setTheme} />
       <Switch>
         <Route path="/:api/discover/:genreName/:page" component={Genre} />
         <Route path="/:api/:itemType/:itemId" component={ItemDetail} />

@@ -1,7 +1,7 @@
 import theme from './movieTheme';
 export default {
   ...theme,
-  //* named after the route
+  name: 'greenTheme',
   primary: '#A9CF54',
   secondary: '#52656B',
   white: '#FFFFFF',
