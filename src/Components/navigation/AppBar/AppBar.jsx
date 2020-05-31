@@ -13,11 +13,9 @@ import { AppBarSearchBar } from './AppBarSearchBar';
 import SearchIcon from 'Components/ui/SearchIcon';
 
 import { AppBarNavItems } from './AppBarNavItems';
-import AppBarNavItem from './AppBarNavItem';
+
 import GenreSubMenu from './movieNavigation/GenreDropDownMenu';
 import HomeLink from './movieNavigation/HomeLink';
-import TvLink from './movieNavigation/TvLink';
-import { useParams } from 'react-router-dom';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE renders an AppBar for main Layout
@@ -26,7 +24,7 @@ function AppBar({ theme, isOpen, setIsOpen, barHeight }) {
    * States
    */
   const [isSearchOpen, setisSearchOpen] = useState(false);
-  const { api } = useParams();
+  // const { api } = useParams();
   /**
    * Constants
    */
@@ -41,15 +39,15 @@ function AppBar({ theme, isOpen, setIsOpen, barHeight }) {
       <GenreSubMenu offsetTop={barHeight} />
     </>
   );
-  if (api === 'jikan') {
-    links = (
-      <>
-        <AppBarNavItem to="/">Home</AppBarNavItem>
-        <AppBarNavItem to="/">Anime</AppBarNavItem>
-        <AppBarNavItem to="/">Manga</AppBarNavItem>
-      </>
-    );
-  }
+  // if (api === 'jikan') {
+  //   links = (
+  //     <>
+  //       <AppBarNavItem to="/">Home</AppBarNavItem>
+  //       <AppBarNavItem to="/">Anime</AppBarNavItem>
+  //       <AppBarNavItem to="/">Manga</AppBarNavItem>
+  //     </>
+  //   );
+  // }
 
   return (
     <>

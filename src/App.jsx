@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Landing from 'Pages/Landing';
 import { ThemeProvider } from 'styled-components';
@@ -25,16 +25,17 @@ function App() {
 
       <ThemeSwitcher currentTheme={theme} switchTheme={setTheme} />
       <Switch>
-        <Route path="/:api/discover/:genreName/:page" component={Genre} />
-        <Route path="/:api/:itemType/:itemId" component={ItemDetail} />
+        <Route path="/tmdb/discover/:genreName/:page" component={Genre} />
+        <Route path="/tmdb/:itemType/:itemId" component={ItemDetail} />
 
         <Route path="/tmdb/search" component={SearchResults} />
-        <Route path="/:api/all" component={MoviePage} />
+        <Route path="/tmdb/all" component={MoviePage} />
         {/* <Route path="/jikan/all" component={AnimePage} /> */}
 
-        <Route path="/:api" component={Landing} />
+        <Route path="/tmdb" component={Landing} />
+        <Route path="/404" render={() => <h1>404</h1>} />
 
-        <Redirect from="/" to="/tmdb" />
+        <Redirect from="/" to="/tmdb" exact />
         <Redirect to="/404" />
       </Switch>
     </ThemeProvider>

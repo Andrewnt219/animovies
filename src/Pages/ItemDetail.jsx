@@ -19,7 +19,7 @@ import useTitle from 'Hooks/useTitle';
 
 // NOTE renders ItemDetail page, with a backdrop, info and recommendations
 function ItemDetail() {
-  const { api, itemType, itemId } = useParams();
+  const { itemType, itemId } = useParams();
   const dispatch = useDispatch();
   const { itemDetail, videos, recommendations } = useSelector(
     activeItemSelector
@@ -29,19 +29,20 @@ function ItemDetail() {
   useTitle(itemDetail?.title || itemDetail?.original_name);
   useEffect(() => {
     const itemParams = { itemType, itemId };
-    switch (api) {
-      case 'tmdb':
-        dispatch(fetchTmdbDetail(itemParams));
-        break;
+    dispatch(fetchTmdbDetail(itemParams));
+    // switch () {
+    //   case 'tmdb':
 
-      // case 'jikan':
-      //   dispatch(fetchJikanDetail(itemParams));
-      //   break;
+    //     break;
 
-      default:
-        throw new Error('Bad request!');
-    }
-  }, [api, itemType, itemId, dispatch]);
+    //   // case 'jikan':
+    //   //   dispatch(fetchJikanDetail(itemParams));
+    //   //   break;
+
+    //   default:
+    //     throw new Error('Bad request!');
+    // }
+  }, [itemType, itemId, dispatch]);
 
   return isLoading ? (
     <LoadingIndicator />

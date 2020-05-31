@@ -7,7 +7,6 @@ import { withRouter } from 'react-router-dom';
 import bg from 'Assets/bg.jpg';
 
 import Backdrop from 'Components/ui/Backdrop';
-import LandingAppBar from 'Components/landingPage/LandingAppBar';
 import SearchBar from 'Components/landingPage/SearchBar';
 import LandingLogo from 'Components/landingPage/LandingLogo';
 import LandingButton from 'Components/landingPage/LandingButton';
@@ -59,7 +58,7 @@ function Landing({ location, match }) {
       transition={{ duration: 0.25 }}
       // exit={{ opacity: 0.7, y: 100 }}
       //
-      api={match.params.api}
+      // api={match.params.api}
     >
       <Backdrop index={1} />
 
@@ -86,17 +85,18 @@ function Landing({ location, match }) {
 // NOTE return the url/path of large and small backgrounds for each theme
 // @param theme the cu
 function getBackground(api) {
-  return api === 'jikan'
-    ? {
-        small: 'https://static.zerochan.net/Nagi.no.Asukara.full.1657636.jpg',
-        large:
-          'https://vignette.wikia.nocookie.net/makotoshinkai/images/6/64/Weathering-02.jpg/revision/latest?cb=20190528233137',
-      }
-    : {
-        small:
-          'https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=925&q=80',
-        large: bg,
-      };
+  // return api === 'jikan'
+  //   ? {
+  //       small: 'https://static.zerochan.net/Nagi.no.Asukara.full.1657636.jpg',
+  //       large:
+  //         'https://vignette.wikia.nocookie.net/makotoshinkai/images/6/64/Weathering-02.jpg/revision/latest?cb=20190528233137',
+  //     }
+  //   :
+  return {
+    small:
+      'https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=925&q=80',
+    large: bg,
+  };
 }
 
 export default withRouter(Landing);

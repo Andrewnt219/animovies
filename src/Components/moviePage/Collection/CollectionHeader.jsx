@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components/macro';
 import React from 'react';
 import { sentenceCase } from 'change-case';
 
-import StyledLink from 'Components/navigation/StyledLink';
+// import StyledLink from 'Components/navigation/StyledLink';
 import { darken } from 'polished';
 
 /* -------------------------------- COMPONENT ------------------------------- */
@@ -111,25 +111,25 @@ const Item = styled.div`
   }
 `;
 
-const Button = styled(StyledLink)`
-  grid-area: button;
+// const Button = styled(StyledLink)`
+//   grid-area: button;
 
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+//   display: flex;
+//   justify-content: flex-end;
+//   align-items: center;
 
-  color: inherit;
-  text-decoration: none;
-  font-size: larger;
+//   color: inherit;
+//   text-decoration: none;
+//   font-size: larger;
 
-  &::after {
-    content: '▶';
-    display: inline-block;
-    margin-left: 0.25rem;
-  }
+//   &::after {
+//     content: '▶';
+//     display: inline-block;
+//     margin-left: 0.25rem;
+//   }
 
-  &:hover {
-    filter: brightness(1.1);
-  }
-`;
+//   &:hover {
+//     filter: brightness(1.1);
+//   }
+// `;
 export default CollectionHeader;
