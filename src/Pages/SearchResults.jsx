@@ -11,9 +11,11 @@ import {
   searchIsLoadingSelector,
   searchCollectionSelector,
   fetchSearch,
+  searchErrorSelector,
 } from 'Features/searchSlice';
 import LoadingIndicator from 'Components/ui/LoadingIndicator/LoadingIndicator';
 import useTitle from 'Hooks/useTitle';
+import ErrorModal from 'Components/ui/ErrorModal';
 
 function SearchResults() {
   const dispatch = useDispatch();
@@ -32,6 +34,11 @@ function SearchResults() {
 
   const handleChange = (_, page) =>
     history.push(`/tmdb/search?searchTerm=${searchTerm}&page=${page}`);
+
+  const error = useSelector(searchErrorSelector);
+  if (error) {
+    return <ErrorModal>{error}</ErrorModal>;
+  }
 
   return (
     <MainLayout>

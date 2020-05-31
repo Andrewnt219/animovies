@@ -6,6 +6,7 @@ import {
   fetchCollection,
   collectionIsLoadingSelector,
   collectionsSelector,
+  collectionErrorSelector,
 } from 'Features/collectionSlice';
 
 import NowPlayingSlider from 'Components/moviePage/nowPlayingSlider/NowPlayingSlider';
@@ -16,6 +17,8 @@ import { useFetch } from 'Hooks/useFetch';
 import { motion } from 'framer-motion';
 import LoadingIndicator from 'Components/ui/LoadingIndicator/LoadingIndicator';
 import useTitle from 'Hooks/useTitle';
+import { useSelector } from 'react-redux';
+import ErrorModal from 'Components/ui/ErrorModal';
 
 /* -------------------------------- COMPONENT ------------------------------- */
 // NOTE Render the page at /all
@@ -38,6 +41,11 @@ function MoviePage() {
   const [activeTvCollection, setActiveTvCollection] = useState('onTheAir');
 
   useTitle('All movies');
+
+  const error = useSelector(collectionErrorSelector);
+  if (error) {
+    return <ErrorModal>{error}</ErrorModal>;
+  }
 
   return isLoading ? (
     <LoadingIndicator />

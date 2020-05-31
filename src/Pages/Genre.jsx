@@ -10,6 +10,7 @@ import {
   fetchGenre,
   genreIsLoadingSelector,
   genreCollectionSelector,
+  genreErrorSelector,
 } from 'Features/genreSlice';
 
 import BaseFilter from 'Components/genre/Filter/BaseFilter';
@@ -17,6 +18,7 @@ import FilterContext from 'Context/FilterContext';
 import PageIndicator from 'Components/genre/PageIndicator';
 import LoadingIndicator from 'Components/ui/LoadingIndicator/LoadingIndicator';
 import useTitle from 'Hooks/useTitle';
+import ErrorModal from 'Components/ui/ErrorModal';
 
 function Genre() {
   const dispatch = useDispatch();
@@ -56,6 +58,11 @@ function Genre() {
       };
     });
   };
+
+  const error = useSelector(genreErrorSelector);
+  if (error) {
+    return <ErrorModal>{error}</ErrorModal>;
+  }
 
   return (
     <MainLayout>

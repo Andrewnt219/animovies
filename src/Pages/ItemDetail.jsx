@@ -9,6 +9,7 @@ import {
   fetchTmdbDetail,
   activeItemSelector,
   activeItemIsLoadingSelector,
+  activeItemError,
 } from 'Features/activeItemSlice';
 import Collection from 'Components/moviePage/Collection/Collection';
 import BaseBackdropImg from 'Components/ui/BackdropImg';
@@ -16,6 +17,7 @@ import Details from 'Components/itemDetail/Details';
 import _ from 'lodash';
 import LoadingIndicator from 'Components/ui/LoadingIndicator/LoadingIndicator';
 import useTitle from 'Hooks/useTitle';
+import ErrorModal from 'Components/ui/ErrorModal';
 
 // NOTE renders ItemDetail page, with a backdrop, info and recommendations
 function ItemDetail() {
@@ -43,6 +45,11 @@ function ItemDetail() {
     //     throw new Error('Bad request!');
     // }
   }, [itemType, itemId, dispatch]);
+
+  const error = useSelector(activeItemError);
+  if (error) {
+    return <ErrorModal>{error}</ErrorModal>;
+  }
 
   return isLoading ? (
     <LoadingIndicator />
