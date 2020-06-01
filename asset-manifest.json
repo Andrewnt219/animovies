@@ -2,15 +2,15 @@
   "files": {
     "static/js/0.0cf31815.chunk.js": "/animovies/static/js/0.0cf31815.chunk.js",
     "static/js/0.0cf31815.chunk.js.map": "/animovies/static/js/0.0cf31815.chunk.js.map",
-    "static/js/1.ef171af3.chunk.js": "/animovies/static/js/1.ef171af3.chunk.js",
-    "static/js/1.ef171af3.chunk.js.map": "/animovies/static/js/1.ef171af3.chunk.js.map",
+    "static/js/1.01d786c5.chunk.js": "/animovies/static/js/1.01d786c5.chunk.js",
+    "static/js/1.01d786c5.chunk.js.map": "/animovies/static/js/1.01d786c5.chunk.js.map",
     "static/js/2.6225f173.chunk.js": "/animovies/static/js/2.6225f173.chunk.js",
     "static/js/2.6225f173.chunk.js.map": "/animovies/static/js/2.6225f173.chunk.js.map",
     "main.css": "/animovies/static/css/main.6355ea8a.chunk.css",
     "main.js": "/animovies/static/js/main.b23a828c.chunk.js",
     "main.js.map": "/animovies/static/js/main.b23a828c.chunk.js.map",
-    "runtime-main.js": "/animovies/static/js/runtime-main.395e4091.js",
-    "runtime-main.js.map": "/animovies/static/js/runtime-main.395e4091.js.map",
+    "runtime-main.js": "/animovies/static/js/runtime-main.437dde3f.js",
+    "runtime-main.js.map": "/animovies/static/js/runtime-main.437dde3f.js.map",
     "static/js/5.7f35db45.chunk.js": "/animovies/static/js/5.7f35db45.chunk.js",
     "static/js/5.7f35db45.chunk.js.map": "/animovies/static/js/5.7f35db45.chunk.js.map",
     "static/js/6.2fe7f91a.chunk.js": "/animovies/static/js/6.2fe7f91a.chunk.js",
@@ -28,7 +28,7 @@
     "static/js/12.7d3fb8c2.chunk.js": "/animovies/static/js/12.7d3fb8c2.chunk.js",
     "static/js/12.7d3fb8c2.chunk.js.map": "/animovies/static/js/12.7d3fb8c2.chunk.js.map",
     "index.html": "/animovies/index.html",
-    "precache-manifest.4c533119284df5093335a33dacd73c93.js": "/animovies/precache-manifest.4c533119284df5093335a33dacd73c93.js",
+    "precache-manifest.6859c35fb22034a7579729fbd93f46cf.js": "/animovies/precache-manifest.6859c35fb22034a7579729fbd93f46cf.js",
     "service-worker.js": "/animovies/service-worker.js",
     "static/css/main.6355ea8a.chunk.css.map": "/animovies/static/css/main.6355ea8a.chunk.css.map",
     "static/js/2.6225f173.chunk.js.LICENSE.txt": "/animovies/static/js/2.6225f173.chunk.js.LICENSE.txt",
@@ -36,7 +36,7 @@
     "static/media/bg.jpg": "/animovies/static/media/bg.25af6611.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.395e4091.js",
+    "static/js/runtime-main.437dde3f.js",
     "static/js/5.7f35db45.chunk.js",
     "static/css/main.6355ea8a.chunk.css",
     "static/js/main.b23a828c.chunk.js"
