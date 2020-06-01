@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "03c145db1a59bccbfeea1a7cb0ef8557",
+    "revision": "bfef273da5da35950c0e4192aef9c1c8",
     "url": "/animovies/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/animovies/static/js/0.0cf31815.chunk.js"
   },
   {
-    "revision": "1dc6f8d0e2c1bd5d2f94",
-    "url": "/animovies/static/js/1.01d786c5.chunk.js"
+    "revision": "65d2ff05dd9815629e61",
+    "url": "/animovies/static/js/1.9de725dd.chunk.js"
   },
   {
     "revision": "dcd38007b67691a766ba",
@@ -64,8 +64,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/animovies/static/js/main.b23a828c.chunk.js"
   },
   {
-    "revision": "291acbbf2235ff90bf99",
-    "url": "/animovies/static/js/runtime-main.437dde3f.js"
+    "revision": "b6e24dd984cef7fc638c",
+    "url": "/animovies/static/js/runtime-main.7dffb494.js"
   },
   {
     "revision": "25af6611f3a52c545c3c0d9c5ea9b214",
