@@ -70,12 +70,15 @@ const ItemContainer = styled(motion.div)`
 
   box-shadow: 0px 2px 5px #000;
   border-radius: 4px;
+  max-height: 30rem;
+  width: auto;
 `;
 
 // NOTE renders a full img for the item
 const ItemImg = styled.img`
-  max-width: 100%;
-  height: 100%;
+  max-height: 100%;
+  width: 100%;
+
   border-radius: 4px;
 `;
 

@@ -13,8 +13,6 @@ function renderItem({ collection }) {
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
-  max-width: 100%;
-  height: auto;
 
   gap: 1rem;
   font-size: 1.25rem;

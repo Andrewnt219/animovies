@@ -15,6 +15,7 @@ function Collection({ header, collection }) {
 }
 const Container = styled.div`
   padding: 1rem;
+  max-height: 100%;
 
   & > *:first-child {
     margin-bottom: min(5vw, 2rem);
